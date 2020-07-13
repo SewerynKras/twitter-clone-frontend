@@ -38,16 +38,16 @@ describe('AuthService', () => {
       expect(tokenResponse).toEqual(TokenResponseMock);
     });
 
-    const req = httpMock.expectOne(`${environment.backendURL}/users`);
-    expect(req.request.method).toBe('GET');
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    expect(req.request.method).toBe('POST');
     req.flush(TokenResponseMock);
   });
 
-  it('should throw an error if the credentials are incorrect', () => {});
-
-  it('should store both tokens in local storage', () => {});
-
-  it('should obtain a new access token from the refresh endpoint', () => {});
-
-  it('should throw an error if the refresh token is incorrect', () => {});
+  //it('should throw an error if the credentials are incorrect', () => {});
+  //
+  //it('should store both tokens in local storage', () => {});
+  //
+  //it('should obtain a new access token from the refresh endpoint', () => {});
+  //
+  //it('should throw an error if the refresh token is incorrect', () => {});
 });
