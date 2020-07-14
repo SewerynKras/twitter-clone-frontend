@@ -67,7 +67,9 @@ describe('AuthService', () => {
     service.login('correct', 'correct').subscribe((_) => {
       let accessToken = service.getAccessTokenFromStorage();
       let refreshToken = service.getRefreshTokenFromStorage();
+      expect(accessToken).not.toBeNull();
       expect(accessToken).toEqual(TokenResponseMock.access);
+      expect(refreshToken).not.toBeNull();
       expect(refreshToken).toEqual(TokenResponseMock.refresh);
     });
 

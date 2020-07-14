@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import {
   TokenResponse,
@@ -25,15 +26,27 @@ export class AuthService {
       password: password,
     };
     let url = `${environment.backendURL}/token/`;
-    return this.http.post<TokenResponse>(url, body);
+    return this.http.post<TokenResponse>(url, body).pipe(
+      map((tokens) => {
+        // store the tokens in localstorage and return them to the pipe
+        localStorage.setItem('access', tokens.access);
+        localStorage.setItem('refresh', tokens.refresh);
+        return tokens;
+      })
+    );
+  }
+  /**
+   * Retrieves the access token from localstorage (returns null if it's not present)
+   */
+  getAccessTokenFromStorage(): string | null {
+    return localStorage.getItem('access');
   }
 
-  getAccessTokenFromStorage() {
-    return '';
-  }
-
-  getRefreshTokenFromStorage() {
-    return '';
+  /**
+   * Retrieves the refresh token from localstorage (returns null if it's not present)
+   */
+  getRefreshTokenFromStorage(): string | null {
+    return localStorage.getItem('refresh');
   }
 
   refresh(): any {
