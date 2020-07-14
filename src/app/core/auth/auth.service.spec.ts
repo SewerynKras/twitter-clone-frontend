@@ -135,5 +135,24 @@ describe('AuthService', () => {
     expect(req.request.method).toBe('POST');
     req.flush(TokenResponseMock);
   });
-  //it('should throw an error if the refresh token is incorrect', () => {});
+  it('should throw an error if the refresh token is incorrect', () => {
+    // Localstorage is empty here, so the token is incorrect
+    service.refresh().subscribe(
+      () => {},
+      (err) => {
+        expect(err.status).toEqual(401);
+      }
+    );
+
+    const response = {
+      status: 401,
+      statusText: 'Unauthorized',
+    };
+    const data = {
+      detail: 'No active account found with the given credentials',
+    };
+    const req = httpMock.expectOne(`${environment.backendURL}/token/refresh/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(data, response);
+  });
 });
