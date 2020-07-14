@@ -1,12 +1,10 @@
 import { environment } from '../../../environments/environment';
-import { TestBed, getTestBed } from '@angular/core/testing';
-import { HttpErrorResponse } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { AuthService } from './auth.service';
-import { of } from 'rxjs';
 import {
   TokenRefreshResponseMock,
   TokenResponseMock,
@@ -23,6 +21,7 @@ describe('AuthService', () => {
     });
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
+    localStorage.clear();
   });
 
   afterEach(() => {
@@ -76,6 +75,29 @@ describe('AuthService', () => {
     const req = httpMock.expectOne(`${environment.backendURL}/token/`);
     expect(req.request.method).toBe('POST');
     req.flush(TokenResponseMock);
+  });
+
+  it('should not store anything if authentiaction fails', () => {
+    service.login('incorrect', 'incorrect').subscribe(
+      () => {},
+      () => {
+        let accessToken = service.getAccessTokenFromStorage();
+        let refreshToken = service.getRefreshTokenFromStorage();
+        expect(accessToken).toBeNull();
+        expect(refreshToken).toBeNull();
+      }
+    );
+
+    const response = {
+      status: 401,
+      statusText: 'Unauthorized',
+    };
+    const data = {
+      detail: 'No active account found with the given credentials',
+    };
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(data, response);
   });
 
   //it('should obtain a new access token from the refresh endpoint', () => {});
