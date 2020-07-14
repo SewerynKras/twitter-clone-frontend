@@ -43,8 +43,25 @@ describe('AuthService', () => {
     req.flush(TokenResponseMock);
   });
 
-  //it('should throw an error if the credentials are incorrect', () => {});
-  //
+  it('should throw an error if the credentials are incorrect', () => {
+    service.login('incorrect', 'incorrect').subscribe(
+      () => {},
+      (err) => {
+        expect(err.status).toEqual(401);
+      }
+    );
+
+    const response = {
+      status: 401,
+      statusText: 'Unauthorized',
+    };
+    const data = {
+      detail: 'No active account found with the given credentials',
+    };
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(data, response);
+  });
   //it('should store both tokens in local storage', () => {});
   //
   //it('should obtain a new access token from the refresh endpoint', () => {});
