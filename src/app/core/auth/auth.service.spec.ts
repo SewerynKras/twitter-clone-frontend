@@ -100,7 +100,40 @@ describe('AuthService', () => {
     req.flush(data, response);
   });
 
-  //it('should obtain a new access token from the refresh endpoint', () => {});
-  //
+  it('should obtain a new access token from the refresh endpoint', () => {
+    service.login('correct', 'correct').subscribe((_) => {
+      service.refresh().subscribe(() => {
+        let accessToken = service.getAccessTokenFromStorage();
+        expect(accessToken).not.toBeNull();
+        expect(accessToken).toEqual(TokenRefreshResponseMock.access);
+      });
+      const req = httpMock.expectOne(
+        `${environment.backendURL}/token/refresh/`
+      );
+      expect(req.request.method).toBe('POST');
+      req.flush(TokenRefreshResponseMock);
+    });
+
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(TokenResponseMock);
+  });
+
+  it('should store the new token in localstorage', () => {
+    service.login('correct', 'correct').subscribe((_) => {
+      service.refresh().subscribe((tokens) => {
+        expect(tokens.access).toEqual(TokenRefreshResponseMock.access);
+      });
+      const req = httpMock.expectOne(
+        `${environment.backendURL}/token/refresh/`
+      );
+      expect(req.request.method).toBe('POST');
+      req.flush(TokenRefreshResponseMock);
+    });
+
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(TokenResponseMock);
+  });
   //it('should throw an error if the refresh token is incorrect', () => {});
 });
