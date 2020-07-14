@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import {
   TokenResponse,
   TokenPOSTBody,
+  TokenRefreshPOSTBody,
+  TokenRefreshResponse,
 } from 'src/app/shared/models/token.model';
 import { environment } from '../../../environments/environment';
 
@@ -49,7 +51,21 @@ export class AuthService {
     return localStorage.getItem('refresh');
   }
 
-  refresh(): any {
-    return;
+  /**
+   * Obtains a new access token from the api by using the stored
+   * refresh token
+   */
+  refresh(): Observable<TokenRefreshResponse> {
+    let body: TokenRefreshPOSTBody = {
+      refresh: this.getRefreshTokenFromStorage(),
+    };
+    let url = `${environment.backendURL}/token/refresh/`;
+    return this.http.post<TokenRefreshResponse>(url, body).pipe(
+      map((token) => {
+        // store the token in localstorage and return it to the pipe
+        localStorage.setItem('access', token.access);
+        return token;
+      })
+    );
   }
 }
