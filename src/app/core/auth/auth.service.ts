@@ -28,6 +28,14 @@ export class AuthService {
     return this.http.post<TokenResponse>(url, body);
   }
 
+  getAccessTokenFromStorage() {
+    return '';
+  }
+
+  getRefreshTokenFromStorage() {
+    return '';
+  }
+
   refresh(): any {
     return;
   }
