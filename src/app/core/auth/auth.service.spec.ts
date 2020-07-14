@@ -62,8 +62,20 @@ describe('AuthService', () => {
     expect(req.request.method).toBe('POST');
     req.flush(data, response);
   });
-  //it('should store both tokens in local storage', () => {});
-  //
+
+  it('should store both tokens in local storage', () => {
+    service.login('correct', 'correct').subscribe((_) => {
+      let accessToken = service.getAccessTokenFromStorage();
+      let refreshToken = service.getRefreshTokenFromStorage();
+      expect(accessToken).toEqual(TokenResponseMock.access);
+      expect(refreshToken).toEqual(TokenResponseMock.refresh);
+    });
+
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(TokenResponseMock);
+  });
+
   //it('should obtain a new access token from the refresh endpoint', () => {});
   //
   //it('should throw an error if the refresh token is incorrect', () => {});
