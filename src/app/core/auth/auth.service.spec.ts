@@ -135,6 +135,7 @@ describe('AuthService', () => {
     expect(req.request.method).toBe('POST');
     req.flush(TokenResponseMock);
   });
+
   it('should throw an error if the refresh token is incorrect', () => {
     // Localstorage is empty here, so the token is incorrect
     service.refresh().subscribe(
@@ -154,5 +155,19 @@ describe('AuthService', () => {
     const req = httpMock.expectOne(`${environment.backendURL}/token/refresh/`);
     expect(req.request.method).toBe('POST');
     req.flush(data, response);
+  });
+
+  it('should remove tokens after logout', () => {
+    service.login('correct', 'correct').subscribe((_) => {
+      service.logout();
+      let accessToken = service.getAccessTokenFromStorage();
+      let refreshToken = service.getRefreshTokenFromStorage();
+      expect(accessToken).toBeNull();
+      expect(refreshToken).toBeNull();
+    });
+
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(TokenResponseMock);
   });
 });

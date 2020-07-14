@@ -68,4 +68,12 @@ export class AuthService {
       })
     );
   }
+
+  /**
+   * Removes saved tokens from localstorage
+   */
+  logout(): void {
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+  }
 }
