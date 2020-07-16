@@ -137,7 +137,31 @@ describe('UsersService', () => {
     req.flush(UserProfileMockResponse);
   });
 
-  it('should retrieve someones followers list', () => {});
+  it('should retrieve someones followers list', () => {
+    service
+      .getFollowersList(UserProfileMockResponse.username)
+      .subscribe((profiles) => {
+        expect(profiles).toEqual(ProfileListMockResponsePage1);
+      });
 
-  it('should retrieve someones following list', () => {});
+    const req = httpMock.expectOne(
+      `${service.profileUrl}/${UserProfileMockResponse.username}/followers/`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(ProfileListMockResponsePage1);
+  });
+
+  it('should retrieve someones following list', () => {
+    service
+      .getFollowingList(UserProfileMockResponse.username)
+      .subscribe((profiles) => {
+        expect(profiles).toEqual(ProfileListMockResponsePage1);
+      });
+
+    const req = httpMock.expectOne(
+      `${service.profileUrl}/${UserProfileMockResponse.username}/following/`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(ProfileListMockResponsePage1);
+  });
 });
