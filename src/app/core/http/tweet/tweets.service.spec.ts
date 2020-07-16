@@ -1,20 +1,42 @@
+import { TweetResponseListMockPage1 } from './../../mocks/tweet.mock';
 import { TestBed } from '@angular/core/testing';
 
 import { TweetsService } from './tweets.service';
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 
 describe('TweetsService', () => {
   let service: TweetsService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [TweetsService],
+    });
     service = TestBed.inject(TweetsService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get tweets list', () => {});
+  it('should get tweets list', () => {
+    service.getTweetsList().subscribe((tweets) => {
+      expect(tweets).toEqual(TweetResponseListMockPage1);
+    });
+
+    const req = httpMock.expectOne(`${service.baseUrl}/`);
+    expect(req.request.method).toBe('GET');
+    req.flush(TweetResponseListMockPage1);
+  });
 
   it('should create a new tweet', () => {});
 
