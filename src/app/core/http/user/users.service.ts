@@ -89,4 +89,21 @@ export class UsersService {
       })
     );
   }
+
+  /**
+   * Sends a POST request to the profile backend api with the given body.
+   * Updates the locally saved user info.
+   * @param body UserProfilePOSTBody
+   */
+  createProfile(body: UserProfilePOSTBody): Observable<UserProfileResponse> {
+    let url = `${this.profileUrl}/`;
+    return this.http.post<UserProfileResponse>(url, body).pipe(
+      // saves the username, display_name and image url in local storage and returns
+      // the profile info back to the pipe
+      map((profile) => {
+        this.updateUserInfoInLocalStorage(profile);
+        return profile;
+      })
+    );
+  }
 }

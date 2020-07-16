@@ -2,6 +2,10 @@ import { environment } from './../../../../environments/environment';
 import {
   UserProfileMockResponse,
   ProfileListMockResponsePage1,
+  UserProfilePATCHBodyMock,
+  UserProfilePOSTBodyMock,
+  UserProfilePATCHResponseMock,
+  UserProfilePOSTResponseMock,
 } from './../../mocks/user.mock';
 import { TestBed } from '@angular/core/testing';
 
@@ -68,20 +72,56 @@ describe('UsersService', () => {
   });
 
   it('should update my profile', () => {
-    let updatedProfile = {
-      username: 'newName123',
-    };
     localStorage.setItem('profile.username', 'user');
-    service.updateMyProfile(updatedProfile).subscribe((profile) => {
-      expect(profile.username).toEqual(updatedProfile.username);
+    service.updateMyProfile(UserProfilePATCHBodyMock).subscribe((profile) => {
+      expect(profile).toEqual(UserProfilePATCHResponseMock);
     });
 
     const req = httpMock.expectOne(`${service.profileUrl}/user/`);
     expect(req.request.method).toBe('PATCH');
-    req.flush(updatedProfile);
+    req.flush(UserProfilePATCHResponseMock);
   });
 
-  it('should create a new profile', () => {});
+  it('should update the locally saved info after updating my profile', () => {
+    localStorage.setItem('profile.username', 'user');
+    service.updateMyProfile(UserProfilePATCHBodyMock).subscribe((_) => {
+      let user = service.getBaseUserInfoFromStorage();
+      expect(user.username).toEqual(UserProfilePATCHResponseMock.username);
+      expect(user.display_name).toEqual(
+        UserProfilePATCHResponseMock.display_name
+      );
+      expect(user.image_url).toEqual(UserProfilePATCHResponseMock.image_url);
+    });
+
+    const req = httpMock.expectOne(`${service.profileUrl}/user/`);
+    expect(req.request.method).toBe('PATCH');
+    req.flush(UserProfilePATCHResponseMock);
+  });
+
+  it('should create a new profile', () => {
+    service.createProfile(UserProfilePOSTBodyMock).subscribe((profile) => {
+      expect(profile).toEqual(UserProfilePOSTResponseMock);
+    });
+
+    const req = httpMock.expectOne(`${service.profileUrl}/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(UserProfilePOSTResponseMock);
+  });
+
+  it('should update the locally saved info after creating a profile', () => {
+    service.createProfile(UserProfilePOSTBodyMock).subscribe((_) => {
+      let user = service.getBaseUserInfoFromStorage();
+      expect(user.username).toEqual(UserProfilePOSTResponseMock.username);
+      expect(user.display_name).toEqual(
+        UserProfilePOSTResponseMock.display_name
+      );
+      expect(user.image_url).toEqual(UserProfilePOSTResponseMock.image_url);
+    });
+
+    const req = httpMock.expectOne(`${service.profileUrl}/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(UserProfilePOSTResponseMock);
+  });
 
   it('should retrieve someones profile', () => {});
 
