@@ -107,8 +107,52 @@ export class UsersService {
     );
   }
 
+  /**
+   * Retrieves a single profile with the given username.
+   * @param username string
+   */
   getSingleProfile(username: string): Observable<UserProfileResponse> {
     let url = `${this.profileUrl}/${username}/`;
     return this.http.get<UserProfileResponse>(url);
+  }
+
+  /**
+   * Retrieves a list of profiles that are being followed by the selected user.
+   * NOTE: This is a ListResponse, so only the first page will be returned.
+   * To access later pages, use the pagination service.
+   * @param username string
+   */
+  getFollowersList(
+    username: string
+  ): Observable<ListResponse<UserProfileResponse>> {
+    return this._getFollowsList(username, 'followers');
+  }
+
+  /**
+   * Retrieves a list of profiles that follow the selected user.
+   * NOTE: This is a ListResponse, so only the first page will be returned.
+   * To access later pages, use the pagination service.
+   * @param username string
+   */
+  getFollowingList(
+    username: string
+  ): Observable<ListResponse<UserProfileResponse>> {
+    return this._getFollowsList(username, 'following');
+  }
+
+  /**
+   * Retrieves either a list of followers or a list of users being followed.
+   * Since both endpoints are practically identical this method is designed to
+   * be reused in `this.getFollowingList(...)` and `this.getFollowersList(...)`.
+   * For internal use only.
+   * @param username string
+   * @param mode 'following' or 'followers'
+   */
+  private _getFollowsList(
+    username: string,
+    mode: 'following' | 'followers'
+  ): Observable<ListResponse<UserProfileResponse>> {
+    let url = `${this.profileUrl}/${username}/${mode}/`;
+    return this.http.get<ListResponse<UserProfileResponse>>(url);
   }
 }
