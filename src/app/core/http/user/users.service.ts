@@ -31,12 +31,7 @@ export class UsersService {
       // saves the username, display_name and image url in local storage and returns
       // the profile info back to the pipe
       map((profile) => {
-        localStorage.setItem('profile.username', profile.username);
-        localStorage.setItem('profile.display_name', profile.display_name);
-        localStorage.setItem(
-          'profile.image_url',
-          profile.image_url ? profile.image_url : ''
-        );
+        this.updateUserInfoInLocalStorage(profile);
         return profile;
       })
     );
@@ -54,6 +49,20 @@ export class UsersService {
   }
 
   /**
+   * Saves basic user profile information in local storage.
+   * To retrieve it later use `this.getBaseUserInfoFromStorage()`
+   * @param profile BaseUserProfile
+   */
+  updateUserInfoInLocalStorage(profile: BaseUserProfile): void {
+    localStorage.setItem('profile.username', profile.username);
+    localStorage.setItem('profile.display_name', profile.display_name);
+    localStorage.setItem(
+      'profile.image_url',
+      profile.image_url ? profile.image_url : ''
+    );
+  }
+
+  /**
    * Retrieves a list of all users.
    * NOTE: This is a ListResponse, so only the first page will be returned.
    * To access later pages, use the pagination service.
@@ -61,5 +70,23 @@ export class UsersService {
   getProfilesList(): Observable<ListResponse<UserProfileResponse>> {
     let url = `${this.profileUrl}/`;
     return this.http.get<ListResponse<UserProfileResponse>>(url);
+  }
+
+  /**
+   * Sends a PATCH request to the profile backend api with the given body.
+   * Updates the locally saved user info.
+   * @param body UserProfilePATCHBody
+   */
+  updateMyProfile(body: UserProfilePATCHBody): Observable<UserProfileResponse> {
+    let myProfile = this.getBaseUserInfoFromStorage();
+    let url = `${this.profileUrl}/${myProfile.username}/`;
+    return this.http.patch<UserProfileResponse>(url, body).pipe(
+      // saves the username, display_name and image url in local storage and returns
+      // the profile info back to the pipe
+      map((updatedProfile) => {
+        this.updateUserInfoInLocalStorage(updatedProfile);
+        return updatedProfile;
+      })
+    );
   }
 }

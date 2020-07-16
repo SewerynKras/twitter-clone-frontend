@@ -67,7 +67,19 @@ describe('UsersService', () => {
     req.flush(ProfileListMockResponsePage1);
   });
 
-  it('should update my profile', () => {});
+  it('should update my profile', () => {
+    let updatedProfile = {
+      username: 'newName123',
+    };
+    localStorage.setItem('profile.username', 'user');
+    service.updateMyProfile(updatedProfile).subscribe((profile) => {
+      expect(profile.username).toEqual(updatedProfile.username);
+    });
+
+    const req = httpMock.expectOne(`${service.profileUrl}/user/`);
+    expect(req.request.method).toBe('PATCH');
+    req.flush(updatedProfile);
+  });
 
   it('should create a new profile', () => {});
 
