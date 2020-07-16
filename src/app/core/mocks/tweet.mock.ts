@@ -1,3 +1,4 @@
+import { ListResponse } from './../../shared/models/response.model';
 import {
   TweetResponse,
   TweetPOSTBody,
@@ -65,4 +66,18 @@ export const TweetPOSTBodyMockRetweet: TweetPOSTBody = {
 export const TweetPOSTBodyMockRetweetNoText: TweetPOSTBody = {
   text: null,
   retweet_id: '33333333-3333-3333-3333-333333333333',
+};
+
+export const TweetResponseListMockPage1: ListResponse<TweetResponse> = {
+  count: 2,
+  next: 2,
+  previous: null,
+  results: [TweetResponseMock, TweetResponseMockWithComment],
+};
+
+export const TweetResponseListMockPage2: ListResponse<TweetResponse> = {
+  count: 2,
+  next: null,
+  previous: 1,
+  results: [TweetResponseMock, TweetResponseMockWithComment],
 };
