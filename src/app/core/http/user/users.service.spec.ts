@@ -123,7 +123,19 @@ describe('UsersService', () => {
     req.flush(UserProfilePOSTResponseMock);
   });
 
-  it('should retrieve someones profile', () => {});
+  it('should retrieve someones profile', () => {
+    service
+      .getSingleProfile(UserProfileMockResponse.username)
+      .subscribe((profile) => {
+        expect(profile).toEqual(UserProfileMockResponse);
+      });
+
+    const req = httpMock.expectOne(
+      `${service.profileUrl}/${UserProfileMockResponse.username}/`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(UserProfileMockResponse);
+  });
 
   it('should retrieve someones followers list', () => {});
 

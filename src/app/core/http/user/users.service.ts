@@ -106,4 +106,9 @@ export class UsersService {
       })
     );
   }
+
+  getSingleProfile(username: string): Observable<UserProfileResponse> {
+    let url = `${this.profileUrl}/${username}/`;
+    return this.http.get<UserProfileResponse>(url);
+  }
 }
