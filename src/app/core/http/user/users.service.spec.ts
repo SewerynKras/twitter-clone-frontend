@@ -1,5 +1,8 @@
 import { environment } from './../../../../environments/environment';
-import { UserProfileMockResponse } from './../../mocks/user.mock';
+import {
+  UserProfileMockResponse,
+  ProfileListMockResponsePage1,
+} from './../../mocks/user.mock';
 import { TestBed } from '@angular/core/testing';
 
 import { UsersService } from './users.service';
@@ -39,10 +42,15 @@ describe('UsersService', () => {
     req.flush(UserProfileMockResponse);
   });
 
-  it('should retrieve a list of profiles', () => {});
+  it('should retrieve a list of profiles', () => {
+    service.getProfilesList().subscribe((profiles) => {
+      expect(profiles).toEqual(ProfileListMockResponsePage1);
+    });
 
-  it('should retrieve the next page of a list', () => {});
-
+    const req = httpMock.expectOne(`${service.profileUrl}/`);
+    expect(req.request.method).toBe('GET');
+    req.flush(ProfileListMockResponsePage1);
+  });
   it('should update my profile', () => {});
 
   it('should create a new profile', () => {});
