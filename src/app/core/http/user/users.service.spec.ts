@@ -42,6 +42,21 @@ describe('UsersService', () => {
     req.flush(UserProfileMockResponse);
   });
 
+  it('should store base profile info in local storage', () => {
+    service.getMyProfile().subscribe((_) => {
+      let userInfo = service.getBaseUserInfoFromStorage();
+      expect(userInfo.username).toEqual(UserProfileMockResponse.username);
+      expect(userInfo.display_name).toEqual(
+        UserProfileMockResponse.display_name
+      );
+      expect(userInfo.image_url).toEqual(UserProfileMockResponse.image_url);
+    });
+
+    const req = httpMock.expectOne(`${service.baseUrl}/getMyProfile/`);
+    expect(req.request.method).toBe('GET');
+    req.flush(UserProfileMockResponse);
+  });
+
   it('should retrieve a list of profiles', () => {
     service.getProfilesList().subscribe((profiles) => {
       expect(profiles).toEqual(ProfileListMockResponsePage1);
@@ -51,6 +66,7 @@ describe('UsersService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(ProfileListMockResponsePage1);
   });
+
   it('should update my profile', () => {});
 
   it('should create a new profile', () => {});
