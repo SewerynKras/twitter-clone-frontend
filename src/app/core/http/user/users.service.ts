@@ -1,3 +1,4 @@
+import { ListResponse } from './../../../shared/models/response.model';
 import { Injectable } from '@angular/core';
 import {
   UserProfileResponse,
@@ -12,7 +13,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UsersService {
-  public baseUrl = `${environment.backendURL}/users/`;
+  public baseUrl = `${environment.backendURL}/users`;
+  public profileUrl = `${this.baseUrl}/profile`;
 
   constructor(private http: HttpClient) {}
 
@@ -23,5 +25,15 @@ export class UsersService {
   getMyProfile(): Observable<UserProfileResponse> {
     let url = `${this.baseUrl}/getMyProfile/`;
     return this.http.get<UserProfileResponse>(url);
+  }
+
+  /**
+   * Retrieves a list of all users.
+   * NOTE: This is a ListResponse, so only the first page will be returned.
+   * To access later pages, use the pagination service.
+   */
+  getProfilesList(): Observable<ListResponse<UserProfileResponse>> {
+    let url = `${this.profileUrl}/`;
+    return this.http.get<ListResponse<UserProfileResponse>>(url);
   }
 }
