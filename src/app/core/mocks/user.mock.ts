@@ -88,6 +88,18 @@ export const UserProfilePOSTBodyMock: UserProfilePOSTBody = {
   image: new File([''], 'name'),
 };
 
+export const UserProfilePOSTResponseMock: UserProfileResponse = {
+  username: 'coolUsername123',
+  display_name: 'Me',
+  bio: "It's me!",
+  website: 'www.github.com',
+  location: '',
+  birth_date: new Date(2000, 1, 1),
+  followers: 0,
+  following: 0,
+  image_url: 'url/123',
+};
+
 export const UserProfilePATCHBodyMock: UserProfilePATCHBody = {
   username: 'coolUsername123',
   display_name: 'Me',
@@ -97,4 +109,16 @@ export const UserProfilePATCHBodyMock: UserProfilePATCHBody = {
   location: '',
   birth_date: new Date(2000, 1, 1),
   image: new File([''], 'name'),
+};
+
+export const UserProfilePATCHResponseMock: UserProfileResponse = {
+  username: 'coolUsername123',
+  display_name: 'Me',
+  bio: "It's me!",
+  website: 'www.github.com',
+  location: '',
+  birth_date: new Date(2000, 1, 1),
+  image_url: '',
+  followers: 5,
+  following: 10,
 };
