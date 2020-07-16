@@ -31,3 +31,9 @@ export interface UserProfilePATCHBody {
   birth_date?: Date;
   image?: File;
 }
+
+export interface BaseUserProfile {
+  username: string;
+  display_name: string;
+  image_url: string;
+}
