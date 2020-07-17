@@ -139,5 +139,13 @@ describe('TweetsService', () => {
     req.flush(TweetResponseListMockPage1);
   });
 
-  it('should delete a selected tweet', () => {});
+  it('should delete a selected tweet', () => {
+    service.deleteTweet(TweetResponseMock.id).subscribe(() => {});
+
+    const req = httpMock.expectOne(
+      `${service.baseUrl}/${TweetResponseMock.id}/`
+    );
+    expect(req.request.method).toBe('DELETE');
+    req.flush({});
+  });
 });

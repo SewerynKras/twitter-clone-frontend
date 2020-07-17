@@ -114,4 +114,13 @@ export class TweetsService {
     let url = `${this.usersUrl}/${username}/tweets/`;
     return this.http.get<ListResponse<TweetResponse>>(url);
   }
+
+  /**
+   * Sends a DELETE request.
+   * @param id string
+   */
+  deleteTweet(id: string): Observable<void> {
+    let url = `${this.baseUrl}/${id}/`;
+    return this.http.delete<void>(url);
+  }
 }
