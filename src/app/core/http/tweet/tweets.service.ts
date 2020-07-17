@@ -50,10 +50,38 @@ export class TweetsService {
     return this.http.get<TweetResponse>(url);
   }
 
+  /**
+   * Retrieves a list of profiles have liked the selected tweet.
+   * NOTE: This is a ListResponse, so only the first page will be returned.
+   * To access later pages, use the pagination service.
+   * @param id string
+   */
   getListOfUserThatLikedATweet(
     id: string
   ): Observable<ListResponse<UserProfileResponse>> {
     let url = `${this.baseUrl}/${id}/likes/`;
     return this.http.get<ListResponse<UserProfileResponse>>(url);
+  }
+
+  /**
+   * Retrieves a list of tweets that contain the selected tweet as retweet.
+   * NOTE: This is a ListResponse, so only the first page will be returned.
+   * To access later pages, use the pagination service.
+   * @param id string
+   */
+  getListOfRetweets(id: string): Observable<ListResponse<TweetResponse>> {
+    let url = `${this.baseUrl}/${id}/retweets/`;
+    return this.http.get<ListResponse<TweetResponse>>(url);
+  }
+
+  /**
+   * Retrieves a list of tweets that contain the selected tweet as comment.
+   * NOTE: This is a ListResponse, so only the first page will be returned.
+   * To access later pages, use the pagination service.
+   * @param id string
+   */
+  getListOfComments(id: string): Observable<ListResponse<TweetResponse>> {
+    let url = `${this.baseUrl}/${id}/comments/`;
+    return this.http.get<ListResponse<TweetResponse>>(url);
   }
 }
