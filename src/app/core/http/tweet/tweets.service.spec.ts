@@ -80,9 +80,29 @@ describe('TweetsService', () => {
     req.flush(ProfileListMockResponsePage1);
   });
 
-  it('should get a list of tweets that have retweeted a selected tweet', () => {});
+  it('should get a list of tweets that have retweeted a selected tweet', () => {
+    service.getListOfRetweets(TweetResponseMock.id).subscribe((tweets) => {
+      expect(tweets).toEqual(TweetResponseListMockPage1);
+    });
 
-  it('should get a list of tweets that have commented on a selected tweet', () => {});
+    const req = httpMock.expectOne(
+      `${service.baseUrl}/${TweetResponseMock.id}/retweets/`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(TweetResponseListMockPage1);
+  });
+
+  it('should get a list of tweets that have commented on a selected tweet', () => {
+    service.getListOfComments(TweetResponseMock.id).subscribe((tweets) => {
+      expect(tweets).toEqual(TweetResponseListMockPage1);
+    });
+
+    const req = httpMock.expectOne(
+      `${service.baseUrl}/${TweetResponseMock.id}/comments/`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(TweetResponseListMockPage1);
+  });
 
   it('should get a selected tweets retweet', () => {});
 
