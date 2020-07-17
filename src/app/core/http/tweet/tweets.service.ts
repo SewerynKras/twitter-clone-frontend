@@ -84,4 +84,22 @@ export class TweetsService {
     let url = `${this.baseUrl}/${id}/comments/`;
     return this.http.get<ListResponse<TweetResponse>>(url);
   }
+
+  /**
+   * Retrieves the retweeted tweet.
+   * @param id string
+   */
+  getRetweet(id: string): Observable<TweetResponse> {
+    let url = `${this.baseUrl}/${id}/retweet/`;
+    return this.http.get<TweetResponse>(url);
+  }
+
+  /**
+   * Retrieves the parent tweet to the selected comment.
+   * @param id string
+   */
+  getComment(id: string): Observable<TweetResponse> {
+    let url = `${this.baseUrl}/${id}/comment/`;
+    return this.http.get<TweetResponse>(url);
+  }
 }

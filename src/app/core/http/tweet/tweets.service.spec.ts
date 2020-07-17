@@ -104,9 +104,29 @@ describe('TweetsService', () => {
     req.flush(TweetResponseListMockPage1);
   });
 
-  it('should get a selected tweets retweet', () => {});
+  it('should get a selected tweets retweet', () => {
+    service.getRetweet(TweetResponseMock.id).subscribe((tweet) => {
+      expect(tweet).toEqual(TweetResponseMock);
+    });
 
-  it('should get a selected tweets comment', () => {});
+    const req = httpMock.expectOne(
+      `${service.baseUrl}/${TweetResponseMock.id}/retweet/`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(TweetResponseMock);
+  });
+
+  it('should get a selected tweets comment', () => {
+    service.getComment(TweetResponseMock.id).subscribe((tweet) => {
+      expect(tweet).toEqual(TweetResponseMock);
+    });
+
+    const req = httpMock.expectOne(
+      `${service.baseUrl}/${TweetResponseMock.id}/comment/`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(TweetResponseMock);
+  });
 
   it('should get a list of tweets created by a selected user', () => {});
 
