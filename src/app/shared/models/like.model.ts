@@ -1,5 +1,5 @@
 export interface LikeResponse {
-  author: string;
+  created: boolean;
 }
 
 export interface LikePOSTBody {
