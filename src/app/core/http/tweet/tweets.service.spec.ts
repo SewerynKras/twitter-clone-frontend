@@ -1,4 +1,8 @@
-import { TweetResponseListMockPage1 } from './../../mocks/tweet.mock';
+import {
+  TweetResponseListMockPage1,
+  TweetPOSTBodyMockComment,
+  TweetResponseMockWithComment,
+} from './../../mocks/tweet.mock';
 import { TestBed } from '@angular/core/testing';
 
 import { TweetsService } from './tweets.service';
@@ -38,7 +42,15 @@ describe('TweetsService', () => {
     req.flush(TweetResponseListMockPage1);
   });
 
-  it('should create a new tweet', () => {});
+  it('should create a new tweet', () => {
+    service.createTweet(TweetPOSTBodyMockComment).subscribe((tweet) => {
+      expect(tweet).toEqual(TweetResponseMockWithComment);
+    });
+
+    const req = httpMock.expectOne(`${service.baseUrl}/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(TweetResponseMockWithComment);
+  });
 
   it('should get a single tweet', () => {});
 
