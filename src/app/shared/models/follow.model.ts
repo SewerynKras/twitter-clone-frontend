@@ -1,6 +1,5 @@
 export interface FollowResponse {
-  following: string;
-  being_followed: string;
+  created: boolean;
 }
 
 export interface FollowPOSTBody {
