@@ -2,6 +2,7 @@ import {
   TweetResponseListMockPage1,
   TweetPOSTBodyMockComment,
   TweetResponseMockWithComment,
+  TweetResponseMock,
 } from './../../mocks/tweet.mock';
 import { TestBed } from '@angular/core/testing';
 
@@ -52,7 +53,17 @@ describe('TweetsService', () => {
     req.flush(TweetResponseMockWithComment);
   });
 
-  it('should get a single tweet', () => {});
+  it('should get a single tweet', () => {
+    service.getSingleTweet(TweetResponseMock.id).subscribe((tweet) => {
+      expect(tweet).toEqual(TweetResponseMock);
+    });
+
+    const req = httpMock.expectOne(
+      `${service.baseUrl}/${TweetResponseMock.id}/`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(TweetResponseMock);
+  });
 
   it('should get a list of profiles that have liked a selected tweet', () => {});
 
