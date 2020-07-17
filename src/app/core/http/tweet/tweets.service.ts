@@ -1,5 +1,8 @@
 import { environment } from './../../../../environments/environment';
-import { TweetResponse } from './../../../shared/models/tweet.model';
+import {
+  TweetResponse,
+  TweetPOSTBody,
+} from './../../../shared/models/tweet.model';
 import { Observable } from 'rxjs';
 import { UsersService } from './../user/users.service';
 import { HttpClient } from '@angular/common/http';
@@ -22,5 +25,18 @@ export class TweetsService {
   getTweetsList(): Observable<ListResponse<TweetResponse>> {
     let url = `${this.baseUrl}/`;
     return this.http.get<ListResponse<TweetResponse>>(url);
+  }
+
+  /**
+   * Sends a POST request creating a new tweet
+   * @param data TweetPOSTBody
+   */
+  createTweet(data: TweetPOSTBody): Observable<TweetResponse> {
+    // Since data could contain an image file the request needs to of type 'multipart/form-data'
+    let body = new FormData();
+    for (const key in data) body.append(key, data[key]);
+
+    let url = `${this.baseUrl}/`;
+    return this.http.post<TweetResponse>(url, body);
   }
 }
