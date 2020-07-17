@@ -39,4 +39,13 @@ export class TweetsService {
     let url = `${this.baseUrl}/`;
     return this.http.post<TweetResponse>(url, body);
   }
+
+  /**
+   * Retrieves a single tweet.
+   * @param id string
+   */
+  getSingleTweet(id: string): Observable<TweetResponse> {
+    let url = `${this.baseUrl}/${id}/`;
+    return this.http.get<TweetResponse>(url);
+  }
 }
