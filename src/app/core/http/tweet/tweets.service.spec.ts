@@ -128,7 +128,16 @@ describe('TweetsService', () => {
     req.flush(TweetResponseMock);
   });
 
-  it('should get a list of tweets created by a selected user', () => {});
+  it('should get a list of tweets created by a selected user', () => {
+    let author = TweetResponseListMockPage1.results[0].author;
+    service.getTweetsListByUser(author).subscribe((tweets) => {
+      expect(tweets).toEqual(TweetResponseListMockPage1);
+    });
+
+    const req = httpMock.expectOne(`${service.usersUrl}/${author}/tweets/`);
+    expect(req.request.method).toBe('GET');
+    req.flush(TweetResponseListMockPage1);
+  });
 
   it('should delete a selected tweet', () => {});
 });
