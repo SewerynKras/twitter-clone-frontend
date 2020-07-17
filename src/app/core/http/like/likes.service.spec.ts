@@ -1,3 +1,4 @@
+import { LikePOSTBodyMock, LikeResponseMock } from './../../mocks/like.mock';
 import { TestBed } from '@angular/core/testing';
 
 import { LikesService } from './likes.service';
@@ -27,7 +28,25 @@ describe('LikesService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should create a like object', () => {});
+  it('should create a like object', () => {
+    service.createLike(LikePOSTBodyMock.tweet_id).subscribe((response) => {
+      expect(response).toEqual(LikeResponseMock);
+    });
 
-  it('should delete a like object', () => {});
+    const req = httpMock.expectOne(`${service.baseUrl}/`);
+    expect(req.request.method).toBe('POST');
+    req.flush(LikeResponseMock);
+  });
+
+  it('should delete a like object', () => {
+    service.deleteLike(LikePOSTBodyMock.tweet_id).subscribe(() => {
+      expect().nothing();
+    });
+
+    const req = httpMock.expectOne(
+      `${service.baseUrl}/${LikePOSTBodyMock.tweet_id}/`
+    );
+    expect(req.request.method).toBe('DELETE');
+    req.flush({});
+  });
 });
