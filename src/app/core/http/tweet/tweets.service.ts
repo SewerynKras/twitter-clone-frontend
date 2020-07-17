@@ -15,6 +15,7 @@ import { UserProfileResponse } from 'src/app/shared/models/user.model';
 })
 export class TweetsService {
   public baseUrl = `${environment.backendURL}/tweets`;
+  public usersUrl = `${environment.backendURL}/users`;
 
   constructor(private http: HttpClient) {}
   /**
@@ -101,5 +102,16 @@ export class TweetsService {
   getComment(id: string): Observable<TweetResponse> {
     let url = `${this.baseUrl}/${id}/comment/`;
     return this.http.get<TweetResponse>(url);
+  }
+  /**
+   * Retrieves a list tweets created by a selected user.
+   * NOTE: This is a ListResponse, so only the first page will be returned.
+   * To access later pages, use the pagination service.
+   */
+  getTweetsListByUser(
+    username: string
+  ): Observable<ListResponse<TweetResponse>> {
+    let url = `${this.usersUrl}/${username}/tweets/`;
+    return this.http.get<ListResponse<TweetResponse>>(url);
   }
 }
