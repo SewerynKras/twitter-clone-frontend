@@ -1,3 +1,4 @@
+import { ProfileListMockResponsePage1 } from './../../mocks/user.mock';
 import {
   TweetResponseListMockPage1,
   TweetPOSTBodyMockComment,
@@ -65,7 +66,19 @@ describe('TweetsService', () => {
     req.flush(TweetResponseMock);
   });
 
-  it('should get a list of profiles that have liked a selected tweet', () => {});
+  it('should get a list of profiles that have liked a selected tweet', () => {
+    service
+      .getListOfUserThatLikedATweet(TweetResponseMock.id)
+      .subscribe((users) => {
+        expect(users).toEqual(ProfileListMockResponsePage1);
+      });
+
+    const req = httpMock.expectOne(
+      `${service.baseUrl}/${TweetResponseMock.id}/likes/`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(ProfileListMockResponsePage1);
+  });
 
   it('should get a list of tweets that have retweeted a selected tweet', () => {});
 

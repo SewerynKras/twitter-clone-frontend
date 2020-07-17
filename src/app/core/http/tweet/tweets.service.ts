@@ -8,6 +8,7 @@ import { UsersService } from './../user/users.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ListResponse } from 'src/app/shared/models/response.model';
+import { UserProfileResponse } from 'src/app/shared/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -47,5 +48,12 @@ export class TweetsService {
   getSingleTweet(id: string): Observable<TweetResponse> {
     let url = `${this.baseUrl}/${id}/`;
     return this.http.get<TweetResponse>(url);
+  }
+
+  getListOfUserThatLikedATweet(
+    id: string
+  ): Observable<ListResponse<UserProfileResponse>> {
+    let url = `${this.baseUrl}/${id}/likes/`;
+    return this.http.get<ListResponse<UserProfileResponse>>(url);
   }
 }
