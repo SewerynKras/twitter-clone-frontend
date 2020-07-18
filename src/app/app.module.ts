@@ -12,9 +12,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutComponent } from './core/layout/layout.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { MenuComponent } from './core/layout/menu/menu.component';
+import { TweetObjectComponent } from './modules/tweet-object/components/tweet-object/tweet-object.component';
+import { TweetListComponent } from './modules/tweet-list/components/tweet-list/tweet-list.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, HeaderComponent, MenuComponent],
+  declarations: [
+    AppComponent,
+    LayoutComponent,
+    HeaderComponent,
+    MenuComponent,
+    TweetObjectComponent,
+    TweetListComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
