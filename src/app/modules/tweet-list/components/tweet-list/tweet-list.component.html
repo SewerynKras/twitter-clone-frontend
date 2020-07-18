@@ -1,1 +1,7 @@
-<app-tweet-object></app-tweet-object>
+<div
+  *ngFor="let tweet of tweets"
+  fxLayout="column wrap"
+  fxLayoutAlign="start stretch"
+>
+  <app-tweet-object [tweet]="tweet"></app-tweet-object>
+</div>

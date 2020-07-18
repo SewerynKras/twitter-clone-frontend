@@ -1,1 +1,32 @@
-<p>tweet-object works!</p>
+<mat-card>
+  <!-- User info -->
+  <mat-card-header>
+    <mat-card-title>Author Name</mat-card-title>
+    <mat-card-subtitle>@{{ tweet.author }}</mat-card-subtitle>
+  </mat-card-header>
+  <img matCardImage src="" />
+  <!-- Text -->
+  <mat-card-content>
+    {{ tweet.text }}
+  </mat-card-content>
+  <!-- Action buttons -->
+  <mat-card-actions
+    fxLayout="row wrap"
+    align="start"
+    fxLayoutAlign="center center"
+  >
+    <div fxFlex="25" fxLayoutAlign="center center">
+      <button mat-button>Like</button> {{ tweet.likes }}
+    </div>
+    <div fxFlex="25" fxLayoutAlign="center center">
+      <button mat-button>Comment</button> {{ tweet.comments }}
+    </div>
+    <div fxFlex="25" fxLayoutAlign="center center">
+      <button mat-button>Retweet</button> {{ tweet.retweets }}
+    </div>
+    <div fxFlex="25" fxLayoutAlign="center center">
+      <button mat-button>Share</button>
+    </div>
+  </mat-card-actions>
+  <mat-card-footer> </mat-card-footer>
+</mat-card>
