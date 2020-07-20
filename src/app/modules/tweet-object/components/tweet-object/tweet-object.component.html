@@ -2,10 +2,10 @@
   <!-- User info -->
   <div *ngIf="tweetAuthorInfo$ | async as user">
     <mat-card-header>
-      <mat-card-title>{{ user.display_name }}</mat-card-title>
+      <img mat-card-avatar [src]="getImageResized(user.image_url)" />
+      <mat-card-title> {{ user.display_name }}</mat-card-title>
       <mat-card-subtitle>@{{ tweet.author }}</mat-card-subtitle>
     </mat-card-header>
-    <img matCardImage src="{{ user.image_url }}" />
   </div>
 
   <!-- Text -->

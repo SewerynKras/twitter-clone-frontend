@@ -1,4 +1,4 @@
-import { AuthService } from './../../../../core/auth/auth.service';
+import { ResizeService } from './../../../../core/services/resize.service';
 import { UsersService } from './../../../../core/http/user/users.service';
 import { UserProfileResponse } from './../../../../shared/models/user.model';
 import { Observable } from 'rxjs';
@@ -14,7 +14,10 @@ export class TweetObjectComponent implements OnInit {
   @Input() tweet: TweetResponse;
 
   tweetAuthorInfo$: Observable<UserProfileResponse>;
-  constructor(private usersService: UsersService, private auth: AuthService) {}
+  constructor(
+    private usersService: UsersService,
+    private resize: ResizeService
+  ) {}
 
   ngOnInit(): void {
     this.tweetAuthorInfo$ = this.getUserInfo();
@@ -27,5 +30,14 @@ export class TweetObjectComponent implements OnInit {
    */
   getUserInfo(): Observable<UserProfileResponse> {
     return this.usersService.getSingleProfile(this.tweet.author);
+  }
+
+  /**
+   * Returns the cloudinary url with transformation
+   * parameters set to 40 height and 40 width
+   * @param url string
+   */
+  getImageResized(url: string): string {
+    return this.resize.applyTransform(url, 40, 40);
   }
 }
