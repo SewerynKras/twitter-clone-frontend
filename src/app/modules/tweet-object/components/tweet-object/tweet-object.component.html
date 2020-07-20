@@ -1,24 +1,26 @@
 <mat-card>
   <!-- User info -->
   <div *ngIf="tweetAuthorInfo$ | async as user">
-    <mat-card-header>
-      <img mat-card-avatar [src]="getImageResized(user.image_url)" />
-      <mat-card-title> {{ user.display_name }}</mat-card-title>
-      <mat-card-subtitle>@{{ tweet.author }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-subtitle *ngIf="tweet.comment">
-      <ng-container
-        *ngIf="commentAuthorUsername$ | async as commentAuthorUsername"
-      >
-        Replying to @{{ commentAuthorUsername }}
-      </ng-container>
-    </mat-card-subtitle>
+    <!-- Image, Display name, Username -->
+    <app-tweet-object-header [user]="user"></app-tweet-object-header>
   </div>
+  <!-- "Replying to" -->
+  <mat-card-subtitle *ngIf="tweet.comment">
+    <ng-container
+      *ngIf="commentAuthorUsername$ | async as commentAuthorUsername"
+    >
+      Replying to
+      <app-clickable-username
+        [username]="commentAuthorUsername"
+      ></app-clickable-username>
+    </ng-container>
+  </mat-card-subtitle>
 
   <!-- Text -->
   <mat-card-content class="tweet-text">
     {{ tweet.text }}
   </mat-card-content>
+  <!-- Nested tweet (retweet) -->
   <mat-card-content *ngIf="tweet.retweet && !nested">
     <ng-container *ngIf="nestedTweet$ | async as nestedTweet">
       <app-tweet-object
@@ -46,5 +48,6 @@
       <button mat-button>Share</button>
     </div>
   </mat-card-actions>
+  <!-- Free empty space (only used as bottom padding) -->
   <mat-card-footer> </mat-card-footer>
 </mat-card>
