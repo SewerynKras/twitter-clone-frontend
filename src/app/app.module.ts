@@ -14,6 +14,8 @@ import { HeaderComponent } from './core/layout/header/header.component';
 import { MenuComponent } from './core/layout/menu/menu.component';
 import { TweetObjectComponent } from './modules/tweet-object/components/tweet-object/tweet-object.component';
 import { TweetListComponent } from './modules/tweet-list/components/tweet-list/tweet-list.component';
+import { ClickableUsernameComponent } from './shared/components/clickable-username/clickable-username.component';
+import { TweetObjectHeaderComponent } from './modules/tweet-object/components/tweet-object-header/tweet-object-header.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { TweetListComponent } from './modules/tweet-list/components/tweet-list/t
     MenuComponent,
     TweetObjectComponent,
     TweetListComponent,
+    ClickableUsernameComponent,
+    TweetObjectHeaderComponent,
   ],
   imports: [
     BrowserModule,
