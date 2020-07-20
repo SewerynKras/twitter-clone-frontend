@@ -40,4 +40,22 @@ describe('TweetObjectComponent', () => {
     const req = httpMock.expectOne(() => true); //match any
     req.flush(UserProfileMockResponse);
   });
+
+  it('should get the nested tweet', () => {
+    component.getNestedTweet('123').subscribe((response) => {
+      expect(response).toEqual(TweetResponseMock);
+    });
+
+    const req = httpMock.expectOne(() => true); //match any
+    req.flush(TweetResponseMock);
+  });
+
+  it('should resize the image url', () => {
+    const img_url =
+      'https://res.cloudinary.com/deuw42oar/image/upload/v1593698711/kc1z0xcxph5ne4muvopq.jpg';
+    const expected =
+      'https://res.cloudinary.com/deuw42oar/image/upload/w_40,h_40/v1593698711/kc1z0xcxph5ne4muvopq.jpg';
+    const result = component.getImageResized(img_url);
+    expect(result).toEqual(expected);
+  });
 });
