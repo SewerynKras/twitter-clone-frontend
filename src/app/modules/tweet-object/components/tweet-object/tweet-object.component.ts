@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { TweetsService } from './../../../../core/http/tweet/tweets.service';
 import { ResizeService } from './../../../../core/services/resize.service';
 import { UsersService } from './../../../../core/http/user/users.service';
@@ -20,6 +21,7 @@ export class TweetObjectComponent implements OnInit {
 
   nestedTweet$: Observable<TweetResponse>;
   tweetAuthorInfo$: Observable<UserProfileResponse>;
+  commentAuthorUsername$: Observable<string>;
   constructor(
     private usersService: UsersService,
     private resize: ResizeService,
@@ -29,6 +31,9 @@ export class TweetObjectComponent implements OnInit {
   ngOnInit(): void {
     this.tweetAuthorInfo$ = this.getUserInfo();
     this.nestedTweet$ = this.getNestedTweet(this.tweet.retweet);
+    this.commentAuthorUsername$ = this.getNestedTweet(this.tweet.comment).pipe(
+      map((tweet) => tweet.author)
+    );
   }
 
   /**
@@ -50,7 +55,7 @@ export class TweetObjectComponent implements OnInit {
   }
 
   /**
-   * Retrieves the nested tweet object (retweet)
+   * Retrieves the nested tweet object (retweet or comment)
    * @param id string
    */
   getNestedTweet(id: string): Observable<TweetResponse> {
