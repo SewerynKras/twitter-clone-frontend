@@ -1,3 +1,4 @@
+import { TweetsService } from './../../../../core/http/tweet/tweets.service';
 import { ResizeService } from './../../../../core/services/resize.service';
 import { UsersService } from './../../../../core/http/user/users.service';
 import { UserProfileResponse } from './../../../../shared/models/user.model';
@@ -13,14 +14,21 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TweetObjectComponent implements OnInit {
   @Input() tweet: TweetResponse;
 
+  // Nested tweets will not display neither their own nested tweet objects (retweets)
+  // nor action buttons (like, comment, retweet, share)
+  @Input() nested = false;
+
+  nestedTweet$: Observable<TweetResponse>;
   tweetAuthorInfo$: Observable<UserProfileResponse>;
   constructor(
     private usersService: UsersService,
-    private resize: ResizeService
+    private resize: ResizeService,
+    private tweetsService: TweetsService
   ) {}
 
   ngOnInit(): void {
     this.tweetAuthorInfo$ = this.getUserInfo();
+    this.nestedTweet$ = this.getNestedTweet(this.tweet.retweet);
   }
 
   /**
@@ -39,5 +47,13 @@ export class TweetObjectComponent implements OnInit {
    */
   getImageResized(url: string): string {
     return this.resize.applyTransform(url, 40, 40);
+  }
+
+  /**
+   * Retrieves the nested tweet object (retweet)
+   * @param id string
+   */
+  getNestedTweet(id: string): Observable<TweetResponse> {
+    return this.tweetsService.getSingleTweet(id);
   }
 }

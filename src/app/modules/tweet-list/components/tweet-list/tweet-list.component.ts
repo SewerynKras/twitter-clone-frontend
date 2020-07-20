@@ -1,7 +1,6 @@
-import {
-  TweetResponseListMockPage1,
-  TweetResponseListMockPage2,
-} from './../../../../core/mocks/tweet.mock';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { TweetsService } from './../../../../core/http/tweet/tweets.service';
 import { TweetResponse } from './../../../../shared/models/tweet.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,11 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tweet-list.component.scss'],
 })
 export class TweetListComponent implements OnInit {
-  tweets: TweetResponse[] = TweetResponseListMockPage1['results'].concat(
-    TweetResponseListMockPage2['results']
-  );
+  tweets$: Observable<TweetResponse[]>;
+  constructor(private tweetsService: TweetsService) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.tweets$ = this.tweetsService
+      .getTweetsList()
+      .pipe(map((tweets) => tweets['results']));
+  }
 }

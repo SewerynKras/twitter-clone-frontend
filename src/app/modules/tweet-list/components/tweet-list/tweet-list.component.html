@@ -1,7 +1,11 @@
 <div
-  *ngFor="let tweet of tweets"
+  *ngFor="let tweet of tweets$ | async"
   fxLayout="column wrap"
   fxLayoutAlign="start stretch"
 >
-  <app-tweet-object [tweet]="tweet" fxFlexOffset="1"></app-tweet-object>
+  <app-tweet-object
+    [tweet]="tweet"
+    fxFlexOffset="1"
+    style="max-width: 100%;"
+  ></app-tweet-object>
 </div>

@@ -9,11 +9,22 @@
   </div>
 
   <!-- Text -->
-  <mat-card-content>
+  <mat-card-content class="tweet-text">
     {{ tweet.text }}
   </mat-card-content>
+  <mat-card-content *ngIf="tweet.comment">
+    {{ tweet.comment }}
+  </mat-card-content>
+  <mat-card-content *ngIf="tweet.retweet && !nested">
+    <ng-container *ngIf="nestedTweet$ | async as nestedTweet">
+      <app-tweet-object
+        [tweet]="nestedTweet"
+        [nested]="true"
+      ></app-tweet-object>
+    </ng-container>
+  </mat-card-content>
   <!-- Action buttons -->
-  <mat-card-actions fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card-actions fxLayout="row wrap" fxLayoutAlign="center center" *ngIf="!nested">
     <div fxFlex="25" fxLayoutAlign="center center">
       <button mat-button>Like</button>{{ tweet.likes }}
     </div>
