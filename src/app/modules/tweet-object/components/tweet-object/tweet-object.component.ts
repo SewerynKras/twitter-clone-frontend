@@ -1,3 +1,4 @@
+import { AuthService } from './../../../../core/auth/auth.service';
 import { UsersService } from './../../../../core/http/user/users.service';
 import { UserProfileResponse } from './../../../../shared/models/user.model';
 import { Observable } from 'rxjs';
@@ -11,9 +12,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TweetObjectComponent implements OnInit {
   @Input() tweet: TweetResponse;
-  constructor(private usersService: UsersService) {}
 
-  ngOnInit(): void {}
+  tweetAuthorInfo$: Observable<UserProfileResponse>;
+  constructor(private usersService: UsersService, private auth: AuthService) {}
+
+  ngOnInit(): void {
+    this.tweetAuthorInfo$ = this.getUserInfo();
+  }
 
   /**
    * Retrieves information about the tweets author

@@ -1,10 +1,13 @@
 <mat-card>
   <!-- User info -->
-  <mat-card-header>
-    <mat-card-title>Author Name</mat-card-title>
-    <mat-card-subtitle>@{{ tweet.author }}</mat-card-subtitle>
-  </mat-card-header>
-  <img matCardImage src="" />
+  <div *ngIf="tweetAuthorInfo$ | async as user">
+    <mat-card-header>
+      <mat-card-title>{{ user.display_name }}</mat-card-title>
+      <mat-card-subtitle>@{{ tweet.author }}</mat-card-subtitle>
+    </mat-card-header>
+    <img matCardImage src="{{ user.image_url }}" />
+  </div>
+
   <!-- Text -->
   <mat-card-content>
     {{ tweet.text }}
@@ -12,7 +15,7 @@
   <!-- Action buttons -->
   <mat-card-actions fxLayout="row wrap" fxLayoutAlign="center center">
     <div fxFlex="25" fxLayoutAlign="center center">
-      <button mat-button>Like</button> {{ tweet.likes }}
+      <button mat-button>Like</button>{{ tweet.likes }}
     </div>
     <div fxFlex="25" fxLayoutAlign="center center">
       <button mat-button>Comment</button> {{ tweet.comments }}
