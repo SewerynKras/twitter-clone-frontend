@@ -21,6 +21,7 @@ import { TweetObjectActionsLikeComponent } from './modules/tweet-object/componen
 import { TweetObjectActionsCommentComponent } from './modules/tweet-object/components/tweet-object-actions-comment/tweet-object-actions-comment.component';
 import { TweetObjectActionsRetweetComponent } from './modules/tweet-object/components/tweet-object-actions-retweet/tweet-object-actions-retweet.component';
 import { TweetObjectActionsShareComponent } from './modules/tweet-object/components/tweet-object-actions-share/tweet-object-actions-share.component';
+import { TweetObjectCreatedDateComponent } from './modules/tweet-object/components/tweet-object-created-date/tweet-object-created-date.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TweetObjectActionsShareComponent } from './modules/tweet-object/compone
     TweetObjectActionsCommentComponent,
     TweetObjectActionsRetweetComponent,
     TweetObjectActionsShareComponent,
+    TweetObjectCreatedDateComponent,
   ],
   imports: [
     BrowserModule,

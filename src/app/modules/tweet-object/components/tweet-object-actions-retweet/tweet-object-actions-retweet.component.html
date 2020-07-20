@@ -1,1 +1,4 @@
-<div><button mat-button>Retweet</button> {{ tweet.retweets }}</div>
+<div>
+  <button mat-button>Retweet</button> {{ tweet.retweets }}
+  {{ tweet.is_retweeted ? "YES" : "NO" }}
+</div>
