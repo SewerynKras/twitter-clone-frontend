@@ -16,6 +16,11 @@ import { TweetObjectComponent } from './modules/tweet-object/components/tweet-ob
 import { TweetListComponent } from './modules/tweet-list/components/tweet-list/tweet-list.component';
 import { ClickableUsernameComponent } from './shared/components/clickable-username/clickable-username.component';
 import { TweetObjectHeaderComponent } from './modules/tweet-object/components/tweet-object-header/tweet-object-header.component';
+import { TweetObjectActionsComponent } from './modules/tweet-object/components/tweet-object-actions/tweet-object-actions.component';
+import { TweetObjectActionsLikeComponent } from './modules/tweet-object/components/tweet-object-actions-like/tweet-object-actions-like.component';
+import { TweetObjectActionsCommentComponent } from './modules/tweet-object/components/tweet-object-actions-comment/tweet-object-actions-comment.component';
+import { TweetObjectActionsRetweetComponent } from './modules/tweet-object/components/tweet-object-actions-retweet/tweet-object-actions-retweet.component';
+import { TweetObjectActionsShareComponent } from './modules/tweet-object/components/tweet-object-actions-share/tweet-object-actions-share.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,11 @@ import { TweetObjectHeaderComponent } from './modules/tweet-object/components/tw
     TweetListComponent,
     ClickableUsernameComponent,
     TweetObjectHeaderComponent,
+    TweetObjectActionsComponent,
+    TweetObjectActionsLikeComponent,
+    TweetObjectActionsCommentComponent,
+    TweetObjectActionsRetweetComponent,
+    TweetObjectActionsShareComponent,
   ],
   imports: [
     BrowserModule,

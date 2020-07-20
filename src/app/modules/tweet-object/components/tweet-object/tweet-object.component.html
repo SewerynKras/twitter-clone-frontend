@@ -30,24 +30,9 @@
     </ng-container>
   </mat-card-content>
   <!-- Action buttons -->
-  <mat-card-actions
-    fxLayout="row wrap"
-    fxLayoutAlign="center center"
-    *ngIf="!nested"
-  >
-    <div fxFlex="25" fxLayoutAlign="center center">
-      <button mat-button>Like</button>{{ tweet.likes }}
-    </div>
-    <div fxFlex="25" fxLayoutAlign="center center">
-      <button mat-button>Comment</button> {{ tweet.comments }}
-    </div>
-    <div fxFlex="25" fxLayoutAlign="center center">
-      <button mat-button>Retweet</button> {{ tweet.retweets }}
-    </div>
-    <div fxFlex="25" fxLayoutAlign="center center">
-      <button mat-button>Share</button>
-    </div>
+  <mat-card-actions *ngIf="!nested">
+    <app-tweet-object-actions [tweet]="tweet"></app-tweet-object-actions>
   </mat-card-actions>
   <!-- Free empty space (only used as bottom padding) -->
-  <mat-card-footer> </mat-card-footer>
+  <mat-card-footer *ngIf="!nested"></mat-card-footer>
 </mat-card>
