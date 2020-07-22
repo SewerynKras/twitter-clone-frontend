@@ -8,8 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TweetObjectActionsRetweetComponent implements OnInit {
   @Input() tweet: TweetResponse;
-
+  controlDisabled = false;
   constructor() {}
 
   ngOnInit(): void {}
+
+  // TODO: CREATE RETWEET METHOD ONCE TWEET CREATION IS DONE
 }
