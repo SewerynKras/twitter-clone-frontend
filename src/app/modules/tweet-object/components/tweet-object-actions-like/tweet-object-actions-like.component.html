@@ -1,4 +1,6 @@
 <div>
-  <button mat-button>Likes</button>{{ tweet.likes }}
+  <button mat-button [disabled]="controlDisabled" (click)="toggleLike()">
+    Like</button
+  >{{ tweet.likes }}
   {{ tweet.is_liked ? "YES" : "NO" }}
 </div>
