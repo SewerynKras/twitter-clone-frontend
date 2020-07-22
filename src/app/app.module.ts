@@ -22,7 +22,8 @@ import { TweetObjectActionsCommentComponent } from './modules/tweet-object/compo
 import { TweetObjectActionsRetweetComponent } from './modules/tweet-object/components/tweet-object-actions-retweet/tweet-object-actions-retweet.component';
 import { TweetObjectActionsShareComponent } from './modules/tweet-object/components/tweet-object-actions-share/tweet-object-actions-share.component';
 import { TweetObjectCreatedDateComponent } from './modules/tweet-object/components/tweet-object-created-date/tweet-object-created-date.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,8 @@ import { TweetObjectCreatedDateComponent } from './modules/tweet-object/componen
     MatCardModule,
     FlexLayoutModule,
     HttpClientModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

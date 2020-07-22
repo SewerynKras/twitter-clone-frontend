@@ -26,14 +26,14 @@ export class TweetObjectActionsLikeComponent implements OnInit {
     // to give the user visual feedback that the action has been acknowledged
     this.tweet.is_liked = !this.tweet.is_liked;
 
-    // DELETE like
-    if (this.tweet.is_liked) {
+    // DELETE like (tweet.is_liked status is already changed here!)
+    if (!this.tweet.is_liked) {
       this.tweet.likes -= 1;
       this.likeService.deleteLike(this.tweet.id).subscribe((_) => {
         this.controlDisabled = false;
       });
     }
-    // CREATE like
+    // CREATE like (tweet.is_liked status is already changed here!)
     else {
       this.tweet.likes += 1;
       this.likeService.createLike(this.tweet.id).subscribe((_) => {

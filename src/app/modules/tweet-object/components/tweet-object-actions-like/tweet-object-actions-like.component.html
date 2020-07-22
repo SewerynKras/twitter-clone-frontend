@@ -1,6 +1,8 @@
 <div>
-  <button mat-button [disabled]="controlDisabled" (click)="toggleLike()">
-    Like</button
-  >{{ tweet.likes }}
-  {{ tweet.is_liked ? "YES" : "NO" }}
+  <button mat-icon-button [disabled]="controlDisabled" (click)="toggleLike()">
+    <mat-icon class="mat-18" [ngClass]="{ filled: tweet.is_liked }"
+      >favorite_outlined</mat-icon
+    >
+  </button>
+  {{ tweet.likes }}
 </div>

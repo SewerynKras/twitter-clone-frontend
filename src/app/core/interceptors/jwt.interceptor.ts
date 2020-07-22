@@ -7,7 +7,7 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { catchError, flatMap } from 'rxjs/operators';
 
@@ -49,7 +49,7 @@ export class JwtInterceptor implements HttpInterceptor {
               })
             );
           // throw the error again otherwise
-          else return Observable.throw(err);
+          else return throwError(err);
         })
       );
   }
