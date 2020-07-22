@@ -8,9 +8,8 @@ describe('TweetObjectActionsShareComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TweetObjectActionsShareComponent ]
-    })
-    .compileComponents();
+      declarations: [TweetObjectActionsShareComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
