@@ -1,4 +1,10 @@
 <div>
-  <button mat-button>Retweet</button> {{ tweet.retweets }}
-  {{ tweet.is_retweeted ? "YES" : "NO" }}
+  <button
+    mat-icon-button
+    [disabled]="controlDisabled"
+    [ngClass]="{ filled: tweet.is_retweeted }"
+  >
+    <mat-icon class="mat-18">sync</mat-icon>
+  </button>
+  {{ tweet.retweets }}
 </div>
