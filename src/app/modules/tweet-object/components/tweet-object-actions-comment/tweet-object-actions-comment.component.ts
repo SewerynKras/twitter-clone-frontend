@@ -8,7 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TweetObjectActionsCommentComponent implements OnInit {
   @Input() tweet: TweetResponse;
+  controlDisabled = false;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  // TODO: CREATE COMMENT METHOD ONCE TWEET CREATION IS DONE
 }

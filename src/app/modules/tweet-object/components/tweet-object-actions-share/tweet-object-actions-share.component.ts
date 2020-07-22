@@ -12,4 +12,6 @@ export class TweetObjectActionsShareComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  // TODO: CREATE SHARE METHOD ONCE SINGLE TWEET VIEW IS DONE
 }
