@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: 'tweets', children: TweetListRoutes },
-  { path: 'tweets/:id', children: TweetPageRoutes },
+  { path: 'tweets/:tweet_id', children: TweetPageRoutes },
 ];
 
 @NgModule({
