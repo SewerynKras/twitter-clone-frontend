@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs';
+import { TweetsService } from './../../../../core/http/tweet/tweets.service';
+import { TweetResponse } from './../../../../shared/models/tweet.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,11 +10,23 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./tweet-page.component.scss'],
 })
 export class TweetPageComponent implements OnInit {
-  public id: string;
+  tweet$: Observable<TweetResponse>;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private tweetsService: TweetsService
+  ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
+    let tweet_id = this.route.snapshot.paramMap.get('tweet_id');
+    this.tweet$ = this.getTweetFromId(tweet_id);
+  }
+
+  /**
+   * Retrieves the selected tweet from the backend
+   * @param tweet_id string
+   */
+  getTweetFromId(tweet_id: string): Observable<TweetResponse> {
+    return this.tweetsService.getSingleTweet(tweet_id);
   }
 }

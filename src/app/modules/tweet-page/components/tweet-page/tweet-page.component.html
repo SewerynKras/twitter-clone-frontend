@@ -1,1 +1,3 @@
-<p>tweet-page works! {{ id }}</p>
+<div *ngIf="tweet$ | async as tweet">
+  <app-tweet-object [tweet]="tweet"></app-tweet-object>
+</div>
