@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TweetObjectActionsShareComponent implements OnInit {
   @Input() tweet: TweetResponse;
-
+  controlDisabled = false;
   constructor() {}
 
   ngOnInit(): void {}

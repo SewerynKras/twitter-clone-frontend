@@ -4,6 +4,7 @@
     [disabled]="controlDisabled"
     (click)="toggleLike()"
     [ngClass]="{ filled: tweet.is_liked }"
+    class="highlight-on-hover"
   >
     <!-- FILLED ICON IF THE TWEET IS LIKED -->
     <ng-container *ngIf="tweet.is_liked; else notLiked">
