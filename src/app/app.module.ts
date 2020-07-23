@@ -24,6 +24,7 @@ import { TweetObjectActionsShareComponent } from './modules/tweet-object/compone
 import { TweetObjectCreatedDateComponent } from './modules/tweet-object/components/tweet-object-created-date/tweet-object-created-date.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { TweetPageComponent } from './modules/tweet-page/components/tweet-page/tweet-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { MatButtonModule } from '@angular/material/button';
     TweetObjectActionsRetweetComponent,
     TweetObjectActionsShareComponent,
     TweetObjectCreatedDateComponent,
+    TweetPageComponent,
   ],
   imports: [
     BrowserModule,
