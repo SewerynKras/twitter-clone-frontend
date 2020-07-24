@@ -1,4 +1,4 @@
-<div fxLayout="row wrap" fxLayoutAlign="center center">
+<div fxLayout="row wrap" fxLayoutAlign="center center" stop-propagation>
   <div fxFlex="25" fxLayoutAlign="center center">
     <app-tweet-object-actions-comment-button [tweet]="tweet">
     </app-tweet-object-actions-comment-button>
@@ -8,9 +8,7 @@
     </app-tweet-object-actions-retweet-button>
   </div>
   <div fxFlex="25" fxLayoutAlign="center center">
-    <app-tweet-object-actions-like-button
-      [tweet]="tweet"
-    >
+    <app-tweet-object-actions-like-button [tweet]="tweet">
     </app-tweet-object-actions-like-button>
   </div>
   <div fxFlex="25" fxLayoutAlign="center center">

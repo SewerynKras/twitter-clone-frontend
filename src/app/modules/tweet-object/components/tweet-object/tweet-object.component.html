@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card (click)="navigateToTweetPage()">
   <div fxLayout="row" fxLayoutAlign="start stretch">
     <div *ngIf="tweetAuthorInfo$ | async as user" style="max-width: 80%;">
       <!-- Image, Display name, Username -->

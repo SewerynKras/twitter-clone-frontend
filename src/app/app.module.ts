@@ -32,6 +32,7 @@ import { TweetPageActionsComponent } from './modules/tweet-page/components/tweet
 import { TweetPageStatusComponent } from './modules/tweet-page/components/tweet-page-status/tweet-page-status.component';
 import { TweetPageCreatedInfoComponent } from './modules/tweet-page/components/tweet-page-created-info/tweet-page-created-info.component';
 import { TweetPageFooterComponent } from './modules/tweet-page/components/tweet-page-footer/tweet-page-footer.component';
+import { StopPropagationDirective } from './shared/directives/stop-propagation.directive';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { TweetPageFooterComponent } from './modules/tweet-page/components/tweet-
     TweetPageStatusComponent,
     TweetPageCreatedInfoComponent,
     TweetPageFooterComponent,
+    StopPropagationDirective,
   ],
   imports: [
     BrowserModule,
