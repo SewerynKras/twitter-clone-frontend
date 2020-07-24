@@ -1,4 +1,4 @@
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { UsersService } from './../../../../core/http/user/users.service';
 import { UserProfileResponse } from './../../../../shared/models/user.model';
 import { Observable } from 'rxjs';
@@ -15,6 +15,9 @@ import { ActivatedRoute } from '@angular/router';
 export class TweetPageComponent implements OnInit {
   tweet$: Observable<TweetResponse>;
   tweetAuthorInfo$: Observable<UserProfileResponse>;
+  commentAuthorUsername$: Observable<string>;
+  nestedTweet$: Observable<TweetResponse>;
+
   constructor(
     private route: ActivatedRoute,
     private tweetsService: TweetsService,
@@ -23,10 +26,7 @@ export class TweetPageComponent implements OnInit {
 
   ngOnInit(): void {
     let tweet_id = this.route.snapshot.paramMap.get('tweet_id');
-    this.tweet$ = this.getTweetFromId(tweet_id);
-    this.tweetAuthorInfo$ = this.tweet$.pipe(
-      switchMap((tweet) => this.getUserInfo(tweet))
-    );
+    this.tweet$ = this.getTweetInfoFromId(tweet_id);
   }
 
   /**
@@ -38,10 +38,25 @@ export class TweetPageComponent implements OnInit {
   }
 
   /**
-   * Retrieves the selected tweet from the backend
+   * Retrieves the selected tweet, it's author, it's comment and it's retweet
+   * from the backend
    * @param tweet_id string
    */
-  getTweetFromId(tweet_id: string): Observable<TweetResponse> {
-    return this.tweetsService.getSingleTweet(tweet_id);
+  getTweetInfoFromId(tweet_id: string): Observable<TweetResponse> {
+    return this.tweetsService.getSingleTweet(tweet_id).pipe(
+      map((tweet) => {
+        // Get retweet
+        this.nestedTweet$ = this.tweetsService.getSingleTweet(tweet.retweet);
+        // Get tweet author
+        this.tweetAuthorInfo$ = this.usersService.getSingleProfile(
+          tweet.author
+        );
+        // Get comment author
+        this.commentAuthorUsername$ = this.tweetsService
+          .getSingleTweet(tweet.comment)
+          .pipe(map((tweet) => tweet.author));
+        return tweet;
+      })
+    );
   }
 }

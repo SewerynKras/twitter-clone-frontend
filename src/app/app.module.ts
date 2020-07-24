@@ -34,12 +34,12 @@ import { TweetPageCreatedInfoComponent } from './modules/tweet-page/components/t
 import { TweetPageFooterComponent } from './modules/tweet-page/components/tweet-page-footer/tweet-page-footer.component';
 import { StopPropagationDirective } from './shared/directives/stop-propagation.directive';
 import { TweetCreationComponent } from './modules/tweet-creation/components/tweet-creation/tweet-creation.component';
-import { TweetCreationAuthorPictureComponent } from './modules/tweet-creation/components/tweet-creation-author-picture/tweet-creation-author-picture.component';
 import { TweetCreationTextareaComponent } from './modules/tweet-creation/components/tweet-creation-textarea/tweet-creation-textarea.component';
 import { TweetCreationImagePreviewComponent } from './modules/tweet-creation/components/tweet-creation-image-preview/tweet-creation-image-preview.component';
 import { TweetCreationActionsComponent } from './modules/tweet-creation/components/tweet-creation-actions/tweet-creation-actions.component';
 import { TweetCreationActionsImageComponent } from './modules/tweet-creation/components/tweet-creation-actions-image/tweet-creation-actions-image.component';
 import { TweetCreationActionsEmojiComponent } from './modules/tweet-creation/components/tweet-creation-actions-emoji/tweet-creation-actions-emoji.component';
+import { TweetObjectAuthorPictureComponent } from './modules/tweet-object/components/tweet-object-author-picture/tweet-object-author-picture.component';
 
 @NgModule({
   declarations: [
@@ -67,12 +67,12 @@ import { TweetCreationActionsEmojiComponent } from './modules/tweet-creation/com
     TweetPageFooterComponent,
     StopPropagationDirective,
     TweetCreationComponent,
-    TweetCreationAuthorPictureComponent,
     TweetCreationTextareaComponent,
     TweetCreationImagePreviewComponent,
     TweetCreationActionsComponent,
     TweetCreationActionsImageComponent,
     TweetCreationActionsEmojiComponent,
+    TweetObjectAuthorPictureComponent,
   ],
   imports: [
     BrowserModule,
