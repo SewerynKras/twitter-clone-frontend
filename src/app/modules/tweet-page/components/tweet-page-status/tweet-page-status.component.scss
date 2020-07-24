@@ -1,0 +1,10 @@
+.comments-and-retweets-label,
+.likes-label {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.comments-and-retweets-label:hover,
+.likes-label:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
