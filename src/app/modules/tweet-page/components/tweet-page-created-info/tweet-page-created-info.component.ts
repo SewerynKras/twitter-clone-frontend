@@ -8,8 +8,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TweetPageCreatedInfoComponent implements OnInit {
   @Input() tweet: TweetResponse;
-
+  timeCreated: string;
+  dateCreated: string;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.timeCreated = this.getTimeCreated();
+    this.dateCreated = this.getDateCreated();
+  }
+
+  getTimeCreated() {
+    return `${this.tweet.created_date.getHours()}:${this.tweet.created_date.getMinutes()}`;
+  }
+
+  getDateCreated() {
+    return this.tweet.created_date.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+  }
 }
