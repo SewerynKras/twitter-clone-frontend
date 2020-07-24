@@ -13,13 +13,4 @@ export class TweetObjectHeaderComponent implements OnInit {
   constructor(private resize: ResizeService) {}
 
   ngOnInit(): void {}
-
-  /**
-   * Returns the cloudinary url with transformation
-   * parameters set to 40 height and 40 width
-   * @param url string
-   */
-  getImageResized(url: string): string {
-    return this.resize.applyTransform(url, 40, 40);
-  }
 }

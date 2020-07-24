@@ -3,3 +3,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.tweet-header {
+  // mat-card-header adds a 16px margin
+  margin-left: -16px;
+}

@@ -1,5 +1,6 @@
 .tweet-text {
   word-wrap: break-word;
+  width: 100%;
 }
 
 .date-separator {
@@ -11,4 +12,13 @@
 
 ::ng-deep .mat-card-header-text {
   max-width: 80%;
+}
+
+.tweet-main-body {
+  // min-width: 0 prevents overflows with text wrapping enabled
+  min-width: 0 !important;
+}
+
+.tweet-actions {
+  margin-bottom: 0;
 }
