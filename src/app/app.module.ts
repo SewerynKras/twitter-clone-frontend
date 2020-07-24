@@ -25,6 +25,7 @@ import { TweetObjectCreatedDateComponent } from './modules/tweet-object/componen
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TweetPageComponent } from './modules/tweet-page/components/tweet-page/tweet-page.component';
+import { TweetObjectActionsLikeButtonComponent } from './modules/tweet-object/components/tweet-object-actions-like-button/tweet-object-actions-like-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { TweetPageComponent } from './modules/tweet-page/components/tweet-page/t
     TweetObjectActionsShareComponent,
     TweetObjectCreatedDateComponent,
     TweetPageComponent,
+    TweetObjectActionsLikeButtonComponent,
   ],
   imports: [
     BrowserModule,

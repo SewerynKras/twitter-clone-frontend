@@ -1,6 +1,5 @@
 import { TweetResponse } from './../../../../shared/models/tweet.model';
 import { Component, OnInit, Input } from '@angular/core';
-import { LikesService } from './../../../../core/http/like/likes.service';
 
 @Component({
   selector: 'app-tweet-object-actions-like',
@@ -9,36 +8,18 @@ import { LikesService } from './../../../../core/http/like/likes.service';
 })
 export class TweetObjectActionsLikeComponent implements OnInit {
   @Input() tweet: TweetResponse;
-  controlDisabled = false;
 
-  constructor(private likeService: LikesService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   /**
-   * Created/deletes a like from the given tweet.
-   * Changes the likes amount next to the button by 1.
-   * The like button becomes disabled while the backend processes the request.
+   * Increases or decreases the likes amount counter based on the given
+   * argument (true => increase, false => decrease)
+   * @param created boolean
    */
-  toggleLike(): void {
-    this.controlDisabled = true;
-    // Flip the buttons state even before the actual request gets sent
-    // to give the user visual feedback that the action has been acknowledged
-    this.tweet.is_liked = !this.tweet.is_liked;
-
-    // DELETE like (tweet.is_liked status is already changed here!)
-    if (!this.tweet.is_liked) {
-      this.tweet.likes -= 1;
-      this.likeService.deleteLike(this.tweet.id).subscribe((_) => {
-        this.controlDisabled = false;
-      });
-    }
-    // CREATE like (tweet.is_liked status is already changed here!)
-    else {
-      this.tweet.likes += 1;
-      this.likeService.createLike(this.tweet.id).subscribe((_) => {
-        this.controlDisabled = false;
-      });
-    }
+  changeCounter(created: boolean) {
+    if (created) this.tweet.likes += 1;
+    else this.tweet.likes -= 1;
   }
 }

@@ -1,0 +1,16 @@
+  <button
+    mat-icon-button
+    [disabled]="controlDisabled"
+    (click)="toggleLike()"
+    [ngClass]="{ filled: tweet.is_liked }"
+    class="highlight-on-hover"
+  >
+    <!-- FILLED ICON IF THE TWEET IS LIKED -->
+    <ng-container *ngIf="tweet.is_liked; else notLiked">
+      <mat-icon class="mat-18">favorite</mat-icon>
+    </ng-container>
+    <!-- OUTLINED ICON IF THE TWEET IS NOT LIKED -->
+    <ng-template #notLiked>
+      <mat-icon class="mat-18">favorite_outlined</mat-icon>
+    </ng-template>
+  </button>
