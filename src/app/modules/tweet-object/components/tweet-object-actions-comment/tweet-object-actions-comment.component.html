@@ -1,10 +1,7 @@
 <div>
-  <button
-    mat-icon-button
-    [disabled]="controlDisabled"
-    class="highlight-on-hover"
-  >
-    <mat-icon class="mat-18">chat_bubble_outline</mat-icon>
-  </button>
+  <app-tweet-object-actions-comment-button
+    [tweet]="tweet"
+    (commentCreated)="increaseCommentsCounter()"
+  ></app-tweet-object-actions-comment-button>
   {{ tweet.comments }}
 </div>

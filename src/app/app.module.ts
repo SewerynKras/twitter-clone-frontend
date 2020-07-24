@@ -26,6 +26,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TweetPageComponent } from './modules/tweet-page/components/tweet-page/tweet-page.component';
 import { TweetObjectActionsLikeButtonComponent } from './modules/tweet-object/components/tweet-object-actions-like-button/tweet-object-actions-like-button.component';
+import { TweetObjectActionsCommentButtonComponent } from './modules/tweet-object/components/tweet-object-actions-comment-button/tweet-object-actions-comment-button.component';
+import { TweetObjectActionsRetweetButtonComponent } from './modules/tweet-object/components/tweet-object-actions-retweet-button/tweet-object-actions-retweet-button.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +47,8 @@ import { TweetObjectActionsLikeButtonComponent } from './modules/tweet-object/co
     TweetObjectCreatedDateComponent,
     TweetPageComponent,
     TweetObjectActionsLikeButtonComponent,
+    TweetObjectActionsCommentButtonComponent,
+    TweetObjectActionsRetweetButtonComponent,
   ],
   imports: [
     BrowserModule,

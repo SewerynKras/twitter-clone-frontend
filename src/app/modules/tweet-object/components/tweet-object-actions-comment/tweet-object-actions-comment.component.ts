@@ -8,11 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TweetObjectActionsCommentComponent implements OnInit {
   @Input() tweet: TweetResponse;
-  controlDisabled = false;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  // TODO: CREATE COMMENT METHOD ONCE TWEET CREATION IS DONE
+  /**
+   * Increases the comments attribute of the given tweet by 1.
+   * This should be called after a new comment gets created.
+   */
+  increaseCommentsCounter(): void {
+    this.tweet.comments += 1;
+  }
 }

@@ -8,10 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TweetObjectActionsRetweetComponent implements OnInit {
   @Input() tweet: TweetResponse;
-  controlDisabled = false;
   constructor() {}
 
   ngOnInit(): void {}
 
-  // TODO: CREATE RETWEET METHOD ONCE TWEET CREATION IS DONE
+  /**
+   * Increases the retweets attribute of the given tweet by 1.
+   * This should be called after a new retweet gets created.
+   */
+  increaseRetweetsCounter(): void {
+    this.tweet.retweets += 1;
+  }
 }
