@@ -1,11 +1,16 @@
-<div
-  *ngFor="let tweet of tweets$ | async"
-  fxLayout="column"
-  fxLayoutAlign="start stretch"
->
-  <app-tweet-object
-    [tweet]="tweet"
-    fxFlexOffset="1"
-    style="max-width: 100%;"
-  ></app-tweet-object>
+<div fxLayoutAlign="start stretch" fxLayout="column nowrap">
+  <mat-card>
+    <app-tweet-creation></app-tweet-creation>
+  </mat-card>
+  <div
+    *ngFor="let tweet of tweets$ | async"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+  >
+    <app-tweet-object
+      [tweet]="tweet"
+      fxFlexOffset="1"
+      style="max-width: 100%;"
+    ></app-tweet-object>
+  </div>
 </div>

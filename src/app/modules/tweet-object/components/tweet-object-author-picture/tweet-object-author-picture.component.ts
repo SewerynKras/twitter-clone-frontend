@@ -1,5 +1,8 @@
 import { ResizeService } from './../../../../core/services/resize.service';
-import { UserProfileResponse } from './../../../../shared/models/user.model';
+import {
+  UserProfileResponse,
+  BaseUserProfile,
+} from './../../../../shared/models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -8,7 +11,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./tweet-object-author-picture.component.scss'],
 })
 export class TweetObjectAuthorPictureComponent implements OnInit {
-  @Input() user: UserProfileResponse;
+  @Input() user: UserProfileResponse | BaseUserProfile;
   constructor(private resize: ResizeService) {}
 
   ngOnInit(): void {}
