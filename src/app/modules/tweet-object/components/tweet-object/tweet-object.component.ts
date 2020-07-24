@@ -5,6 +5,7 @@ import { UserProfileResponse } from './../../../../shared/models/user.model';
 import { Observable } from 'rxjs';
 import { TweetResponse } from './../../../../shared/models/tweet.model';
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tweet-object',
@@ -23,7 +24,8 @@ export class TweetObjectComponent implements OnInit {
   commentAuthorUsername$: Observable<string>;
   constructor(
     private usersService: UsersService,
-    private tweetsService: TweetsService
+    private tweetsService: TweetsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,5 +51,9 @@ export class TweetObjectComponent implements OnInit {
    */
   getNestedTweet(id: string): Observable<TweetResponse> {
     return this.tweetsService.getSingleTweet(id);
+  }
+
+  navigateToTweetPage(): void {
+    this.router.navigate([`tweets/${this.tweet.id}/`])
   }
 }
