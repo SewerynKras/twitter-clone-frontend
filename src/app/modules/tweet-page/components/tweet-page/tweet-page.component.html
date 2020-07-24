@@ -30,8 +30,10 @@
       ></app-tweet-object>
     </ng-container>
   </mat-card-content>
+  <app-tweet-page-created-info [tweet]="tweet"></app-tweet-page-created-info>
   <!-- Action buttons -->
-  <mat-card-actions *ngIf="!nested">
-    <app-tweet-object-actions [tweet]="tweet"></app-tweet-object-actions>
+  <mat-card-actions>
+    <app-tweet-page-status [tweet]="tweet"></app-tweet-page-status>
+    <app-tweet-page-actions [tweet]="tweet"></app-tweet-page-actions>
   </mat-card-actions>
 </mat-card>
