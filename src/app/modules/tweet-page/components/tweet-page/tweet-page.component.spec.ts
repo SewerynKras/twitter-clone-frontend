@@ -3,7 +3,6 @@ import { TweetResponseMock } from './../../../../core/mocks/tweet.mock';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetPageComponent } from './tweet-page.component';
-import { of } from 'rxjs';
 import {
   HttpClientTestingModule,
   HttpTestingController,

@@ -31,6 +31,7 @@ import { TweetObjectActionsRetweetButtonComponent } from './modules/tweet-object
 import { TweetPageActionsComponent } from './modules/tweet-page/components/tweet-page-actions/tweet-page-actions.component';
 import { TweetPageStatusComponent } from './modules/tweet-page/components/tweet-page-status/tweet-page-status.component';
 import { TweetPageCreatedInfoComponent } from './modules/tweet-page/components/tweet-page-created-info/tweet-page-created-info.component';
+import { TweetPageFooterComponent } from './modules/tweet-page/components/tweet-page-footer/tweet-page-footer.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { TweetPageCreatedInfoComponent } from './modules/tweet-page/components/t
     TweetPageActionsComponent,
     TweetPageStatusComponent,
     TweetPageCreatedInfoComponent,
+    TweetPageFooterComponent,
   ],
   imports: [
     BrowserModule,

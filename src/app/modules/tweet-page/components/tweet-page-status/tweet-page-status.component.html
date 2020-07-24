@@ -1,4 +1,18 @@
-<div>
-  <div>Comments and retweets: {{ tweet.comments + tweet.retweets }}</div>
-  <div>Likes: {{ tweet.likes }}</div>
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+  <div fxFlex="50" fxLayoutAlign="center center">
+    <span class="comments-and-retweets-count">
+      {{ commentsAndRetweetsCount }}
+    </span>
+    <mat-card-subtitle class="comments-and-retweets-label" fxFlexOffset="1"
+      >Retweets and comments
+    </mat-card-subtitle>
+  </div>
+  <div fxFlex="50" fxLayoutAlign="center center">
+    <span class="likes-count">
+      {{ tweetLikesCount }}
+    </span>
+    <mat-card-subtitle class="likes-label" fxFlexOffset="1">
+      Likes
+    </mat-card-subtitle>
+  </div>
 </div>

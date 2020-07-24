@@ -1,4 +1,4 @@
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { UsersService } from './../../../../core/http/user/users.service';
 import { UserProfileResponse } from './../../../../shared/models/user.model';
 import { Observable } from 'rxjs';
