@@ -7,7 +7,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class TweetCreationTextareaComponent implements OnInit {
   @ViewChild('TweetTextarea') tweetTextarea: ElementRef<any>;
-  innerHTML: string;
   constructor() {}
 
   ngOnInit(): void {}
@@ -27,5 +26,16 @@ export class TweetCreationTextareaComponent implements OnInit {
    */
   getTextareaValue(): string {
     return this.tweetTextarea.nativeElement.innerText;
+  }
+
+  /**
+   * Appends a single character to the textarea (this is most commonly used with emojis).
+   * @param char string (length 1)
+   */
+  appendCharToTextarea(char: string): void {
+    let text: string = this.tweetTextarea.nativeElement.innerText;
+    // innerText always contains a newline character at the end
+    text = text.trim() + char;
+    this.tweetTextarea.nativeElement.innerText = text;
   }
 }

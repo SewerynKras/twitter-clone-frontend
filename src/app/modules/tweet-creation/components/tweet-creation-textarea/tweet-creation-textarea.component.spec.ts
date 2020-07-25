@@ -27,4 +27,11 @@ describe('TweetCreationTextareaComponent', () => {
     const result = component.getTextareaValue();
     expect(result).toEqual('test 123');
   });
+
+  it('should append a character to the textarea', () => {
+    component.tweetTextarea.nativeElement.innerText = 'test 123';
+    component.appendCharToTextarea('4');
+    const result = component.getTextareaValue();
+    expect(result).toEqual('test 1234');
+  });
 });
