@@ -43,6 +43,7 @@ import { TweetObjectAuthorPictureComponent } from './modules/tweet-object/compon
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { TweetCreationActionsSubmitComponent } from './modules/tweet-creation/components/tweet-creation-actions-submit/tweet-creation-actions-submit.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { MatInputModule } from '@angular/material/input';
     TweetCreationActionsImageComponent,
     TweetCreationActionsEmojiComponent,
     TweetObjectAuthorPictureComponent,
+    TweetCreationActionsSubmitComponent,
   ],
   imports: [
     BrowserModule,
