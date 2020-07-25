@@ -18,4 +18,12 @@ export class TweetCreationImagePreviewComponent implements OnInit {
       this.imageAsUrl = reader.result as string;
     };
   }
+
+  /**
+   * Removes all data being held in this control.
+   * (removes the preview image)
+   */
+  clearControl(): void {
+    this.imageAsUrl = "";
+  }
 }

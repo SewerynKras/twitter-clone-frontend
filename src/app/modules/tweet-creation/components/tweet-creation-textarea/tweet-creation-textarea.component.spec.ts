@@ -34,4 +34,19 @@ describe('TweetCreationTextareaComponent', () => {
     const result = component.getTextareaValue();
     expect(result).toEqual('test 1234');
   });
+
+  it("should emit a disable signal when there's no text", () => {
+    component.disableSubmitButton.subscribe((disable) =>
+      expect(disable).toEqual(true)
+    );
+    component.tweetTextarea.nativeElement.innerHTML = '<br>';
+    component.checkInput();
+  });
+  it("should emit a re-enable signal when there's any text", () => {
+    component.disableSubmitButton.subscribe((disable) =>
+      expect(disable).toEqual(false)
+    );
+    component.tweetTextarea.nativeElement.innerHTML = 'test<br>';
+    component.checkInput();
+  });
 });

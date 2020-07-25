@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'app-tweet-creation-textarea',
@@ -7,6 +14,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class TweetCreationTextareaComponent implements OnInit {
   @ViewChild('TweetTextarea') tweetTextarea: ElementRef<any>;
+  @Output() disableSubmitButton = new EventEmitter<boolean>();
   constructor() {}
 
   ngOnInit(): void {}
@@ -15,10 +23,17 @@ export class TweetCreationTextareaComponent implements OnInit {
    * After removing all text from a contenteditable div only a <br> tag is left in the end
    * so it needs to be manually removed in order for the :empty pseudoselector to work
    * properly (the placeholder value is added via css in `./tweet-creation-textarea.component.scss`)
-   * @param $event InputEvent
    */
-  checkInput($event) {
-    if ($event.target.innerHTML.trim() === '<br>') $event.target.innerHTML = '';
+  checkInput() {
+    // Is there no text?
+    if (this.tweetTextarea.nativeElement.innerHTML.trim() === '<br>') {
+      this.tweetTextarea.nativeElement.innerHTML = '';
+      // disable the submit button in that case
+      this.disableSubmitButton.emit(true);
+    }
+    // There IS some text
+    // re-enable the submit button
+    else this.disableSubmitButton.emit(false);
   }
 
   /**
@@ -37,5 +52,14 @@ export class TweetCreationTextareaComponent implements OnInit {
     // innerText always contains a newline character at the end
     text = text.trim() + char;
     this.tweetTextarea.nativeElement.innerText = text;
+  }
+
+  /**
+   * Removes all data being held in this control.
+   * (removes all text)
+   */
+  clearControl(): void {
+    this.tweetTextarea.nativeElement.innerHTML = '<br>';
+    this.checkInput();
   }
 }

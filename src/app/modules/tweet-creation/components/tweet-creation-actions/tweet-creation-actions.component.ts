@@ -1,3 +1,4 @@
+import { TweetCreationActionsSubmitComponent } from './../tweet-creation-actions-submit/tweet-creation-actions-submit.component';
 import { TweetCreationActionsImageComponent } from './../tweet-creation-actions-image/tweet-creation-actions-image.component';
 import { TweetCreationTextareaComponent } from './../tweet-creation-textarea/tweet-creation-textarea.component';
 import { TweetCreationActionsEmojiComponent } from './../tweet-creation-actions-emoji/tweet-creation-actions-emoji.component';
@@ -13,6 +14,8 @@ export class TweetCreationActionsComponent implements OnInit {
   emojiButton: TweetCreationActionsEmojiComponent;
   @ViewChild(TweetCreationActionsImageComponent)
   imageButton: TweetCreationActionsImageComponent;
+  @ViewChild(TweetCreationActionsSubmitComponent)
+  submitButton: TweetCreationActionsSubmitComponent;
   constructor() {}
 
   ngOnInit(): void {}
