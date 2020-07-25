@@ -1,9 +1,21 @@
+import { TweetsService } from './../../../../core/http/tweet/tweets.service';
+import {
+  TweetPOSTBody,
+  TweetResponse,
+} from './../../../../shared/models/tweet.model';
 import { TweetCreationImagePreviewComponent } from './../tweet-creation-image-preview/tweet-creation-image-preview.component';
 import { TweetCreationActionsComponent } from './../tweet-creation-actions/tweet-creation-actions.component';
 import { TweetCreationTextareaComponent } from './../tweet-creation-textarea/tweet-creation-textarea.component';
 import { UsersService } from './../../../../core/http/user/users.service';
 import { BaseUserProfile } from './../../../../shared/models/user.model';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'app-tweet-creation',
@@ -18,10 +30,15 @@ export class TweetCreationComponent implements OnInit, AfterViewInit {
   @ViewChild(TweetCreationImagePreviewComponent)
   imagePreview: TweetCreationImagePreviewComponent;
 
+  @Output() tweetCreated = new EventEmitter<TweetResponse>();
+
   user: BaseUserProfile;
   selectedFile: File;
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private tweetsService: TweetsService
+  ) {}
 
   ngOnInit(): void {
     this.user = this.usersService.getBaseUserInfoFromStorage();
@@ -42,5 +59,50 @@ export class TweetCreationComponent implements OnInit, AfterViewInit {
       this.selectedFile = file;
       this.imagePreview.previewImage(file);
     });
+
+    // Wire the textarea and submit button so that the button is disabled
+    // it there's no text in the textarea
+    this.tweetTextarea.disableSubmitButton.subscribe((disable) => {
+      this.tweetActionButtons.submitButton.controlDisabled = disable;
+    });
+
+    // Create a new tweet when the submit button gets clicked
+    this.tweetActionButtons.submitButton.buttonClicked.subscribe((_) => {
+      this.createTweet();
+    });
+  }
+
+  /**
+   * Sends a POST request with the `tweetTextarea`'s text and `selectedImage`.
+   * After the tweet gets created this also clears all controls.
+   *
+   */
+  createTweet(): void {
+    // Disable the button to avoid duplicate tweets
+    this.tweetActionButtons.submitButton.controlDisabled = true;
+
+    // Create the POST body
+    let tweetBody: TweetPOSTBody = {
+      text: this.tweetTextarea.getTextareaValue(),
+    };
+    if (this.selectedFile) tweetBody.image = this.selectedFile;
+
+    // Send the payload
+    this.tweetsService
+      .createTweet(tweetBody)
+      .subscribe((tweet: TweetResponse) => {
+        this.tweetCreated.emit(tweet);
+        this.clearAllControls();
+      });
+  }
+
+  /**
+   * Removes the selected image.
+   * Removes all text in the textarea.
+   */
+  clearAllControls(): void {
+    this.tweetTextarea.clearControl();
+    this.imagePreview.clearControl();
+    delete this.imagePreview;
   }
 }

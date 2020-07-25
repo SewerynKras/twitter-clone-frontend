@@ -1,3 +1,10 @@
 <div>
-  <button mat-flat-button color="primary">Tweet</button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="emitButtonClicked()"
+    [disabled]="controlDisabled"
+  >
+    Tweet
+  </button>
 </div>
