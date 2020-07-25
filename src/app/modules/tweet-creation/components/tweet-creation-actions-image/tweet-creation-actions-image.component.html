@@ -1,5 +1,11 @@
 <div>
-  <button mat-icon-button color="primary">
+  <input
+    style="display: none;"
+    type="file"
+    (change)="handleFileAdded($event)"
+    #fileInput
+  />
+  <button mat-icon-button color="primary" (click)="fileInput.click()">
     <mat-icon class="mat-18">image_outlined</mat-icon>
   </button>
 </div>
