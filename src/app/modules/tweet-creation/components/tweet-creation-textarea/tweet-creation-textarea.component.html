@@ -1,1 +1,9 @@
-<p>tweet-creation-textarea works!</p>
+<div class="input-container">
+  <div
+    #TweetTextarea
+    contenteditable="true"
+    class="tweet-textarea"
+    placeholder="What's on your mind today?"
+    (input)="checkInput($event)"
+  ></div>
+</div>

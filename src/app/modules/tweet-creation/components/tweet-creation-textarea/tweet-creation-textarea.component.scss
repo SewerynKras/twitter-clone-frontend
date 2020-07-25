@@ -1,0 +1,15 @@
+.tweet-textarea {
+  word-wrap: break-word;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.tweet-textarea[contenteditable][placeholder]:empty:before {
+  // The placeholder text is added from the [placeholder] property here
+  // because of the :empty pseudoselector the text disappears as soon as
+  // anything gets typed in the textarea
+  content: attr(placeholder);
+  position: absolute;
+  color: gray;
+  background-color: transparent;
+}

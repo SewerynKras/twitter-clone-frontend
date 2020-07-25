@@ -8,9 +8,8 @@ describe('TweetCreationTextareaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TweetCreationTextareaComponent ]
-    })
-    .compileComponents();
+      declarations: [TweetCreationTextareaComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +20,11 @@ describe('TweetCreationTextareaComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get the textarea', () => {
+    component.tweetTextarea.nativeElement.innerText = 'test 123';
+    const result = component.getTextareaValue();
+    expect(result).toEqual('test 123');
   });
 });
