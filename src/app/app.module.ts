@@ -40,6 +40,9 @@ import { TweetCreationActionsComponent } from './modules/tweet-creation/componen
 import { TweetCreationActionsImageComponent } from './modules/tweet-creation/components/tweet-creation-actions-image/tweet-creation-actions-image.component';
 import { TweetCreationActionsEmojiComponent } from './modules/tweet-creation/components/tweet-creation-actions-emoji/tweet-creation-actions-emoji.component';
 import { TweetObjectAuthorPictureComponent } from './modules/tweet-object/components/tweet-object-author-picture/tweet-object-author-picture.component';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -84,6 +87,9 @@ import { TweetObjectAuthorPictureComponent } from './modules/tweet-object/compon
     HttpClientModule,
     MatIconModule,
     MatButtonModule,
+    TextFieldModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
