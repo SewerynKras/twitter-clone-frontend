@@ -4,14 +4,15 @@
       [user]="user"
     ></app-tweet-object-author-picture>
   </div>
-  <div class="input-container">
-    <app-tweet-creation-textarea></app-tweet-creation-textarea>
+  <div class="main-body" fxLayout="column nowrap" style="width: 100%;">
+    <div class="input-container">
+      <app-tweet-creation-textarea></app-tweet-creation-textarea>
+    </div>
+    <!-- image preview -->
+    <app-tweet-creation-actions fxFlexOffset="5"></app-tweet-creation-actions>
+    <!-- action bar -->
+    <!-- add image -->
+    <!-- add emoji -->
+    <!-- create button -->
   </div>
-  <!-- author picture -->
-  <!-- tweet text -->
-  <!-- image preview -->
-  <!-- action bar -->
-  <!-- add image -->
-  <!-- add emoji -->
-  <!-- create button -->
 </div>
