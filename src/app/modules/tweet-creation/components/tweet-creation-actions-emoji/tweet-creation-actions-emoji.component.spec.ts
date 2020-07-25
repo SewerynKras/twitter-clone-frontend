@@ -8,9 +8,8 @@ describe('TweetCreationActionsEmojiComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TweetCreationActionsEmojiComponent ]
-    })
-    .compileComponents();
+      declarations: [TweetCreationActionsEmojiComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +20,10 @@ describe('TweetCreationActionsEmojiComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit the selected emoji', () => {
+    component.emojiSelected.subscribe((emoji) => expect(emoji).toEqual('😁'));
+    component.handleSelection({ char: '😁' });
   });
 });

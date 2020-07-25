@@ -2,6 +2,7 @@
   word-wrap: break-word;
   width: 100%;
   margin-top: 15px;
+  outline: 0px solid transparent;
 }
 
 .tweet-textarea[contenteditable][placeholder]:empty:before {

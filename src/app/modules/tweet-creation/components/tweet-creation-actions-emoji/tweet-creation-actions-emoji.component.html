@@ -1,5 +1,12 @@
 <div>
-  <button mat-icon-button color="primary">
+  <button
+    (click)="toggled = !toggled"
+    [(emojiPickerIf)]="toggled"
+    [emojiPickerDirection]="'bottom'"
+    (emojiPickerSelect)="handleSelection($event)"
+    mat-icon-button
+    color="primary"
+  >
     <mat-icon class="mat-18">mood_outlined</mat-icon>
   </button>
 </div>
