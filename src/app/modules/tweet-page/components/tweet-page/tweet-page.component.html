@@ -32,6 +32,10 @@
       <mat-card-content class="tweet-text">
         {{ tweet.text }}
       </mat-card-content>
+
+      <app-tweet-creation-image-preview
+        [imageAsUrl]="tweet.image_url"
+      ></app-tweet-creation-image-preview>
       <!-- Nested tweet (retweet) -->
       <mat-card-content *ngIf="tweet.retweet && !nested">
         <ng-container *ngIf="nestedTweet$ | async as nestedTweet">

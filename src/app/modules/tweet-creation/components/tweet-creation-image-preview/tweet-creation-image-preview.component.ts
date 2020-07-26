@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tweet-creation-image-preview',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tweet-creation-image-preview.component.scss'],
 })
 export class TweetCreationImagePreviewComponent implements OnInit {
-  imageAsUrl: string;
+  @Input() imageAsUrl: string = '';
   constructor() {}
 
   ngOnInit(): void {}
@@ -24,6 +24,6 @@ export class TweetCreationImagePreviewComponent implements OnInit {
    * (removes the preview image)
    */
   clearControl(): void {
-    this.imageAsUrl = "";
+    this.imageAsUrl = '';
   }
 }

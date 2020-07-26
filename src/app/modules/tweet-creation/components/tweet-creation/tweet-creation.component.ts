@@ -97,12 +97,19 @@ export class TweetCreationComponent implements OnInit, AfterViewInit {
   }
 
   /**
+   * Clears the image preview control.
+   */
+  removeImage(): void {
+    this.imagePreview.clearControl();
+    delete this.imagePreview;
+  }
+
+  /**
    * Removes the selected image.
    * Removes all text in the textarea.
    */
   clearAllControls(): void {
     this.tweetTextarea.clearControl();
-    this.imagePreview.clearControl();
-    delete this.imagePreview;
+    this.removeImage();
   }
 }
