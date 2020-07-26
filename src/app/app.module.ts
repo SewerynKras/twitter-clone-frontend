@@ -45,6 +45,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TweetCreationActionsSubmitComponent } from './modules/tweet-creation/components/tweet-creation-actions-submit/tweet-creation-actions-submit.component';
 import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
+import { LoginPageComponent } from './modules/login-page/components/login-page/login-page.component';
+import { LoginFormComponent } from './modules/login-form/components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
     TweetCreationActionsEmojiComponent,
     TweetObjectAuthorPictureComponent,
     TweetCreationActionsSubmitComponent,
+    LoginPageComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,
