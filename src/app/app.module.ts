@@ -47,7 +47,10 @@ import { TweetCreationActionsSubmitComponent } from './modules/tweet-creation/co
 import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
 import { LoginPageComponent } from './modules/login-page/components/login-page/login-page.component';
 import { LoginFormComponent } from './modules/login-form/components/login-form/login-form.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginFormUsernameComponent } from './modules/login-form/components/login-form-username/login-form-username.component';
+import { LoginFormPasswordComponent } from './modules/login-form/components/login-form-password/login-form-password.component';
+import { BaseInputComponent } from './shared/components/base-input/base-input.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +86,9 @@ import { LoginFormComponent } from './modules/login-form/components/login-form/l
     TweetCreationActionsSubmitComponent,
     LoginPageComponent,
     LoginFormComponent,
+    LoginFormUsernameComponent,
+    LoginFormPasswordComponent,
+    BaseInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +104,7 @@ import { LoginFormComponent } from './modules/login-form/components/login-form/l
     MatFormFieldModule,
     MatInputModule,
     NgxEmojiPickerModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
