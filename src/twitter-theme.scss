@@ -1,0 +1,41 @@
+@import "~@angular/material/theming";
+$primary: (
+  500: #1da1f2,
+  600: #0080ce,
+  700: #0061ab,
+  800: #004389,
+  900: #002868,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  ),
+);
+
+// twitter does not have a secondary color
+$twitter-palette-primary: mat-palette($primary);
+$twitter-palette-accent: mat-palette($primary);
+$twitter-theme: mat-light-theme(
+  $twitter-palette-primary,
+  $twitter-palette-accent
+);
+@include angular-material-theme($twitter-theme);
+
+.primary-text-color {
+  color: mat-color($twitter-palette-primary) !important;
+}
+
+.primary-bg-color {
+  background-color: mat-color($twitter-palette-primary) !important;
+}

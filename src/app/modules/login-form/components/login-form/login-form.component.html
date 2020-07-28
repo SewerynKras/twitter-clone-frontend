@@ -1,5 +1,19 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <app-login-form-username [form]="loginForm" [controlName]="'username'"></app-login-form-username>
-  <app-login-form-password [form]="loginForm" [controlName]="'password'"></app-login-form-password>
-  <button class="button" type="submit">Login</button>
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="onSubmit()"
+  fxLayout="row nowrap"
+  fxLayoutAlign="start center"
+>
+  <app-login-form-username
+    [form]="loginForm"
+    [controlName]="'username'"
+  ></app-login-form-username>
+  <app-login-form-password
+    [form]="loginForm"
+    [controlName]="'password'"
+    fxFlexOffset="2"
+  ></app-login-form-password>
+  <button mat-stroked-button color="primary" type="submit" fxFlexOffset="2">
+    Login
+  </button>
 </form>
