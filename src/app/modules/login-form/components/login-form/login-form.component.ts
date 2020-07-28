@@ -2,7 +2,7 @@ import { UsersService } from './../../../../core/http/user/users.service';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './../../../../core/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 interface formData {
@@ -17,6 +17,7 @@ interface formData {
 })
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
+  @Input() layout: 'row' | 'column' = 'row';
   constructor(
     private authService: AuthService,
     private router: Router,

@@ -1,6 +1,8 @@
-<div>
-  Log in to Twitter
-</div>
-<div>
-  <app-login-form></app-login-form>
+<div fxLayoutAlign="start center" fxLayout="column nowrap" class="body-wrapper">
+  <h1 class="login-header" fxFlexOffset="5">
+    Log in to Twitter
+  </h1>
+  <div fxLayoutAlign="start stretch">
+    <app-login-form [layout]="'column'"></app-login-form>
+  </div>
 </div>

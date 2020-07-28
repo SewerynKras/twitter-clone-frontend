@@ -1,7 +1,7 @@
 <form
   [formGroup]="loginForm"
   (ngSubmit)="onSubmit()"
-  fxLayout="row nowrap"
+  [fxLayout]="layout"
   fxLayoutAlign="start center"
 >
   <app-login-form-username
