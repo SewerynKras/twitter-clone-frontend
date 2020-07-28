@@ -55,6 +55,7 @@ import { LoginPageFooterComponent } from './modules/login-page/components/login-
 import { LoginPageJoinButtonsComponent } from './modules/login-page/components/login-page-join-buttons/login-page-join-buttons.component';
 import { LoginPageBulletpointsComponent } from './modules/login-page/components/login-page-bulletpoints/login-page-bulletpoints.component';
 import { LoginFormPageComponent } from './modules/login-form-page/components/login-form-page/login-form-page.component';
+import { TweetCreationCommentComponent } from './modules/tweet-creation/components/tweet-creation-comment/tweet-creation-comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,6 +98,7 @@ import { LoginFormPageComponent } from './modules/login-form-page/components/log
     LoginPageJoinButtonsComponent,
     LoginPageBulletpointsComponent,
     LoginFormPageComponent,
+    TweetCreationCommentComponent,
   ],
   imports: [
     BrowserModule,

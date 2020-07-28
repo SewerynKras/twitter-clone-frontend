@@ -73,6 +73,18 @@ export class TweetCreationComponent implements OnInit, AfterViewInit {
   }
 
   /**
+   * Generates the tweet body payload (this method gets overloaded
+   * by the comment/retweet creation form)
+   */
+  getTweetBody(): TweetPOSTBody {
+    let body: TweetPOSTBody = {
+      text: this.tweetTextarea.getTextareaValue(),
+    };
+    if (this.selectedFile) body.image = this.selectedFile;
+    return body;
+  }
+
+  /**
    * Sends a POST request with the `tweetTextarea`'s text and `selectedImage`.
    * After the tweet gets created this also clears all controls.
    *
@@ -82,10 +94,7 @@ export class TweetCreationComponent implements OnInit, AfterViewInit {
     this.tweetActionButtons.submitButton.controlDisabled = true;
 
     // Create the POST body
-    let tweetBody: TweetPOSTBody = {
-      text: this.tweetTextarea.getTextareaValue(),
-    };
-    if (this.selectedFile) tweetBody.image = this.selectedFile;
+    let tweetBody = this.getTweetBody();
 
     // Send the payload
     this.tweetsService
