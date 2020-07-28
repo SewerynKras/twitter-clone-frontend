@@ -55,7 +55,9 @@ import { LoginPageFooterComponent } from './modules/login-page/components/login-
 import { LoginPageJoinButtonsComponent } from './modules/login-page/components/login-page-join-buttons/login-page-join-buttons.component';
 import { LoginPageBulletpointsComponent } from './modules/login-page/components/login-page-bulletpoints/login-page-bulletpoints.component';
 import { LoginFormPageComponent } from './modules/login-form-page/components/login-form-page/login-form-page.component';
-import { TweetCreationCommentComponent } from './modules/tweet-creation/components/tweet-creation-comment/tweet-creation-comment.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TweetCreationCommentDialogComponent } from './modules/tweet-creation/components/tweet-creation-comment-dialog/tweet-creation-comment-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +100,7 @@ import { TweetCreationCommentComponent } from './modules/tweet-creation/componen
     LoginPageJoinButtonsComponent,
     LoginPageBulletpointsComponent,
     LoginFormPageComponent,
-    TweetCreationCommentComponent,
+    TweetCreationCommentDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +117,7 @@ import { TweetCreationCommentComponent } from './modules/tweet-creation/componen
     MatInputModule,
     NgxEmojiPickerModule.forRoot(),
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,24 +1,25 @@
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TweetResponseMock } from 'src/app/core/mocks/tweet.mock';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TweetCreationImagePreviewComponent } from './../tweet-creation-image-preview/tweet-creation-image-preview.component';
 import { TweetCreationTextareaComponent } from './../tweet-creation-textarea/tweet-creation-textarea.component';
 import { TweetCreationActionsSubmitComponent } from './../tweet-creation-actions-submit/tweet-creation-actions-submit.component';
 import { TweetCreationActionsImageComponent } from './../tweet-creation-actions-image/tweet-creation-actions-image.component';
 import { TweetCreationActionsEmojiComponent } from './../tweet-creation-actions-emoji/tweet-creation-actions-emoji.component';
 import { TweetCreationActionsComponent } from './../tweet-creation-actions/tweet-creation-actions.component';
-import { TweetResponseMock } from 'src/app/core/mocks/tweet.mock';
+import { TweetCreationComponent } from './../tweet-creation/tweet-creation.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TweetCreationCommentComponent } from './tweet-creation-comment.component';
-import { TweetCreationComponent } from '../tweet-creation/tweet-creation.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TweetCreationCommentDialogComponent } from './tweet-creation-comment-dialog.component';
 
-describe('TweetCreationCommentComponent', () => {
-  let component: TweetCreationCommentComponent;
-  let fixture: ComponentFixture<TweetCreationCommentComponent>;
+describe('TweetCreationCommentDialogComponent', () => {
+  let component: TweetCreationCommentDialogComponent;
+  let fixture: ComponentFixture<TweetCreationCommentDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TweetCreationCommentComponent,
+        TweetCreationCommentDialogComponent,
         TweetCreationComponent,
         TweetCreationActionsComponent,
         TweetCreationActionsEmojiComponent,
@@ -27,14 +28,20 @@ describe('TweetCreationCommentComponent', () => {
         TweetCreationTextareaComponent,
         TweetCreationImagePreviewComponent,
       ],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MatDialogModule],
+      providers: [
+        {
+          // I was expecting this will pass the desired value
+          provide: MAT_DIALOG_DATA,
+          useValue: TweetResponseMock,
+        },
+      ],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TweetCreationCommentComponent);
+    fixture = TestBed.createComponent(TweetCreationCommentDialogComponent);
     component = fixture.componentInstance;
-    component.comment = TweetResponseMock;
     fixture.detectChanges();
   });
 
