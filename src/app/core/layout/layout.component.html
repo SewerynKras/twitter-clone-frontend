@@ -1,4 +1,4 @@
-<div fxLayout="column nowrap">
+<div fxLayout="column nowrap" *ngIf="userLoggedIn; else notLoggedInTemplate">
   <div class="header-container" fxLayoutAlign="center stretch">
     <app-header></app-header>
   </div>
@@ -20,3 +20,7 @@
     </div>
   </div>
 </div>
+<!-- Hide all ui elements if the user is not logged in -->
+<ng-template #notLoggedInTemplate>
+  <router-outlet></router-outlet>
+</ng-template>

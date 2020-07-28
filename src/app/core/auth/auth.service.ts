@@ -39,7 +39,7 @@ export class AuthService {
         localStorage.setItem('refresh', tokens.refresh);
 
         // notify other components that the user has successfully logged in
-        this.loginStatusChangeSource.next(true);
+        this.sendLoginSignal();
 
         return tokens;
       })
@@ -82,7 +82,7 @@ export class AuthService {
    */
   logout(): void {
     // notify other components that the user has successfully logged out
-    this.loginStatusChangeSource.next(false);
+    this.sendLogoutSignal();
     localStorage.removeItem('access');
     localStorage.removeItem('refresh');
   }
@@ -93,5 +93,20 @@ export class AuthService {
       this.getAccessTokenFromStorage() == null ||
       this.getRefreshTokenFromStorage() == null
     );
+  }
+
+  /**
+   * Makes the `loginStatusChangeSource` behavior subject emit `true` indicating
+   * that the user has successfully logged in
+   */
+  sendLoginSignal(): void {
+    this.loginStatusChangeSource.next(true);
+  }
+  /**
+   * Makes the `loginStatusChangeSource` behavior subject emit `false` indicating
+   * that the user has successfully logged out
+   */
+  sendLogoutSignal(): void {
+    this.loginStatusChangeSource.next(false);
   }
 }

@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor() {}
+  userLoggedIn: boolean;
 
-  ngOnInit(): void {}
+  constructor(private auth: AuthService) {}
+
+  ngOnInit(): void {
+    // Certain ui elements are hidden if the user is not logged in yet
+    this.auth.loginStatusChange.subscribe((val) => (this.userLoggedIn = val));
+  }
 }
