@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -14,6 +14,10 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
+  // this will emit `false` when the user logs out and `true`  when they log in
+  private loginStatusChangeSource = new BehaviorSubject<boolean>(false);
+  public loginStatusChange = this.loginStatusChangeSource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   /**
@@ -33,6 +37,10 @@ export class AuthService {
         // store the tokens in localstorage and return them to the pipe
         localStorage.setItem('access', tokens.access);
         localStorage.setItem('refresh', tokens.refresh);
+
+        // notify other components that the user has successfully logged in
+        this.loginStatusChangeSource.next(true);
+
         return tokens;
       })
     );
@@ -73,7 +81,17 @@ export class AuthService {
    * Removes saved tokens from localstorage
    */
   logout(): void {
+    // notify other components that the user has successfully logged out
+    this.loginStatusChangeSource.next(false);
     localStorage.removeItem('access');
     localStorage.removeItem('refresh');
+  }
+
+  isAuthenticated(): boolean {
+    // if either token is missing the user is considered not logged in
+    return !(
+      this.getAccessTokenFromStorage() == null ||
+      this.getRefreshTokenFromStorage() == null
+    );
   }
 }
