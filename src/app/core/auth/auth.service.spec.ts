@@ -170,4 +170,49 @@ describe('AuthService', () => {
     expect(req.request.method).toBe('POST');
     req.flush(TokenResponseMock);
   });
+
+  it('should tell if the user is authenticated', () => {
+    service.login('correct', 'correct').subscribe((_) => {
+      const isAuth = service.isAuthenticated();
+      expect(isAuth).toBe(true);
+    });
+
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    req.flush(TokenResponseMock);
+  });
+
+  it('should tell if the user is not authenticated', () => {
+    const isAuth = service.isAuthenticated();
+    expect(isAuth).toBe(false);
+  });
+
+  it('should emit when when the user logs in', () => {
+    var loggedIn: boolean;
+    service.loginStatusChange.subscribe((val) => {
+      loggedIn = val;
+    });
+    expect(loggedIn).toEqual(false);
+    service.login('correct', 'correct').subscribe((_) => {
+      expect(loggedIn).toEqual(true);
+    });
+
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    req.flush(TokenResponseMock);
+  });
+
+  it('should emit when when the user logs out', () => {
+    var loggedIn: boolean;
+    service.loginStatusChange.subscribe((val) => {
+      loggedIn = val;
+    });
+    expect(loggedIn).toEqual(false);
+    service.login('correct', 'correct').subscribe((_) => {
+      expect(loggedIn).toEqual(true);
+      service.logout();
+      expect(loggedIn).toEqual(false);
+    });
+
+    const req = httpMock.expectOne(`${environment.backendURL}/token/`);
+    req.flush(TokenResponseMock);
+  });
 });
