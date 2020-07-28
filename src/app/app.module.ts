@@ -51,6 +51,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginFormUsernameComponent } from './modules/login-form/components/login-form-username/login-form-username.component';
 import { LoginFormPasswordComponent } from './modules/login-form/components/login-form-password/login-form-password.component';
 import { BaseInputComponent } from './shared/components/base-input/base-input.component';
+import { LoginPageFooterComponent } from './modules/login-page/components/login-page-footer/login-page-footer.component';
+import { LoginPageJoinButtonsComponent } from './modules/login-page/components/login-page-join-buttons/login-page-join-buttons.component';
+import { LoginPageBulletpointsComponent } from './modules/login-page/components/login-page-bulletpoints/login-page-bulletpoints.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,6 +92,9 @@ import { BaseInputComponent } from './shared/components/base-input/base-input.co
     LoginFormUsernameComponent,
     LoginFormPasswordComponent,
     BaseInputComponent,
+    LoginPageFooterComponent,
+    LoginPageJoinButtonsComponent,
+    LoginPageBulletpointsComponent,
   ],
   imports: [
     BrowserModule,
