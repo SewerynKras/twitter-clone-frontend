@@ -1,26 +1,23 @@
-import {
-  TweetPOSTBody,
-  TweetResponse,
-} from './../../../../shared/models/tweet.model';
+import { TweetResponse } from './../../../../shared/models/tweet.model';
 import { TweetCreationComponent } from './../tweet-creation/tweet-creation.component';
 import {
   Component,
   OnInit,
-  ViewChild,
   AfterViewInit,
-  Input,
+  ViewChild,
+  Inject,
 } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-tweet-creation-comment',
-  templateUrl: './tweet-creation-comment.component.html',
-  styleUrls: ['./tweet-creation-comment.component.scss'],
+  selector: 'app-tweet-creation-comment-dialog',
+  templateUrl: './tweet-creation-comment-dialog.component.html',
+  styleUrls: ['./tweet-creation-comment-dialog.component.scss'],
 })
-export class TweetCreationCommentComponent implements OnInit, AfterViewInit {
-  @Input() comment: TweetResponse;
-
+export class TweetCreationCommentDialogComponent
+  implements OnInit, AfterViewInit {
   @ViewChild(TweetCreationComponent) creationComponent: TweetCreationComponent;
-  constructor() {}
+  constructor(@Inject(MAT_DIALOG_DATA) public comment: TweetResponse) {}
 
   ngOnInit(): void {}
 
