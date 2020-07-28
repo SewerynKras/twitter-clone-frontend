@@ -54,6 +54,7 @@ import { BaseInputComponent } from './shared/components/base-input/base-input.co
 import { LoginPageFooterComponent } from './modules/login-page/components/login-page-footer/login-page-footer.component';
 import { LoginPageJoinButtonsComponent } from './modules/login-page/components/login-page-join-buttons/login-page-join-buttons.component';
 import { LoginPageBulletpointsComponent } from './modules/login-page/components/login-page-bulletpoints/login-page-bulletpoints.component';
+import { LoginFormPageComponent } from './modules/login-form-page/components/login-form-page/login-form-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,6 +96,7 @@ import { LoginPageBulletpointsComponent } from './modules/login-page/components/
     LoginPageFooterComponent,
     LoginPageJoinButtonsComponent,
     LoginPageBulletpointsComponent,
+    LoginFormPageComponent,
   ],
   imports: [
     BrowserModule,
