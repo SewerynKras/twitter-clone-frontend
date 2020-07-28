@@ -19,10 +19,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // If there's a saved token in localstorage it means that the user
     // was logged in before, so their profile data needs to be loaded
+    // TODO: move this to route guard
     if (this.authService.isAuthenticated()) {
       this.authService.sendLoginSignal();
       this.usersService.getMyProfile().subscribe();
-      this.router.navigate(['tweets/']);
+      this.router.navigate(['tweets/'], { replaceUrl: true });
     }
   }
 }

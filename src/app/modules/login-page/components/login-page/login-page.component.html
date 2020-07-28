@@ -1,4 +1,23 @@
-<app-login-form></app-login-form>
-<app-login-page-bulletpoints></app-login-page-bulletpoints>
-<app-login-page-footer></app-login-page-footer>
-<app-login-page-join-buttons></app-login-page-join-buttons>
+<div fxLayout="column nowrap" class="login-page">
+  <div fxLayout="row nowrap" fxFlex>
+    <div
+      class="left-panel primary-bg-color"
+      fxFlex="50%"
+      fxLayoutAlign="center center"
+    >
+      <app-login-page-bulletpoints></app-login-page-bulletpoints>
+    </div>
+
+    <div class="right-panel" fxFlex="50%" fxLayoutAlign="center center">
+      <div class="form-wrapper">
+        <app-login-form></app-login-form>
+      </div>
+      <div style="width: 380px;">
+        <app-login-page-join-buttons></app-login-page-join-buttons>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="5%">
+    <app-login-page-footer></app-login-page-footer>
+  </div>
+</div>
