@@ -11,6 +11,12 @@
     <div class="image-container" fxFlexOffset="2" (click)="removeImage()">
       <app-tweet-creation-image-preview></app-tweet-creation-image-preview>
     </div>
+    <!-- A retweet preview can be added here using content projection -->
+
+    <div fxFlexOffset="5">
+      <ng-content></ng-content>
+    </div>
+
     <app-tweet-creation-actions fxFlexOffset="5"></app-tweet-creation-actions>
   </div>
 </div>
