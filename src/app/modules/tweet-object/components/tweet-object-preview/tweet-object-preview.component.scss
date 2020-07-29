@@ -1,0 +1,20 @@
+.tweet-text {
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.date-separator {
+  // Header applies a 16px margin-right so to achieve a 5px margin left
+  // a -11px margin gets applied here
+  margin-left: -11px;
+  margin-right: 5px;
+}
+
+::ng-deep .mat-card-header-text {
+  max-width: 80%;
+}
+
+.tweet-main-body {
+  // min-width: 0 prevents overflows with text wrapping enabled
+  min-width: 0 !important;
+}

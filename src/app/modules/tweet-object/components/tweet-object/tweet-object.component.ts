@@ -14,46 +14,11 @@ import { Router } from '@angular/router';
 })
 export class TweetObjectComponent implements OnInit {
   @Input() tweet: TweetResponse;
+  constructor(private router: Router) {}
 
-  // Nested tweets will not display neither their own nested tweet objects (retweets)
-  // nor action buttons (like, comment, retweet, share)
-  @Input() nested = false;
-
-  nestedTweet$: Observable<TweetResponse>;
-  tweetAuthorInfo$: Observable<UserProfileResponse>;
-  commentAuthorUsername$: Observable<string>;
-  constructor(
-    private usersService: UsersService,
-    private tweetsService: TweetsService,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.tweetAuthorInfo$ = this.getUserInfo();
-    this.nestedTweet$ = this.getNestedTweet(this.tweet.retweet);
-    this.commentAuthorUsername$ = this.getNestedTweet(this.tweet.comment).pipe(
-      map((tweet) => tweet.author)
-    );
-  }
-
-  /**
-   * Retrieves information about the tweets author
-   * (for example to display a profile pic and display_name).
-   * This should only be called after `tweet` becomes available.
-   */
-  getUserInfo(): Observable<UserProfileResponse> {
-    return this.usersService.getSingleProfile(this.tweet.author);
-  }
-
-  /**
-   * Retrieves the nested tweet object (retweet or comment)
-   * @param id string
-   */
-  getNestedTweet(id: string): Observable<TweetResponse> {
-    return this.tweetsService.getSingleTweet(id);
-  }
+  ngOnInit(): void {}
 
   navigateToTweetPage(): void {
-    this.router.navigate([`tweets/${this.tweet.id}/`])
+    this.router.navigate([`tweets/${this.tweet.id}/`]);
   }
 }

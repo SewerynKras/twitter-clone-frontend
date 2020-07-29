@@ -57,6 +57,7 @@ import { LoginPageBulletpointsComponent } from './modules/login-page/components/
 import { LoginFormPageComponent } from './modules/login-form-page/components/login-form-page/login-form-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TweetCreationCommentDialogComponent } from './modules/tweet-creation/components/tweet-creation-comment-dialog/tweet-creation-comment-dialog.component';
+import { TweetObjectPreviewComponent } from './modules/tweet-object/components/tweet-object-preview/tweet-object-preview.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { TweetCreationCommentDialogComponent } from './modules/tweet-creation/co
     LoginPageBulletpointsComponent,
     LoginFormPageComponent,
     TweetCreationCommentDialogComponent,
+    TweetObjectPreviewComponent,
   ],
   imports: [
     BrowserModule,
