@@ -22,6 +22,8 @@ export class TweetObjectActionsRetweetButtonComponent implements OnInit {
       data: this.tweet,
     });
 
-    dialogRef.afterClosed().subscribe((_) => this.retweetCreated.emit());
+    dialogRef.afterClosed().subscribe((created: boolean) => {
+      if (created) this.retweetCreated.emit();
+    });
   }
 }

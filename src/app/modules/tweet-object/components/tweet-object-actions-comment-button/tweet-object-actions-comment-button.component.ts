@@ -20,7 +20,9 @@ export class TweetObjectActionsCommentButtonComponent implements OnInit {
       data: this.tweet,
     });
 
-    dialogRef.afterClosed().subscribe((_) => this.commentCreated.emit());
+    dialogRef.afterClosed().subscribe((created: boolean) => {
+      if (created) this.commentCreated.emit();
+    });
   }
 
   ngOnInit(): void {}

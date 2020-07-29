@@ -36,7 +36,7 @@ export class TweetCreationCommentDialogComponent
 
     // close the dialog after the comment gets created successfully
     this.creationComponent.tweetCreated.subscribe((tweet) =>
-      this.dialogRef.close(tweet)
+      this.dialogRef.close(true)
     );
   }
 }
