@@ -1,4 +1,8 @@
-import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialogModule,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { TweetResponseMock } from 'src/app/core/mocks/tweet.mock';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TweetCreationImagePreviewComponent } from './../tweet-creation-image-preview/tweet-creation-image-preview.component';
@@ -31,9 +35,14 @@ describe('TweetCreationCommentDialogComponent', () => {
       imports: [HttpClientTestingModule, MatDialogModule],
       providers: [
         {
-          // I was expecting this will pass the desired value
           provide: MAT_DIALOG_DATA,
           useValue: TweetResponseMock,
+        },
+        {
+          provide: MatDialogRef,
+          useValue: {
+            close: function (arg: any) {},
+          },
         },
       ],
     }).compileComponents();

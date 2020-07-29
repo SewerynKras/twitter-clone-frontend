@@ -1,3 +1,5 @@
+import { TweetCreationRetweetDialogComponent } from './../../../tweet-creation/components/tweet-creation-retweet-dialog/tweet-creation-retweet-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 import { TweetResponse } from './../../../../shared/models/tweet.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -11,9 +13,15 @@ export class TweetObjectActionsRetweetButtonComponent implements OnInit {
   @Output() retweetCreated = new EventEmitter<void>();
   controlDisabled = false;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
-  // TODO: CREATE RETWEET METHOD ONCE TWEET CREATION IS DONE
+  openDialog() {
+    let dialogRef = this.dialog.open(TweetCreationRetweetDialogComponent, {
+      data: this.tweet,
+    });
+
+    dialogRef.afterClosed().subscribe((_) => this.retweetCreated.emit());
+  }
 }
