@@ -58,6 +58,7 @@ import { LoginFormPageComponent } from './modules/login-form-page/components/log
 import { MatDialogModule } from '@angular/material/dialog';
 import { TweetCreationCommentDialogComponent } from './modules/tweet-creation/components/tweet-creation-comment-dialog/tweet-creation-comment-dialog.component';
 import { TweetObjectPreviewComponent } from './modules/tweet-object/components/tweet-object-preview/tweet-object-preview.component';
+import { TweetCreationRetweetDialogComponent } from './modules/tweet-creation/components/tweet-creation-retweet-dialog/tweet-creation-retweet-dialog.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { TweetObjectPreviewComponent } from './modules/tweet-object/components/t
     LoginFormPageComponent,
     TweetCreationCommentDialogComponent,
     TweetObjectPreviewComponent,
+    TweetCreationRetweetDialogComponent,
   ],
   imports: [
     BrowserModule,
