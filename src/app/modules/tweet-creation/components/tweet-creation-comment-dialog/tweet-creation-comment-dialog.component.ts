@@ -7,7 +7,7 @@ import {
   ViewChild,
   Inject,
 } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tweet-creation-comment-dialog',
@@ -17,7 +17,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class TweetCreationCommentDialogComponent
   implements OnInit, AfterViewInit {
   @ViewChild(TweetCreationComponent) creationComponent: TweetCreationComponent;
-  constructor(@Inject(MAT_DIALOG_DATA) public comment: TweetResponse) {}
+  constructor(
+    public dialogRef: MatDialogRef<TweetCreationCommentDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public comment: TweetResponse
+  ) {}
 
   ngOnInit(): void {}
 
@@ -30,5 +33,10 @@ export class TweetCreationCommentDialogComponent
       body.comment_id = comment_id;
       return body;
     };
+
+    // close the dialog after the comment gets created successfully
+    this.creationComponent.tweetCreated.subscribe((tweet) =>
+      this.dialogRef.close(tweet)
+    );
   }
 }

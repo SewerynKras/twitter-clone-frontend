@@ -53,4 +53,10 @@ describe('TweetCreationCommentDialogComponent', () => {
     const result = component.creationComponent.getTweetBody();
     expect(result.comment_id).toEqual(TweetResponseMock.id);
   });
+
+  it('should close the dialog after tweet gets created', () => {
+    spyOn(component.dialogRef, 'close');
+    component.creationComponent.tweetCreated.emit(TweetResponseMock);
+    expect(component.dialogRef.close).toHaveBeenCalled();
+  });
 });

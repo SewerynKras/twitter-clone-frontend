@@ -1,3 +1,5 @@
+import { of } from 'rxjs';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetObjectActionsCommentButtonComponent } from './tweet-object-actions-comment-button.component';
@@ -8,9 +10,14 @@ describe('TweetObjectActionsCommentButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TweetObjectActionsCommentButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [TweetObjectActionsCommentButtonComponent],
+      providers: [
+        {
+          provide: MatDialog,
+          useValue: { open: () => {} },
+        },
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +28,27 @@ describe('TweetObjectActionsCommentButtonComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should open the dialog', () => {
+    spyOn(component.dialog, 'open').and.returnValue({
+      afterClosed: function () {
+        return of('');
+      },
+    } as MatDialogRef<any>);
+    component.openDialog();
+    expect(component.dialog.open).toHaveBeenCalled();
+  });
+
+  it('should emit after a comment gets created', () => {
+    component.commentCreated.subscribe((_) => {
+      expect().nothing();
+    });
+    spyOn(component.dialog, 'open').and.returnValue({
+      afterClosed: function () {
+        return of('');
+      },
+    } as MatDialogRef<any>);
+    component.openDialog();
   });
 });
