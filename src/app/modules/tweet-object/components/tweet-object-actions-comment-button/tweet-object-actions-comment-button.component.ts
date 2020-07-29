@@ -16,12 +16,12 @@ export class TweetObjectActionsCommentButtonComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   openDialog() {
-    this.dialog.open(TweetCreationCommentDialogComponent, {
+    let dialogRef = this.dialog.open(TweetCreationCommentDialogComponent, {
       data: this.tweet,
     });
+
+    dialogRef.afterClosed().subscribe((_) => this.commentCreated.emit());
   }
 
   ngOnInit(): void {}
-
-  // TODO: CREATE COMMENT METHOD ONCE TWEET CREATION IS DONE
 }
