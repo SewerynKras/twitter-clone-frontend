@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { TweetResponseMock } from './../../../../core/mocks/tweet.mock';
 import { UserProfileMockResponse } from './../../../../core/mocks/user.mock';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -15,7 +16,7 @@ describe('TweetObjectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [TweetObjectComponent],
     }).compileComponents();
   }));
@@ -30,23 +31,5 @@ describe('TweetObjectComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should get authors profile', () => {
-    component.getUserInfo().subscribe((response) => {
-      expect(response).toEqual(UserProfileMockResponse);
-    });
-
-    const req = httpMock.expectOne(() => true); //match any
-    req.flush(UserProfileMockResponse);
-  });
-
-  it('should get the nested tweet', () => {
-    component.getNestedTweet('123').subscribe((response) => {
-      expect(response).toEqual(TweetResponseMock);
-    });
-
-    const req = httpMock.expectOne(() => true); //match any
-    req.flush(TweetResponseMock);
   });
 });

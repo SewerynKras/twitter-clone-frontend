@@ -1,1 +1,10 @@
-<app-tweet-creation></app-tweet-creation>
+<div class="form-container" *ngIf="comment">
+  <app-tweet-object-preview [tweet]="comment"></app-tweet-object-preview>
+  <mat-card-content style="margin-left: 50px;">
+    Replying to
+    <app-clickable-username
+      [username]="comment.author"
+    ></app-clickable-username>
+  </mat-card-content>
+  <app-tweet-creation></app-tweet-creation>
+</div>
