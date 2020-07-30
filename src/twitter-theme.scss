@@ -36,6 +36,15 @@ $twitter-theme: mat-light-theme(
   color: mat-color($twitter-palette-primary) !important;
 }
 
+.default-text-formatting {
+  font-family: "Helvetica Neue", HelveticaNeue, "TeX Gyre Heros", TeXGyreHeros,
+    FreeSans, "Nimbus Sans L", "Liberation Sans", Roboto, Helvetica, Arial,
+    sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  color: #14171a;
+}
+
 .primary-bg-color {
   background-color: mat-color($twitter-palette-primary) !important;
 }
