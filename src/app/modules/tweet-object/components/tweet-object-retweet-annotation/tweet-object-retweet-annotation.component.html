@@ -1,4 +1,10 @@
-<div>
-  <mat-icon class="mat-18">refresh</mat-icon>
-  <div>username retweeted:</div>
+<div
+  fxLayout="row nowrap"
+  fxFlexAlign="center center"
+  class="retweet-annotation"
+  (click)="navigateToProfile()"
+  stop-propagation
+>
+  <mat-icon [inline]="true">sync</mat-icon>
+  <div class="retweet-annotation-text">{{ username }} retweeted:</div>
 </div>
