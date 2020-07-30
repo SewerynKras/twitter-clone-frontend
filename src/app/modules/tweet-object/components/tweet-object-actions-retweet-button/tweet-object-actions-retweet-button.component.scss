@@ -6,3 +6,12 @@
   background-color: #00800020;
   color: lightgreen;
 }
+
+// Hide the mat-select arrow and container
+.mat-select-arrow {
+  display: none;
+}
+
+.mat-select {
+  width: 0 !important;
+}
