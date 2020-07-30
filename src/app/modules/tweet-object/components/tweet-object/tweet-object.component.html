@@ -1,8 +1,10 @@
 <mat-card (click)="navigateToTweetPage()" fxLayout="column nowrap">
-  <div fxLayout="column nowrap" style="width: 100%;">
-    <app-tweet-object-preview [tweet]="tweet"></app-tweet-object-preview>
-    <mat-card-actions class="tweet-actions">
-      <app-tweet-object-actions [tweet]="tweet"></app-tweet-object-actions>
-    </mat-card-actions>
-  </div>
+  <ng-container #standardTemplate *ngIf="isStandardTweet; else retweetTemplate">
+    <app-tweet-object-standard [tweet]="tweet"></app-tweet-object-standard>
+  </ng-container>
+  <ng-template #retweetTemplate>
+    <app-tweet-object-pure-retweet
+      [tweet]="tweet"
+    ></app-tweet-object-pure-retweet>
+  </ng-template>
 </mat-card>

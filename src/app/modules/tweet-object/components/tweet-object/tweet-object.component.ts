@@ -14,9 +14,14 @@ import { Router } from '@angular/router';
 })
 export class TweetObjectComponent implements OnInit {
   @Input() tweet: TweetResponse;
-  constructor(private router: Router) {}
+  
+  isStandardTweet: boolean;
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // non-standard tweets (pure retweets) have no text and a retweet id
+    this.isStandardTweet = !(this.tweet.text == "" && this.tweet.retweet != null)
+  }
 
   navigateToTweetPage(): void {
     this.router.navigate([`tweets/${this.tweet.id}/`]);

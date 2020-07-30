@@ -60,6 +60,9 @@ import { TweetCreationCommentDialogComponent } from './modules/tweet-creation/co
 import { TweetObjectPreviewComponent } from './modules/tweet-object/components/tweet-object-preview/tweet-object-preview.component';
 import { TweetCreationRetweetDialogComponent } from './modules/tweet-creation/components/tweet-creation-retweet-dialog/tweet-creation-retweet-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { TweetObjectRetweetAnnotationComponent } from './modules/tweet-object/components/tweet-object-retweet-annotation/tweet-object-retweet-annotation.component';
+import { TweetObjectStandardComponent } from './modules/tweet-object/components/tweet-object-standard/tweet-object-standard.component';
+import { TweetObjectPureRetweetComponent } from './modules/tweet-object/components/tweet-object-pure-retweet/tweet-object-pure-retweet.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +109,9 @@ import { MatSelectModule } from '@angular/material/select';
     TweetCreationCommentDialogComponent,
     TweetObjectPreviewComponent,
     TweetCreationRetweetDialogComponent,
+    TweetObjectRetweetAnnotationComponent,
+    TweetObjectStandardComponent,
+    TweetObjectPureRetweetComponent,
   ],
   imports: [
     BrowserModule,
