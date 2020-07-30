@@ -1,1 +1,14 @@
-<p>tweet-object-pure-retweet works!</p>
+<div
+  fxLayout="column nowrap"
+  style="width: 100%;"
+  *ngIf="retweet$ | async as retweet"
+>
+  <div class="retweet-annotation">
+    <app-tweet-object-retweet-annotation
+      [username]="tweet.author"
+    ></app-tweet-object-retweet-annotation>
+  </div>
+  <div fxFlexOffset="1em">
+    <app-tweet-object-standard [tweet]="retweet"></app-tweet-object-standard>
+  </div>
+</div>
