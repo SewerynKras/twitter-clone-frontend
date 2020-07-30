@@ -57,7 +57,7 @@ export class TweetCreationComponent implements OnInit, AfterViewInit {
     // during the creation process
     this.tweetActionButtons.imageButton.fileAdded.subscribe((file: File) => {
       this.selectedFile = file;
-      this.imagePreview.previewImage(file);
+      this.imagePreview.imageComponent.previewImage(file);
     });
 
     // Wire the textarea and submit button so that the button is disabled
@@ -110,7 +110,7 @@ export class TweetCreationComponent implements OnInit, AfterViewInit {
    */
   removeImage(): void {
     this.imagePreview.clearControl();
-    delete this.imagePreview;
+    delete this.selectedFile;
   }
 
   /**

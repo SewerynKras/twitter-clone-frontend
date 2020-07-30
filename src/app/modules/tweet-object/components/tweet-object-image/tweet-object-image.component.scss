@@ -1,0 +1,12 @@
+.image-container {
+  overflow: hidden;
+  height: 300px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

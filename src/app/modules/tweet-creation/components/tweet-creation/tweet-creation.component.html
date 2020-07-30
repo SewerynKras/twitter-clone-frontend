@@ -8,7 +8,12 @@
     <div class="input-container">
       <app-tweet-creation-textarea></app-tweet-creation-textarea>
     </div>
-    <div class="image-container" fxFlexOffset="2" (click)="removeImage()">
+    <div
+      class="image-container"
+      fxFlexOffset="2"
+      (click)="removeImage()"
+      stop-propagation
+    >
       <app-tweet-creation-image-preview></app-tweet-creation-image-preview>
     </div>
     <!-- A retweet preview can be added here using content projection -->

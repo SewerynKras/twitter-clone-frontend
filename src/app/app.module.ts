@@ -63,6 +63,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { TweetObjectRetweetAnnotationComponent } from './modules/tweet-object/components/tweet-object-retweet-annotation/tweet-object-retweet-annotation.component';
 import { TweetObjectStandardComponent } from './modules/tweet-object/components/tweet-object-standard/tweet-object-standard.component';
 import { TweetObjectPureRetweetComponent } from './modules/tweet-object/components/tweet-object-pure-retweet/tweet-object-pure-retweet.component';
+import { ImageDialogComponent } from './shared/components/image-dialog/image-dialog.component';
+import { TweetObjectImageComponent } from './modules/tweet-object/components/tweet-object-image/tweet-object-image.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +114,8 @@ import { TweetObjectPureRetweetComponent } from './modules/tweet-object/componen
     TweetObjectRetweetAnnotationComponent,
     TweetObjectStandardComponent,
     TweetObjectPureRetweetComponent,
+    ImageDialogComponent,
+    TweetObjectImageComponent,
   ],
   imports: [
     BrowserModule,

@@ -37,9 +37,11 @@
     <mat-card-content class="tweet-text default-text-formatting">
       {{ tweet.text }}
     </mat-card-content>
-    <app-tweet-creation-image-preview
+    <app-tweet-object-image
       [imageAsUrl]="tweet.image_url"
-    ></app-tweet-creation-image-preview>
+      (imageClicked)="openImageDialog()"
+      stop-propagation
+    ></app-tweet-object-image>
     <mat-card-content class="tweet-image"> </mat-card-content>
     <!-- Nested tweet (retweet) -->
     <mat-card-content *ngIf="tweet.retweet && !nested">

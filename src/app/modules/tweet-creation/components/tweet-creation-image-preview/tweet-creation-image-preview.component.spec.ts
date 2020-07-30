@@ -1,3 +1,4 @@
+import { TweetObjectImageComponent } from './../../../tweet-object/components/tweet-object-image/tweet-object-image.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetCreationImagePreviewComponent } from './tweet-creation-image-preview.component';
@@ -8,9 +9,9 @@ describe('TweetCreationImagePreviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TweetCreationImagePreviewComponent ]
-    })
-    .compileComponents();
+      declarations: [TweetCreationImagePreviewComponent],
+      providers: [TweetObjectImageComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +22,11 @@ describe('TweetCreationImagePreviewComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should clear the control', () => {
+    component.imageComponent.imageAsUrl = 'www.url.com';
+    component.clearControl();
+    expect(component.imageComponent.imageAsUrl).toEqual('');
   });
 });
