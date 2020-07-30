@@ -28,7 +28,7 @@ export interface TweetResponseRaw {
 }
 
 export interface TweetPOSTBody {
-  text: string;
+  text?: string;
   comment_id?: string;
   retweet_id?: string;
   image?: File;

@@ -3,7 +3,17 @@
   [disabled]="controlDisabled"
   [ngClass]="{ filled: tweet.is_retweeted }"
   class="highlight-on-hover"
-  (click)="openDialog()"
+  (click)="openRetweetOptions()"
 >
   <mat-icon class="mat-18">sync</mat-icon>
+  <mat-select #retweetOptions>
+    <mat-option (click)="createRetweetWithNoComment()">
+      <mat-icon>sync</mat-icon>
+      <span>Retweet</span>
+    </mat-option>
+    <mat-option (click)="openDialog()">
+      <mat-icon>edit</mat-icon>
+      <span>Retweet with comment</span>
+    </mat-option>
+  </mat-select>
 </button>

@@ -1,9 +1,11 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { TweetResponseMock } from './../../../../core/mocks/tweet.mock';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetObjectActionsRetweetButtonComponent } from './tweet-object-actions-retweet-button.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSelect } from '@angular/material/select';
 
 describe('TweetObjectActionsRetweetButtonComponent', () => {
   let component: TweetObjectActionsRetweetButtonComponent;
@@ -12,6 +14,7 @@ describe('TweetObjectActionsRetweetButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TweetObjectActionsRetweetButtonComponent],
+      imports: [HttpClientTestingModule],
       providers: [
         {
           provide: MatDialog,
@@ -52,5 +55,29 @@ describe('TweetObjectActionsRetweetButtonComponent', () => {
       },
     } as MatDialogRef<any>);
     component.openDialog();
+  });
+
+  it('should create a retweet with no comment', () => {
+    component.retweetOptions = {
+      open: () => {},
+      close: () => {},
+    } as MatSelect;
+    spyOn(component['tweetsService'], 'createTweet').and.returnValue(of());
+    spyOn(component.retweetOptions, 'close');
+    component.createRetweetWithNoComment();
+    expect(component['tweetsService'].createTweet).toHaveBeenCalledWith({
+      retweet_id: TweetResponseMock.id,
+    });
+  });
+
+  it('should close the options menu after a retweet with no comment gets created', () => {
+    component.retweetOptions = {
+      open: () => {},
+      close: () => {},
+    } as MatSelect;
+    spyOn(component['tweetsService'], 'createTweet').and.returnValue(of());
+    spyOn(component.retweetOptions, 'close');
+    component.createRetweetWithNoComment();
+    expect(component.retweetOptions.close).toHaveBeenCalled();
   });
 });
