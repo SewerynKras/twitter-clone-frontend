@@ -3,6 +3,7 @@ import {
   TweetResponse,
   TweetPOSTBody,
 } from './../../shared/models/tweet.model';
+
 export const TweetResponseMock: TweetResponse = {
   id: '11111111-1111-1111-1111-111111111111',
   author: 'someUser',
@@ -13,8 +14,8 @@ export const TweetResponseMock: TweetResponse = {
   is_liked: false,
   is_retweeted: false,
   created_date: new Date(),
-  retweet: null,
-  comment: null,
+  retweet: '',
+  comment: '',
   image_url: 'url.url/image',
 };
 
@@ -28,8 +29,7 @@ export const TweetResponseMockWithComment: TweetResponse = {
   is_liked: false,
   is_retweeted: false,
   created_date: new Date(),
-
-  retweet: null,
+  retweet: '',
   comment: '33333333-3333-3333-3333-333333333333',
   image_url: 'url.url/image',
 };
@@ -43,10 +43,9 @@ export const TweetResponseMockWithRetweet: TweetResponse = {
   is_liked: false,
   is_retweeted: false,
   created_date: new Date(),
-
   retweets: 2,
   retweet: '33333333-3333-3333-3333-333333333333',
-  comment: null,
+  comment: '',
   image_url: 'url.url/image',
 };
 
@@ -61,7 +60,7 @@ export const TweetResponseMockWithRetweetNoText: TweetResponse = {
   created_date: new Date(),
   retweets: 2,
   retweet: '33333333-3333-3333-3333-333333333333',
-  comment: null,
+  comment: '',
   image_url: null,
 };
 
