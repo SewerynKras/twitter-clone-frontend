@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { TweetObjectImageComponent } from './../../../tweet-object/components/tweet-object-image/tweet-object-image.component';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-tweet-creation-image-preview',
@@ -6,24 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./tweet-creation-image-preview.component.scss'],
 })
 export class TweetCreationImagePreviewComponent implements OnInit {
-  @Input() imageAsUrl: string = '';
+  @ViewChild(TweetObjectImageComponent)
+  imageComponent: TweetObjectImageComponent;
   constructor() {}
 
   ngOnInit(): void {}
-
-  previewImage(image: File) {
-    var reader = new FileReader();
-    reader.readAsDataURL(image);
-    reader.onload = (_) => {
-      this.imageAsUrl = reader.result as string;
-    };
-  }
 
   /**
    * Removes all data being held in this control.
    * (removes the preview image)
    */
   clearControl(): void {
-    this.imageAsUrl = '';
+    this.imageComponent.imageAsUrl = '';
   }
 }

@@ -29,18 +29,15 @@
       </mat-card-subtitle>
 
       <!-- Text -->
-      <mat-card-content class="tweet-text">
+      <mat-card-content class="tweet-text default-tweet-formatting">
         {{ tweet.text }}
       </mat-card-content>
 
-      <app-tweet-creation-image-preview
+      <app-tweet-object-image
         [imageAsUrl]="tweet.image_url"
-      ></app-tweet-creation-image-preview>
+      ></app-tweet-object-image>
       <!-- Nested tweet (retweet) -->
-      <mat-card-content
-        *ngIf="tweet.retweet && !nested"
-        style="margin-left: 50px;"
-      >
+      <mat-card-content *ngIf="tweet.retweet" style="margin-left: 50px;">
         <ng-container *ngIf="nestedTweet$ | async as nestedTweet">
           <app-tweet-object-preview
             [tweet]="nestedTweet"

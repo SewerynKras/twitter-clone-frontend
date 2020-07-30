@@ -1,3 +1,5 @@
+import { ImageDialogComponent } from './../../../../shared/components/image-dialog/image-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 import { UsersService } from './../../../../core/http/user/users.service';
 import { TweetsService } from './../../../../core/http/tweet/tweets.service';
@@ -19,7 +21,8 @@ export class TweetObjectPreviewComponent implements OnInit {
   commentAuthorUsername$: Observable<string>;
   constructor(
     private usersService: UsersService,
-    private tweetsService: TweetsService
+    private tweetsService: TweetsService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -45,5 +48,15 @@ export class TweetObjectPreviewComponent implements OnInit {
    */
   getNestedTweet(id: string): Observable<TweetResponse> {
     return this.tweetsService.getSingleTweet(id);
+  }
+
+  /**
+   * Opens a new dialog with the tweets image so that the user can
+   * look at it not cropped.
+   */
+  openImageDialog() {
+    this.dialog.open(ImageDialogComponent, {
+      data: this.tweet.image_url,
+    });
   }
 }
