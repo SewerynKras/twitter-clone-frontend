@@ -37,12 +37,15 @@
         [imageAsUrl]="tweet.image_url"
       ></app-tweet-creation-image-preview>
       <!-- Nested tweet (retweet) -->
-      <mat-card-content *ngIf="tweet.retweet && !nested">
+      <mat-card-content
+        *ngIf="tweet.retweet && !nested"
+        style="margin-left: 50px;"
+      >
         <ng-container *ngIf="nestedTweet$ | async as nestedTweet">
-          <app-tweet-object
+          <app-tweet-object-preview
             [tweet]="nestedTweet"
             [nested]="true"
-          ></app-tweet-object>
+          ></app-tweet-object-preview>
         </ng-container>
       </mat-card-content>
       <app-tweet-page-created-info
