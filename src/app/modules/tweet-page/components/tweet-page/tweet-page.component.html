@@ -35,6 +35,7 @@
 
       <app-tweet-object-image
         [imageAsUrl]="tweet.image_url"
+        (click)="openDialog(tweet.image_url)"
       ></app-tweet-object-image>
       <!-- Nested tweet (retweet) -->
       <mat-card-content *ngIf="tweet.retweet" style="margin-left: 50px;">

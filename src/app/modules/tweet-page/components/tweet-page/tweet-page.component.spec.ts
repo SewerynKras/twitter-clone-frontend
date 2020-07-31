@@ -1,3 +1,5 @@
+import { UserProfileMockResponse } from './../../../../core/mocks/user.mock';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { TweetResponseMock } from './../../../../core/mocks/tweet.mock';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -17,6 +19,12 @@ describe('TweetPageComponent', () => {
       imports: [HttpClientTestingModule],
       declarations: [TweetPageComponent],
       providers: [
+        {
+          provide: MatDialog,
+          useValue: {
+            open: () => {},
+          },
+        },
         {
           provide: ActivatedRoute,
           useValue: {
@@ -39,8 +47,13 @@ describe('TweetPageComponent', () => {
     fixture = TestBed.createComponent(TweetPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    const req = httpMock.expectOne(() => true);
+    // Flush the tweet
+    var req = httpMock.expectOne(() => true);
     req.flush(TweetResponseMock);
+    fixture.detectChanges();
+    // Flush the user info
+    var req = httpMock.expectOne(() => true);
+    req.flush(UserProfileMockResponse);
     fixture.detectChanges();
   });
   afterEach(() => {
@@ -56,5 +69,11 @@ describe('TweetPageComponent', () => {
     );
     const req = httpMock.expectOne(() => true);
     req.flush(TweetResponseMock);
+  });
+
+  it('should open the image dialog', () => {
+    spyOn(component['dialog'], 'open');
+    component.openDialog('');
+    expect(component['dialog'].open).toHaveBeenCalled();
   });
 });

@@ -1,3 +1,5 @@
+import { ImageDialogComponent } from './../../../../shared/components/image-dialog/image-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 import { switchMap, map } from 'rxjs/operators';
 import { UsersService } from './../../../../core/http/user/users.service';
 import { UserProfileResponse } from './../../../../shared/models/user.model';
@@ -21,7 +23,8 @@ export class TweetPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tweetsService: TweetsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +61,14 @@ export class TweetPageComponent implements OnInit {
         return tweet;
       })
     );
+  }
+
+  /**
+   * Opens the image dialog.
+   */
+  openDialog(imageUrl: string) {
+    this.dialog.open(ImageDialogComponent, {
+      data: imageUrl
+    });
   }
 }
