@@ -23,7 +23,7 @@ describe('TweetObjectActionsLikeButtonComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TweetObjectActionsLikeButtonComponent);
     component = fixture.componentInstance;
-    component.tweet = TweetResponseMock;
+    component.tweet = { ...TweetResponseMock };
     httpMock = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
