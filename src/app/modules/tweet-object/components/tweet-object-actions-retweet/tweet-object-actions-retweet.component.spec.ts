@@ -16,7 +16,7 @@ describe('TweetObjectActionsRetweetComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TweetObjectActionsRetweetComponent);
     component = fixture.componentInstance;
-    component.tweet = TweetResponseMock;
+    component.tweet = { ...TweetResponseMock };
     fixture.detectChanges();
   });
 

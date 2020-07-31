@@ -16,7 +16,7 @@ describe('TweetObjectCreatedDateComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TweetObjectCreatedDateComponent);
     component = fixture.componentInstance;
-    component.tweet = TweetResponseMock;
+    component.tweet = { ...TweetResponseMock };
     fixture.detectChanges();
   });
 

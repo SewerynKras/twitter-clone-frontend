@@ -24,7 +24,7 @@ describe('TweetObjectPreviewComponent', () => {
     fixture = TestBed.createComponent(TweetObjectPreviewComponent);
     component = fixture.componentInstance;
     httpMock = fixture.debugElement.injector.get(HttpTestingController);
-    component.tweet = TweetResponseMock;
+    component.tweet = { ...TweetResponseMock };
 
     fixture.detectChanges();
     var req = httpMock.expectOne(() => true); //match any

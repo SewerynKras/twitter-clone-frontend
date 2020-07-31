@@ -25,7 +25,7 @@ describe('TweetObjectComponent', () => {
     fixture = TestBed.createComponent(TweetObjectComponent);
     component = fixture.componentInstance;
     httpMock = fixture.debugElement.injector.get(HttpTestingController);
-    component.tweet = TweetResponseMock;
+    component.tweet = { ...TweetResponseMock };
     fixture.detectChanges();
   });
 

@@ -15,7 +15,7 @@ describe('TweetPageStatusComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TweetPageStatusComponent);
     component = fixture.componentInstance;
-    component.tweet = TweetResponseMock;
+    component.tweet = { ...TweetResponseMock };
     fixture.detectChanges();
   });
 

@@ -16,7 +16,7 @@ describe('TweetPageCreatedInfoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TweetPageCreatedInfoComponent);
     component = fixture.componentInstance;
-    component.tweet = TweetResponseMock;
+    component.tweet = { ...TweetResponseMock };
     fixture.detectChanges();
   });
 
