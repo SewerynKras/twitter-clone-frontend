@@ -1,4 +1,3 @@
-import { ResizeService } from './../../../../core/services/resize.service';
 import { UserProfileResponse } from 'src/app/shared/models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -10,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TweetObjectHeaderComponent implements OnInit {
   @Input() user: UserProfileResponse;
 
-  constructor(private resize: ResizeService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

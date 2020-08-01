@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetObjectAuthorPictureComponent } from './tweet-object-author-picture.component';
+import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
 
 describe('TweetObjectAuthorPictureComponent', () => {
   let component: TweetObjectAuthorPictureComponent;
@@ -15,6 +16,7 @@ describe('TweetObjectAuthorPictureComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TweetObjectAuthorPictureComponent);
     component = fixture.componentInstance;
+    component.user = { ...UserProfileMockResponse };
     fixture.detectChanges();
   });
 

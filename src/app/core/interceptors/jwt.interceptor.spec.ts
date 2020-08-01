@@ -1,5 +1,5 @@
 import { TokenRefreshResponseMock } from './../mocks/token.mock';
-import { environment } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { TokenInvalidExpiredResponse } from './../../shared/models/token.model';
 import { TestBed, inject } from '@angular/core/testing';
 
