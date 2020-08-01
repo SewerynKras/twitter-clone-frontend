@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { UserProfileMockResponse } from './../../../../core/mocks/user.mock';
 import { TweetResponseMock } from './../../../../core/mocks/tweet.mock';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -17,6 +18,12 @@ describe('TweetObjectPreviewComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TweetObjectPreviewComponent],
       imports: [HttpClientTestingModule],
+      providers: [
+        {
+          provide: MatDialog,
+          useValue: { open: () => {}, close: () => {} },
+        },
+      ],
     }).compileComponents();
   }));
 

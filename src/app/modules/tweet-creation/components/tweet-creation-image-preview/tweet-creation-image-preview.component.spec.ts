@@ -25,6 +25,7 @@ describe('TweetCreationImagePreviewComponent', () => {
   });
 
   it('should clear the control', () => {
+    component.imageComponent = { imageAsUrl: '' } as TweetObjectImageComponent;
     component.imageComponent.imageAsUrl = 'www.url.com';
     component.clearControl();
     expect(component.imageComponent.imageAsUrl).toEqual('');

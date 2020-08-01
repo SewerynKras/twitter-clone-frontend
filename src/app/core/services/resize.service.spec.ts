@@ -27,7 +27,7 @@ describe('ResizeService', () => {
     const img_url =
       'https://res.cloudinary.com/deuw42oar/image/upload/v1593698711/kc1z0xcxph5ne4muvopq.jpg';
     const expected =
-      'https://res.cloudinary.com/deuw42oar/image/upload/w_100/v1593698711/kc1z0xcxph5ne4muvopq.jpg';
+      'https://res.cloudinary.com/deuw42oar/image/upload/w_100,/v1593698711/kc1z0xcxph5ne4muvopq.jpg';
     const result = service.applyTransform(img_url, 100);
     expect(result).toEqual(expected);
   });
