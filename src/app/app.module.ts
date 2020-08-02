@@ -67,6 +67,8 @@ import { ImageDialogComponent } from './shared/components/image-dialog/image-dia
 import { TweetObjectImageComponent } from './modules/tweet-object/components/tweet-object-image/tweet-object-image.component';
 import { MenuMainComponent } from './core/layout/menu/components/menu-main/menu-main.component';
 import { MenuProfileComponent } from './core/layout/menu/components/menu-profile/menu-profile.component';
+import { MenuMoreComponent } from './core/layout/menu/components/menu-more/menu-more.component';
+import { MenuButtonComponent } from './core/layout/menu/components/menu-button/menu-button.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +122,8 @@ import { MenuProfileComponent } from './core/layout/menu/components/menu-profile
     TweetObjectImageComponent,
     MenuMainComponent,
     MenuProfileComponent,
+    MenuMoreComponent,
+    MenuButtonComponent,
   ],
   imports: [
     BrowserModule,
