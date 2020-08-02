@@ -65,6 +65,8 @@ import { TweetObjectStandardComponent } from './modules/tweet-object/components/
 import { TweetObjectPureRetweetComponent } from './modules/tweet-object/components/tweet-object-pure-retweet/tweet-object-pure-retweet.component';
 import { ImageDialogComponent } from './shared/components/image-dialog/image-dialog.component';
 import { TweetObjectImageComponent } from './modules/tweet-object/components/tweet-object-image/tweet-object-image.component';
+import { MenuMainComponent } from './core/layout/menu/components/menu-main/menu-main.component';
+import { MenuProfileComponent } from './core/layout/menu/components/menu-profile/menu-profile.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +118,8 @@ import { TweetObjectImageComponent } from './modules/tweet-object/components/twe
     TweetObjectPureRetweetComponent,
     ImageDialogComponent,
     TweetObjectImageComponent,
+    MenuMainComponent,
+    MenuProfileComponent,
   ],
   imports: [
     BrowserModule,
