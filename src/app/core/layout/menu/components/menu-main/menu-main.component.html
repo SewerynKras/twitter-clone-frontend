@@ -1,11 +1,9 @@
-<div>
-  <div>home</div>
-  <div>...</div>
-  <div>...</div>
-  <div>...</div>
-  <div>...</div>
-  <div>...</div>
-  <div>
-    <app-menu-profile></app-menu-profile>
-  </div>
+<div
+  fxLayoutAlign="start stretch"
+  fxLayout="column nowrap"
+  class="menu-wrapper"
+>
+  <ng-container *ngFor="let buttonSpec of buttonSpecs">
+    <app-menu-button [buttonSpec]="buttonSpec"></app-menu-button>
+  </ng-container>
 </div>
