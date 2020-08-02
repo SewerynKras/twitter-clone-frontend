@@ -1,6 +1,14 @@
-<div fxLayout="row nowrap" *ngIf="buttonSpec">
-  <div>
-    <mat_icon>{{ buttonSpecs.icon_name }}</mat_icon>
+<div
+  fxLayout="row nowrap"
+  fxLayoutAlign="start center"
+  class="default-text-formatting button-container"
+  [ngClass]="{ selected: buttonSpec.selected }"
+  *ngIf="buttonSpec"
+>
+  <div fxLayoutAlign="start center">
+    <mat-icon [inline]="true">{{ buttonSpec.icon_name }}</mat-icon>
   </div>
-  <div>{{ buttonSpecs.text }}</div>
+  <div fxFlexOffset="10%" fxLayoutAlign="start center">
+    {{ buttonSpec.text }}
+  </div>
 </div>

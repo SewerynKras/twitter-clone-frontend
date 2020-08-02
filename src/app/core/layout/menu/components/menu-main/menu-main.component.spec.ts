@@ -24,4 +24,19 @@ describe('MenuMainComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should select the correct button', () => {
+    component.buttonSpecs = [
+      { icon_name: 'test0', text: 'test0', selected: true },
+      { icon_name: 'test1', text: 'test1', selected: false },
+      { icon_name: 'test2', text: 'test2', selected: false },
+    ];
+    component.selectButton({
+      icon_name: 'test2',
+      text: 'test2',
+      selected: false,
+    });
+    expect(component.buttonSpecs[0].selected).toEqual(false);
+    expect(component.buttonSpecs[2].selected).toEqual(true);
+  });
 });

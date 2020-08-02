@@ -32,8 +32,12 @@ $twitter-theme: mat-light-theme(
 );
 @include angular-material-theme($twitter-theme);
 
-.primary-text-color {
+@mixin primary-text-color-mixin {
   color: mat-color($twitter-palette-primary) !important;
+}
+
+.primary-text-color {
+  @include primary-text-color-mixin;
 }
 
 .default-text-formatting {

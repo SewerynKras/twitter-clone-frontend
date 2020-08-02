@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-export interface buttonSpecInterface {
+export interface ButtonSpecInterface {
   icon_name: string;
   text: string;
+  selected: boolean;
 }
 
 @Component({
@@ -11,7 +12,7 @@ export interface buttonSpecInterface {
   styleUrls: ['./menu-button.component.scss'],
 })
 export class MenuButtonComponent implements OnInit {
-  @Input() buttonSpec: buttonSpecInterface;
+  @Input() buttonSpec: ButtonSpecInterface;
   constructor() {}
 
   ngOnInit(): void {}
