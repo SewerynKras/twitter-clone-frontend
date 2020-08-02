@@ -1,3 +1,4 @@
+import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -30,6 +31,23 @@ describe('MenuProfileComponent', () => {
   });
 
   it("should not get the users profile if they're not logged in", () => {
-    component.user$;
+    component.user$.subscribe((userProfile) => {
+      expect(1).toEqual(2);
+    });
+  });
+
+  it("should get the users profile if they're logged in", () => {
+    component.user$.subscribe((userProfile) => {
+      expect(userProfile).toEqual(UserProfileMockResponse);
+    });
+
+    spyOn(
+      component['usersService'],
+      'getBaseUserInfoFromStorage'
+    ).and.returnValue({ ...UserProfileMockResponse });
+    component['usersService'].updateUserInfoInLocalStorage(
+      UserProfileMockResponse
+    );
+    component['auth'].sendLoginSignal();
   });
 });
