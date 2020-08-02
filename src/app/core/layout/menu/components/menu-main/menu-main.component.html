@@ -3,7 +3,10 @@
   fxLayout="column nowrap"
   class="menu-wrapper"
 >
-  <ng-container *ngFor="let buttonSpec of buttonSpecs">
-    <app-menu-button [buttonSpec]="buttonSpec"></app-menu-button>
-  </ng-container>
+  <div fxFlexOffset="2rem" *ngFor="let buttonSpec of buttonSpecs">
+    <app-menu-button
+      [buttonSpec]="buttonSpec"
+      (click)="selectButton(buttonSpec)"
+    ></app-menu-button>
+  </div>
 </div>
