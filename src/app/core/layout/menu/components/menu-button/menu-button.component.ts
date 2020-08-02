@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export interface ButtonSpecInterface {
   icon_name: string;
@@ -13,7 +13,16 @@ export interface ButtonSpecInterface {
 })
 export class MenuButtonComponent implements OnInit {
   @Input() buttonSpec: ButtonSpecInterface;
+
+  @Output() buttonClicked = new EventEmitter<void>();
   constructor() {}
 
   ngOnInit(): void {}
+
+  /**
+   * Emits the `buttonClicked` emitter.
+   */
+  emitButtonClicked(): void {
+    this.buttonClicked.emit();
+  }
 }

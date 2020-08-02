@@ -6,7 +6,7 @@
   <div fxFlexOffset="2rem" *ngFor="let buttonSpec of buttonSpecs">
     <app-menu-button
       [buttonSpec]="buttonSpec"
-      (click)="selectButton(buttonSpec)"
+      (buttonClicked)="handleButtonClick(buttonSpec)"
     ></app-menu-button>
   </div>
   <app-menu-more></app-menu-more>
