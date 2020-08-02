@@ -1,1 +1,14 @@
-<p>menu-more works!</p>
+<div
+  fxLayoutAlign="start stretch"
+  fxLayout="column nowrap"
+  class="more-wrapper"
+>
+  <mat-select #menuButtons>
+    <mat-option *ngFor="let buttonSpec of buttonSpecs">
+      <app-menu-button
+        [buttonSpec]="buttonSpec"
+        (click)="selectButton(buttonSpec)"
+      ></app-menu-button>
+    </mat-option>
+  </mat-select>
+</div>
