@@ -8,9 +8,8 @@ describe('MenuButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [MenuButtonComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +20,12 @@ describe('MenuButtonComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit the `clicked` emitter', () => {
+    component.buttonClicked.subscribe((_) => {
+      expect().nothing();
+    });
+    component.emitButtonClicked();
   });
 });

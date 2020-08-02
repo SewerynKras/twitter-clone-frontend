@@ -3,6 +3,7 @@
   fxLayoutAlign="start center"
   class="default-text-formatting button-container"
   [ngClass]="{ selected: buttonSpec.selected }"
+  (click)="emitButtonClicked()"
   *ngIf="buttonSpec"
 >
   <div fxLayoutAlign="start center">
