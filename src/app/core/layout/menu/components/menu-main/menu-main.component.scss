@@ -1,3 +1,9 @@
+@use 'src/app/core/layout/variables.scss' as variables;
+
 .menu-wrapper button {
   width: 100%;
+}
+
+.full-screen {
+  height: calc(100vh - #{variables.$header-height});
 }

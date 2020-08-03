@@ -7,16 +7,16 @@
     fxLayout="row wrap"
     fxLayoutAlign="center stretch"
   >
-    <app-menu fxFlex="255px" fxLayoutAlign="center stretch"></app-menu>
-    <div class="main-content" fxLayout="row wrap">
-      <div class="middle-section" fxFlex="600px" fxLayoutAlign="center stretch">
-        <div fxFlex="600px">
-          <router-outlet></router-outlet>
-        </div>
+    <div fxLayoutAlign="center stretch" class="left-side-container">
+      <app-menu style="width: 100%;"></app-menu>
+    </div>
+    <div fxLayoutAlign="center stretch" class="center-width">
+      <div fxFlex="100%">
+        <router-outlet></router-outlet>
       </div>
-      <div class="right-section" fxFlex="350px" fxLayoutAlign="center stretch">
-        right
-      </div>
+    </div>
+    <div class="right-side-container" fxLayoutAlign="center stretch">
+      right
     </div>
   </div>
 </div>

@@ -1,13 +1,23 @@
 <div
-  fxLayoutAlign="start stretch"
   fxLayout="column nowrap"
-  class="menu-wrapper"
+  fxLayoutAlign="space-between start"
+  class="full-screen"
 >
-  <div fxFlexOffset="2rem" *ngFor="let buttonSpec of buttonSpecs">
-    <app-menu-button
-      [buttonSpec]="buttonSpec"
-      (buttonClicked)="handleButtonClick(buttonSpec)"
-    ></app-menu-button>
+  <div
+    fxLayoutAlign="start stretch"
+    fxLayout="column nowrap"
+    class="menu-wrapper"
+  >
+    <div fxFlexOffset="2rem" *ngFor="let buttonSpec of buttonSpecs">
+      <app-menu-button
+        [buttonSpec]="buttonSpec"
+        (buttonClicked)="handleButtonClick(buttonSpec)"
+      ></app-menu-button>
+    </div>
+    <app-menu-more></app-menu-more>
   </div>
-  <app-menu-more></app-menu-more>
+
+  <div>
+    <app-menu-profile></app-menu-profile>
+  </div>
 </div>

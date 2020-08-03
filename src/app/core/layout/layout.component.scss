@@ -1,0 +1,17 @@
+@use 'variables' as variables;
+
+.header-container {
+  height: variables.$header-height;
+}
+
+.left-side-container {
+  width: variables.$left-side-width;
+}
+
+.right-side-container {
+  width: variables.$right-side-width;
+}
+
+.center-width {
+  width: variables.$center-width;
+}
