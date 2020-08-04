@@ -69,7 +69,8 @@ import { MenuMainComponent } from './core/layout/menu/components/menu-main/menu-
 import { MenuProfileComponent } from './core/layout/menu/components/menu-profile/menu-profile.component';
 import { MenuMoreComponent } from './core/layout/menu/components/menu-more/menu-more.component';
 import { MenuButtonComponent } from './core/layout/menu/components/menu-button/menu-button.component';
-
+import { MenuProfileDialogComponent } from './core/layout/menu/components/menu-profile-dialog/menu-profile-dialog.component';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +125,7 @@ import { MenuButtonComponent } from './core/layout/menu/components/menu-button/m
     MenuProfileComponent,
     MenuMoreComponent,
     MenuButtonComponent,
+    MenuProfileDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -142,6 +144,7 @@ import { MenuButtonComponent } from './core/layout/menu/components/menu-button/m
     ReactiveFormsModule,
     MatDialogModule,
     MatSelectModule,
+    MatMenuModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,0 +1,6 @@
+@use 'src/app/core/layout/variables' as variables;
+
+.user-info-wrapper {
+  width: variables.$left-side-width !important;
+  overflow: hidden;
+}

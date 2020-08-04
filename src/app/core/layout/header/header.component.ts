@@ -8,13 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  // throwaway method
-  logout() {
-    this.auth.logout();
-    this.router.navigate(['/']);
-  }
 }
