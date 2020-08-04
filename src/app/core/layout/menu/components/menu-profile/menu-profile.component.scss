@@ -1,4 +1,30 @@
+@use 'src/twitter-theme' as theme;
+@import "~@angular/material/theming";
+
 .username-container {
   overflow: hidden;
   max-width: 100%;
+}
+
+.highlight-on-hover:hover {
+  background-color: rgba(
+    red(mat-color(theme.$twitter-palette-primary)),
+    green(mat-color(theme.$twitter-palette-primary)),
+    blue(mat-color(theme.$twitter-palette-primary)),
+    0.15
+  );
+  cursor: pointer;
+  .icon-container {
+    // angular-material applies a weird lightgreen color here by default
+    color: black !important;
+  }
+}
+
+.highlight-on-hover {
+  border-radius: 15%;
+  padding: 5px;
+}
+
+.icon-container {
+  font-size: 25px;
 }
