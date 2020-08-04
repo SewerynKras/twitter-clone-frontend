@@ -1,9 +1,10 @@
+import { MenuProfileDialogComponent } from './../menu-profile-dialog/menu-profile-dialog.component';
 import { AuthService } from './../../../../auth/auth.service';
 import { UsersService } from './../../../../http/user/users.service';
 import { BaseUserProfile } from './../../../../../shared/models/user.model';
 import { UserProfileResponse } from 'src/app/shared/models/user.model';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
@@ -13,6 +14,7 @@ import { filter, map } from 'rxjs/operators';
 })
 export class MenuProfileComponent implements OnInit {
   user$: Observable<UserProfileResponse | BaseUserProfile>;
+  @ViewChild(MenuProfileDialogComponent) dialog: MenuProfileDialogComponent;
   constructor(private auth: AuthService, private usersService: UsersService) {}
 
   ngOnInit(): void {
@@ -25,5 +27,12 @@ export class MenuProfileComponent implements OnInit {
         return this.usersService.getBaseUserInfoFromStorage();
       })
     );
+  }
+
+  /**
+   * Opens the profile dialog.
+   */
+  openDialog(): void {
+    this.dialog.openMenu();
   }
 }

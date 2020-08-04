@@ -1,3 +1,4 @@
+import { MenuProfileDialogComponent } from './../menu-profile-dialog/menu-profile-dialog.component';
 import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
 import {
   HttpClientTestingModule,
@@ -15,7 +16,7 @@ describe('MenuProfileComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [MenuProfileComponent],
+      declarations: [MenuProfileComponent, MenuProfileDialogComponent],
     }).compileComponents();
   }));
 
@@ -49,5 +50,14 @@ describe('MenuProfileComponent', () => {
       UserProfileMockResponse
     );
     component['auth'].sendLoginSignal();
+  });
+
+  it('should open the nested dialog', () => {
+    component.dialog = jasmine.createSpyObj('dialog', [
+      'openMenu',
+      'closeMenu',
+    ]);
+    component.openDialog();
+    expect(component.dialog.openMenu).toHaveBeenCalled();
   });
 });

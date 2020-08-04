@@ -1,5 +1,6 @@
 <div *ngIf="user$ | async as user">
-  <div>
+  <div (click)="openDialog()">
+    <app-menu-profile-dialog [user]="user"></app-menu-profile-dialog>
     <div
       fxLayoutAlign="space-between stretch"
       fxLayout="row nowrap"

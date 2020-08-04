@@ -1,0 +1,30 @@
+<div
+  fxLayoutAlign="start stretch"
+  fxLayout="column nowrap"
+  class="more-wrapper"
+>
+  <button [matMenuTriggerFor]="aboveMenu" style="opacity: 0;"></button>
+  <mat-menu
+    #aboveMenu="matMenu"
+    yPosition="above"
+    class="user-info-wrapper default-text-formatting"
+  >
+    <div mat-menu-item>
+      <div
+        fxLayoutAlign="start stretch"
+        fxLayout="row nowrap"
+        class="user-info-wrapper"
+      >
+        <app-tweet-object-author-picture
+          [user]="user"
+        ></app-tweet-object-author-picture>
+        <div fxFlexOffset="1" class="username-container">
+          <app-tweet-object-header [user]="user"></app-tweet-object-header>
+        </div>
+      </div>
+    </div>
+    <button mat-menu-item (click)="performLogout()">
+      Log out
+    </button>
+  </mat-menu>
+</div>
