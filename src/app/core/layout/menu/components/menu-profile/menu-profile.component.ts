@@ -18,7 +18,9 @@ export class MenuProfileComponent implements OnInit {
   ngOnInit(): void {
     this.user$ = this.auth.loginStatusChange.pipe(
       // Only proceed if the user is logged in
-      filter((authorized) => authorized),
+      filter((authorized) => {
+        return authorized;
+      }),
       map((authorized) => {
         return this.usersService.getBaseUserInfoFromStorage();
       })

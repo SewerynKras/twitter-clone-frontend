@@ -18,11 +18,7 @@ interface formData {
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   @Input() layout: 'row' | 'column' = 'row';
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private usersService: UsersService
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -51,16 +47,13 @@ export class LoginFormComponent implements OnInit {
    */
   authenticate(): void {
     let data: formData = this.getFormData();
-    this.authService
-      .login(data.username, data.password)
-      .pipe(switchMap((_) => this.usersService.getMyProfile())) // saves users info into localstorage
-      .subscribe(
-        () => {
-          this.router.navigate(['tweets/']);
-        },
-        (err) => {
-          console.warn(err);
-        }
-      );
+    this.authService.login(data.username, data.password).subscribe(
+      () => {
+        this.router.navigate(['tweets/']);
+      },
+      (err) => {
+        console.warn(err);
+      }
+    );
   }
 }

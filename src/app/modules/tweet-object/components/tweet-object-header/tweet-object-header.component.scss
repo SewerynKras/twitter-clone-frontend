@@ -1,7 +1,10 @@
+@use 'src/app/modules/tweet-object/variables' as variables;
+
 .truncate-username {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: variables.$text-font-size;
 }
 
 .tweet-header {

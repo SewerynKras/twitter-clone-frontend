@@ -1,3 +1,4 @@
+import { of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { TestBed } from '@angular/core/testing';
 import {
@@ -9,6 +10,7 @@ import {
   TokenRefreshResponseMock,
   TokenResponseMock,
 } from '../mocks/token.mock';
+import { UserProfileMockResponse } from '../mocks/user.mock';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -21,6 +23,9 @@ describe('AuthService', () => {
     });
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
+    spyOn(service['usersService'], 'getMyProfile').and.returnValue(
+      of({ ...UserProfileMockResponse })
+    );
     localStorage.clear();
   });
 
@@ -32,9 +37,9 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should receive both tokens if credentials are correct', () => {
-    service.login('correct', 'correct').subscribe((tokenResponse) => {
-      expect(tokenResponse).toEqual(TokenResponseMock);
+  it('should receive get the users profile if credentials are correct', () => {
+    service.login('correct', 'correct').subscribe((_) => {
+      expect(service['usersService'].getMyProfile).toHaveBeenCalled();
     });
 
     const req = httpMock.expectOne(`${environment.backendURL}/token/`);

@@ -5,5 +5,8 @@
 }
 
 .full-screen {
+  position: fixed;
   height: calc(100vh - #{variables.$header-height});
+  width: variables.$left-side-width;
+  overflow: hidden;
 }
