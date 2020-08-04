@@ -1,6 +1,8 @@
+import { UserProfileResponse } from './../../shared/models/user.model';
+import { UsersService } from './../http/user/users.service';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import {
   TokenResponse,
@@ -18,15 +20,17 @@ export class AuthService {
   private loginStatusChangeSource = new BehaviorSubject<boolean>(false);
   public loginStatusChange = this.loginStatusChangeSource.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private usersService: UsersService) {}
 
   /**
    * Sends a POST request to the backend that returns a TokenResponse object
-   * containing the access and refresh tokens
+   * containing the access and refresh tokens.
+   * After a successful login the observable switches to `usersService.getMyProfile` in order
+   * to retrieve basic user information.
    * @param username string
    * @param password string
    */
-  login(username: string, password: string): Observable<TokenResponse> {
+  login(username: string, password: string): Observable<UserProfileResponse> {
     let body: TokenPOSTBody = {
       username: username,
       password: password,
@@ -37,11 +41,12 @@ export class AuthService {
         // store the tokens in localstorage and return them to the pipe
         localStorage.setItem('access', tokens.access);
         localStorage.setItem('refresh', tokens.refresh);
-
+      }),
+      switchMap((_) => this.usersService.getMyProfile()),
+      map((profile) => {
         // notify other components that the user has successfully logged in
         this.sendLoginSignal();
-
-        return tokens;
+        return profile;
       })
     );
   }

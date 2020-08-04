@@ -1,6 +1,9 @@
+@use 'src/app/modules/tweet-object/variables' as variables;
+
 .tweet-text {
   word-wrap: break-word;
   width: 100%;
+  font-size: variables.$text-font-size;
 }
 
 .date-separator {

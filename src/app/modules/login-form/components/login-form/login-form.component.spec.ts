@@ -8,6 +8,7 @@ import {
   HttpTestingController,
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
+import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
@@ -48,9 +49,8 @@ describe('LoginFormComponent', () => {
     component.loginForm.controls['username'].setValue('someUsername');
     component.loginForm.controls['password'].setValue('somePassword123');
     spyOn(component['authService'], 'login').and.returnValue(
-      of(TokenResponseMock)
+      of({ ...UserProfileMockResponse })
     );
-    spyOn(component['usersService'], 'getMyProfile').and.returnValue(of(null));
 
     component.authenticate();
 
