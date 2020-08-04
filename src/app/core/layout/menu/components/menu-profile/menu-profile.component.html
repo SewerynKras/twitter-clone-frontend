@@ -1,10 +1,21 @@
 <div *ngIf="user$ | async as user">
-  <div fxLayoutAlign="start stretch" fxLayout="row nowrap">
-    <app-tweet-object-author-picture
-      [user]="user"
-    ></app-tweet-object-author-picture>
-    <div fxFlexOffset="1" class="username-container">
-      <app-tweet-object-header [user]="user"></app-tweet-object-header>
+  <div>
+    <div
+      fxLayoutAlign="space-between stretch"
+      fxLayout="row nowrap"
+      class="highlight-on-hover"
+    >
+      <div fxLayoutAlign="start stretch" fxLayout="row nowrap" fxFlex="80%">
+        <app-tweet-object-author-picture
+          [user]="user"
+        ></app-tweet-object-author-picture>
+        <div fxFlexOffset="1" class="username-container">
+          <app-tweet-object-header [user]="user"></app-tweet-object-header>
+        </div>
+      </div>
+      <div fxFlex="20%" class="icon-container">
+        <mat-icon [inline]="true">keyboard_arrow_down</mat-icon>
+      </div>
     </div>
   </div>
 </div>
