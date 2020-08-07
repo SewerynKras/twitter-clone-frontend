@@ -1,6 +1,7 @@
 import { MatSelect } from '@angular/material/select';
 import { ButtonSpecInterface } from './../menu-button/menu-button.component';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-menu-more',
@@ -46,7 +47,7 @@ export class MenuMoreComponent implements OnInit, AfterViewInit {
     },
   ];
 
-  @ViewChild('menuButtons') menuButtons: MatSelect;
+  @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
 
   constructor() {}
 
@@ -58,13 +59,13 @@ export class MenuMoreComponent implements OnInit, AfterViewInit {
    * Opens the MatSelect menu
    */
   openMenu() {
-    this.menuButtons.open();
+    this.menuTrigger.openMenu();
   }
 
   /**
    * Closes the MatSelect menu
    */
   closeMenu() {
-    this.menuButtons.close();
+    this.menuTrigger.closeMenu();
   }
 }
