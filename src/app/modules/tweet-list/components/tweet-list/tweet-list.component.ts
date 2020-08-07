@@ -1,3 +1,5 @@
+import { ListResponse } from 'src/app/shared/models/response.model';
+import { InfiniteScrollComponent } from './../../../../shared/components/infinite-scroll/infinite-scroll.component';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TweetsService } from './../../../../core/http/tweet/tweets.service';
@@ -9,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './tweet-list.component.html',
   styleUrls: ['./tweet-list.component.scss'],
 })
-export class TweetListComponent implements OnInit {
+export class TweetListComponent
+  extends InfiniteScrollComponent<ListResponse<TweetResponse>>
+  implements OnInit {
   tweets$: Observable<TweetResponse[]>;
-  constructor(private tweetsService: TweetsService) {}
+  constructor(private tweetsService: TweetsService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.tweets$ = this.tweetsService
