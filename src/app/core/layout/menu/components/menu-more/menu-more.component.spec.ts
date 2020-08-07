@@ -1,3 +1,4 @@
+import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
 import { MatSelect } from '@angular/material/select';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -9,16 +10,8 @@ describe('MenuMoreComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [MatMenuModule],
       declarations: [MenuMoreComponent],
-      providers: [
-        {
-          provide: MatSelect,
-          useValue: {
-            open: () => {},
-            close: () => {},
-          },
-        },
-      ],
     }).compileComponents();
   }));
 
@@ -33,22 +26,22 @@ describe('MenuMoreComponent', () => {
   });
 
   it('should open the menu', () => {
-    component.menuButtons = {
-      open: () => {},
-      close: () => {},
-    } as MatSelect;
-    spyOn(component.menuButtons, 'open');
+    component.menuTrigger = {
+      openMenu: () => {},
+      closeMenu: () => {},
+    } as MatMenuTrigger;
+    spyOn(component.menuTrigger, 'openMenu');
     component.openMenu();
-    expect(component.menuButtons.open).toHaveBeenCalled();
+    expect(component.menuTrigger.openMenu).toHaveBeenCalled();
   });
 
   it('should close the menu', () => {
-    component.menuButtons = {
-      open: () => {},
-      close: () => {},
-    } as MatSelect;
-    spyOn(component.menuButtons, 'close');
+    component.menuTrigger = {
+      openMenu: () => {},
+      closeMenu: () => {},
+    } as MatMenuTrigger;
+    spyOn(component.menuTrigger, 'closeMenu');
     component.closeMenu();
-    expect(component.menuButtons.close).toHaveBeenCalled();
+    expect(component.menuTrigger.closeMenu).toHaveBeenCalled();
   });
 });

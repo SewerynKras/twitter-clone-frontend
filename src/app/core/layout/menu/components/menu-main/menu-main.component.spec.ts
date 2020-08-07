@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import { MenuMoreComponent } from './../menu-more/menu-more.component';
 import { MenuProfileComponent } from './../menu-profile/menu-profile.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -16,7 +17,7 @@ describe('MenuMainComponent', () => {
         MenuProfileComponent,
         MenuMoreComponent,
       ],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MatMenuModule],
     }).compileComponents();
   }));
 

@@ -3,12 +3,17 @@
   fxLayout="column nowrap"
   class="more-wrapper"
 >
-  <mat-select #menuButtons>
-    <mat-option *ngFor="let buttonSpec of buttonSpecs">
+  <button [matMenuTriggerFor]="aboveMenu" style="opacity: 0;"></button>
+  <mat-menu
+    #aboveMenu="matMenu"
+    yPosition="above"
+    class="user-info-wrapper default-text-formatting"
+  >
+    <div mat-menu-item *ngFor="let buttonSpec of buttonSpecs">
       <app-menu-button
         [buttonSpec]="buttonSpec"
         (click)="selectButton(buttonSpec)"
       ></app-menu-button>
-    </mat-option>
-  </mat-select>
+    </div>
+  </mat-menu>
 </div>
