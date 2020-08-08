@@ -1,3 +1,4 @@
+import { PaginationService } from './../../../../core/services/pagination.service';
 import { ListResponse } from 'src/app/shared/models/response.model';
 import { InfiniteScrollComponent } from './../../../../shared/components/infinite-scroll/infinite-scroll.component';
 import { map } from 'rxjs/operators';
@@ -15,8 +16,11 @@ export class TweetListComponent
   extends InfiniteScrollComponent<ListResponse<TweetResponse>>
   implements OnInit {
   tweets$: Observable<TweetResponse[]>;
-  constructor(private tweetsService: TweetsService) {
-    super();
+  constructor(
+    private tweetsService: TweetsService,
+    pagination: PaginationService
+  ) {
+    super(pagination);
   }
 
   ngOnInit(): void {
