@@ -72,6 +72,8 @@ import { MenuButtonComponent } from './core/layout/menu/components/menu-button/m
 import { MenuProfileDialogComponent } from './core/layout/menu/components/menu-profile-dialog/menu-profile-dialog.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { InfiniteScrollComponent } from './shared/components/infinite-scroll/infinite-scroll.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -147,6 +149,7 @@ import { InfiniteScrollComponent } from './shared/components/infinite-scroll/inf
     MatDialogModule,
     MatSelectModule,
     MatMenuModule,
+    InfiniteScrollModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

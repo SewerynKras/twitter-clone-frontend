@@ -5,27 +5,31 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TweetsService } from './../../../../core/http/tweet/tweets.service';
 import { TweetResponse } from './../../../../shared/models/tweet.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-tweet-list',
   templateUrl: './tweet-list.component.html',
   styleUrls: ['./tweet-list.component.scss'],
 })
-export class TweetListComponent
-  extends InfiniteScrollComponent<ListResponse<TweetResponse>>
-  implements OnInit {
-  tweets$: Observable<TweetResponse[]>;
-  constructor(
-    private tweetsService: TweetsService,
-    pagination: PaginationService
-  ) {
-    super(pagination);
+export class TweetListComponent implements OnInit, AfterViewInit {
+  @ViewChild(InfiniteScrollComponent, { static: true })
+  scroll: InfiniteScrollComponent<TweetResponse>;
+
+  tweets: TweetResponse[] = [];
+
+  constructor(private tweetsService: TweetsService) {}
+
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    // Setup the initial list
+    this.tweetsService.getTweetsList().subscribe((tweets) => {
+      this.scroll.setupInitListValues(tweets, this.tweetsService.baseUrl);
+    });
   }
 
-  ngOnInit(): void {
-    this.tweets$ = this.tweetsService
-      .getTweetsList()
-      .pipe(map((tweets) => tweets['results']));
+  appendResults(results: TweetResponse[]): void {
+    this.tweets.push(...results);
   }
 }

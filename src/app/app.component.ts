@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
 
     this.authService.loginStatusChange.subscribe((val) => {
       if (!val) this.router.navigate(['/']);
+      else this.router.navigate(['tweets']);
     });
   }
 }

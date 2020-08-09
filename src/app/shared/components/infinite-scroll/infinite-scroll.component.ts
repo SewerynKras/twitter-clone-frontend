@@ -2,7 +2,7 @@ import { map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { PaginationService } from './../../../core/services/pagination.service';
 import { ListResponse } from 'src/app/shared/models/response.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 export class NoPageLeftError extends Error {
   constructor(message: string) {
@@ -16,10 +16,12 @@ export class NoPageLeftError extends Error {
   templateUrl: './infinite-scroll.component.html',
   styleUrls: ['./infinite-scroll.component.scss'],
 })
-export class InfiniteScrollComponent<T extends ListResponse<any>>
-  implements OnInit {
+export class InfiniteScrollComponent<T> implements OnInit {
+  @Output() results = new EventEmitter<T[]>();
+
   savedList: ListResponse<T>;
   baseUrl: string;
+  scrollDistance: number;
 
   constructor(private pagination: PaginationService) {}
 
@@ -33,6 +35,8 @@ export class InfiniteScrollComponent<T extends ListResponse<any>>
   setupInitListValues(list: ListResponse<T>, baseUrl: string): void {
     this.savedList = list;
     this.baseUrl = baseUrl;
+    this.scrollDistance = list.count;
+    this.results.emit(list.results);
   }
 
   /**
@@ -46,6 +50,8 @@ export class InfiniteScrollComponent<T extends ListResponse<any>>
       map((newPage) => {
         // Cache the new list and return it back to the user.
         this.savedList = newPage;
+        this.scrollDistance += newPage.count;
+        this.results.emit(newPage.results);
         return newPage;
       })
     );
@@ -65,5 +71,9 @@ export class InfiniteScrollComponent<T extends ListResponse<any>>
    */
   loadPrevPage(): Observable<ListResponse<T>> {
     return this._loadPageGeneric(this.savedList.previous);
+  }
+
+  onScroll($event: any): void {
+    this.loadNextPage().subscribe();
   }
 }
