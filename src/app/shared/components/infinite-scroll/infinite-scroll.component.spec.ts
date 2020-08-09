@@ -9,7 +9,7 @@ import { ProfileListMockResponsePage1 } from 'src/app/core/mocks/user.mock';
 
 describe('InfiniteScrollComponent', () => {
   let component: InfiniteScrollComponent<any>;
-  let fixture: ComponentFixture<InfiniteScrollComponent<ListResponse<any>>>;
+  let fixture: ComponentFixture<InfiniteScrollComponent<any>>;
   const dummyList = { ...ProfileListMockResponsePage1 };
   const dummyUrl = 'someurl123';
 

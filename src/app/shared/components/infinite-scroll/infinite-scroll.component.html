@@ -1,1 +1,8 @@
-<p>infinite-scroll works!</p>
+<div
+  infinite-scroll
+  [infiniteScrollDistance]="5"
+  (scrolled)="onScroll($event)"
+  *ngIf="savedList"
+>
+  <ng-content></ng-content>
+</div>
