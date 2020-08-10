@@ -11,7 +11,12 @@ describe('InfiniteScrollComponent', () => {
   let component: InfiniteScrollComponent<any>;
   let fixture: ComponentFixture<InfiniteScrollComponent<any>>;
   const dummyList = { ...ProfileListMockResponsePage1 };
-  const dummyUrl = 'someurl123';
+  let dummyService = {
+    dummyMethod: jasmine
+      .createSpy()
+      .and.resolveTo({ ...ProfileListMockResponsePage1 }),
+  };
+  let dummyArgs = { a: '1' };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,9 +28,12 @@ describe('InfiniteScrollComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InfiniteScrollComponent);
     component = fixture.componentInstance;
+    spyOn(component['pagination'], 'getPage').and.returnValue(
+      of({ ...ProfileListMockResponsePage2 })
+    );
     fixture.detectChanges();
 
-    component.setupInitListValues(dummyList, dummyUrl);
+    component.setupInitPageValues(dummyService.dummyMethod, dummyArgs);
     fixture.detectChanges();
   });
 
@@ -34,36 +42,32 @@ describe('InfiniteScrollComponent', () => {
   });
 
   it('should setup the init data correctly', () => {
-    expect(component.savedList).toEqual(ProfileListMockResponsePage1);
-    expect(component.baseUrl).toEqual(dummyUrl);
+    expect(component.serviceMethod).toEqual(dummyService.dummyMethod);
+    expect(component.serviceMethodArgs).toEqual(dummyArgs);
   });
 
   it('should load the next page', () => {
-    component.savedList = { ...ProfileListMockResponsePage1 };
-    component.savedList.next = 5;
-    spyOn(component['pagination'], 'getPage').and.returnValue(
-      of({ ...ProfileListMockResponsePage2 })
-    );
+    component.savedPage = { ...ProfileListMockResponsePage1 };
+    component.savedPage.next = 5;
+
     component.loadNextPage().subscribe((page) => {
       expect(page).toEqual(ProfileListMockResponsePage2);
-      expect(component.savedList).toEqual(ProfileListMockResponsePage2);
+      expect(component.savedPage).toEqual(ProfileListMockResponsePage2);
     });
   });
   it('should load the previous page', () => {
-    component.savedList = { ...ProfileListMockResponsePage1 };
-    component.savedList.previous = 3;
-    spyOn(component['pagination'], 'getPage').and.returnValue(
-      of({ ...ProfileListMockResponsePage2 })
-    );
+    component.savedPage = { ...ProfileListMockResponsePage1 };
+    component.savedPage.previous = 3;
+
     component.loadPrevPage().subscribe((page) => {
       expect(page).toEqual(ProfileListMockResponsePage2);
-      expect(component.savedList).toEqual(ProfileListMockResponsePage2);
+      expect(component.savedPage).toEqual(ProfileListMockResponsePage2);
     });
   });
 
   it('should throw if there is no next page', () => {
-    component.savedList = { ...ProfileListMockResponsePage1 };
-    component.savedList.next = null;
+    component.savedPage = { ...ProfileListMockResponsePage1 };
+    component.savedPage.next = null;
     component.loadNextPage().subscribe(
       (_) => {
         expect(1).toEqual(2);
@@ -75,8 +79,8 @@ describe('InfiniteScrollComponent', () => {
   });
 
   it('should throw if there is no prev page', () => {
-    component.savedList = { ...ProfileListMockResponsePage1 };
-    component.savedList.previous = null;
+    component.savedPage = { ...ProfileListMockResponsePage1 };
+    component.savedPage.previous = null;
     component.loadPrevPage().subscribe(
       (_) => {
         expect(1).toEqual(2);

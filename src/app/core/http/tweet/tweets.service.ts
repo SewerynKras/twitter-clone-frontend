@@ -1,3 +1,5 @@
+import { BaseHttpService } from './../../../shared/services/base-http.service';
+import { httpRequestParams } from './../../../shared/models/http.model';
 import { map } from 'rxjs/operators';
 import { environment } from './../../../../environments/environment';
 import {
@@ -15,19 +17,24 @@ import { UserProfileResponse } from 'src/app/shared/models/user.model';
 @Injectable({
   providedIn: 'root',
 })
-export class TweetsService {
+export class TweetsService extends BaseHttpService {
   public baseUrl = `${environment.backendURL}/tweets`;
   public usersUrl = `${environment.backendURL}/users`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super();
+  }
   /**
    * Retrieves a list tweets created by users the currently logged in user follows.
    * This should only be called after authentication completes successfully.
    * NOTE: This is a ListResponse, so only the first page will be returned.
    * To access later pages, use the pagination service.
    */
-  getTweetsList(): Observable<ListResponse<TweetResponse>> {
-    let url = `${this.baseUrl}/`;
+  getTweetsList(
+    params?: httpRequestParams
+  ): Observable<ListResponse<TweetResponse>> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/${parsedParams}`;
     return this.http.get<ListResponse<TweetResponseRaw>>(url).pipe(
       map((response) => {
         response.results.map((tweet) => this.parseTweet(tweet));

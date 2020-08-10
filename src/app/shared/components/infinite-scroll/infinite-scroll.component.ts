@@ -1,3 +1,4 @@
+import { httpRequestParams } from './../../models/http.model';
 import { map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { PaginationService } from './../../../core/services/pagination.service';
@@ -19,8 +20,9 @@ export class NoPageLeftError extends Error {
 export class InfiniteScrollComponent<T> implements OnInit {
   @Output() results = new EventEmitter<T[]>();
 
-  savedList: ListResponse<T>;
-  baseUrl: string;
+  serviceMethod: (args: httpRequestParams) => Observable<ListResponse<any>>;
+  serviceMethodArgs: httpRequestParams;
+  savedPage: ListResponse<T>;
   scrollDistance: number;
 
   constructor(private pagination: PaginationService) {}
@@ -28,15 +30,25 @@ export class InfiniteScrollComponent<T> implements OnInit {
   ngOnInit(): void {}
 
   /**
-   * saves the initial response and base url used when retrieving different pages.
-   * @param list ListResponse<T>
-   * @param baseUrl string
+   * Sets up the initial values.
+   * NOTE: Remember to bind the service context to the serviceMethod.
+   * @param serviceMethod method used to retrieve data
+   * @param args object containing key:value pairs of arguments passed to the serviceMethod
+   * @param pageNum defaults to 1
    */
-  setupInitListValues(list: ListResponse<T>, baseUrl: string): void {
-    this.savedList = list;
-    this.baseUrl = baseUrl;
-    this.scrollDistance = list.count;
-    this.results.emit(list.results);
+  setupInitPageValues(
+    serviceMethod: (args: httpRequestParams) => Observable<ListResponse<T>>,
+    args: httpRequestParams,
+    pageNum = 1
+  ): void {
+    this.serviceMethod = serviceMethod;
+    this.serviceMethodArgs = args;
+
+    // retrieve the first page
+    this._loadPageGeneric(pageNum).subscribe((results) => {
+      this.scrollDistance = results.count;
+      this.results.emit(results.results);
+    });
   }
 
   /**
@@ -46,15 +58,17 @@ export class InfiniteScrollComponent<T> implements OnInit {
    */
   private _loadPageGeneric(page: number | null): Observable<ListResponse<T>> {
     if (page == null) return throwError(new NoPageLeftError('No page found!'));
-    return this.pagination.getPage(this.baseUrl, page).pipe(
-      map((newPage) => {
-        // Cache the new list and return it back to the user.
-        this.savedList = newPage;
-        this.scrollDistance += newPage.count;
-        this.results.emit(newPage.results);
-        return newPage;
-      })
-    );
+    return this.pagination
+      .getPage(this.serviceMethod, this.serviceMethodArgs, page)
+      .pipe(
+        map((newPage) => {
+          // Cache the new list and return it back to the user.
+          this.savedPage = newPage;
+          this.scrollDistance += newPage.count;
+          this.results.emit(newPage.results);
+          return newPage;
+        })
+      );
   }
 
   /**
@@ -62,7 +76,7 @@ export class InfiniteScrollComponent<T> implements OnInit {
    * This method throws a NoPageLeftError if the saved list does not have a next page.
    */
   loadNextPage(): Observable<ListResponse<T>> {
-    return this._loadPageGeneric(this.savedList.next);
+    return this._loadPageGeneric(this.savedPage.next);
   }
 
   /**
@@ -70,7 +84,7 @@ export class InfiniteScrollComponent<T> implements OnInit {
    * This method throws a NoPageLeftError if the saved list does not have a previous page.
    */
   loadPrevPage(): Observable<ListResponse<T>> {
-    return this._loadPageGeneric(this.savedList.previous);
+    return this._loadPageGeneric(this.savedPage.previous);
   }
 
   onScroll($event: any): void {
