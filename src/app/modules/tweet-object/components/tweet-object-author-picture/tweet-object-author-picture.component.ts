@@ -18,7 +18,7 @@ export class TweetObjectAuthorPictureComponent implements OnInit {
 
   /**
    * Returns the cloudinary url with transformation
-   * parameters set to 40 height and 40 width
+   * parameters set to 50 height and 50 width
    * @param url string
    */
   getImageResized(url: string): string {

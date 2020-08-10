@@ -1,0 +1,11 @@
+@use 'src/app/modules/profile-page/variables' as variables;
+
+.header-container {
+  position: relative;
+  margin-bottom: variables.$image-size / 2;
+}
+
+.pic-container {
+  top: variables.$image-size / -2;
+  position: absolute;
+}
