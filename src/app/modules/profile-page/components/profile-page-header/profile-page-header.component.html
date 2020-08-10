@@ -1,4 +1,10 @@
-<dir>
-  <app-profile-page-header-profile-pic></app-profile-page-header-profile-pic>
-  <app-profile-page-header-buttons></app-profile-page-header-buttons>
-</dir>
+<div class="header-container">
+  <div class="pic-container">
+    <app-profile-page-header-profile-pic
+      [user]="user"
+    ></app-profile-page-header-profile-pic>
+  </div>
+  <app-profile-page-header-buttons
+    [user]="user"
+  ></app-profile-page-header-buttons>
+</div>

@@ -1,0 +1,5 @@
+@use 'src/app/modules/profile-page/variables' as variables;
+.profile-pic {
+  height: variables.$image-size !important;
+  width: variables.$image-size !important;
+}

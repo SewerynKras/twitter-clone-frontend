@@ -1,4 +1,4 @@
-import { ProfilePageRoutes } from './modules/profile-page/tweet-object.routes';
+import { ProfilePageRoutes } from './modules/profile-page/profile-page.routes';
 import { LoginFormPageRoutes } from './modules/login-form-page/login-form-page.routes';
 import { LoginPageRoutes } from './modules/login-page/login-page.routes';
 import { TweetPageRoutes } from './modules/tweet-page/tweet-object.routes';
