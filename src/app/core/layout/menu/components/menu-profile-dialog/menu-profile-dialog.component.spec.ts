@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
 import { MatSelect } from '@angular/material/select';
@@ -11,7 +12,7 @@ describe('MenuProfileDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatMenuModule],
+      imports: [HttpClientTestingModule, MatMenuModule, RouterTestingModule],
       declarations: [MenuProfileDialogComponent],
       providers: [],
     }).compileComponents();
@@ -51,5 +52,17 @@ describe('MenuProfileDialogComponent', () => {
     component['auth'] = jasmine.createSpyObj('auth', ['logout']);
     component.performLogout();
     expect(component['auth'].logout).toHaveBeenCalled();
+  });
+
+  it('should navigate to the users profile page', () => {
+    spyOn(component['router'], 'navigate');
+    spyOn(
+      component['usersService'],
+      'getBaseUserInfoFromStorage'
+    ).and.returnValue({ username: 'test123', display_name: '', image_url: '' });
+    component.navigateToProfile();
+    expect(component['router'].navigate).toHaveBeenCalledWith([
+      'profile/test123/',
+    ]);
   });
 });

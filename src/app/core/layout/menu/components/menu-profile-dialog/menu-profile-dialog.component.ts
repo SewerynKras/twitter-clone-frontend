@@ -47,6 +47,9 @@ export class MenuProfileDialogComponent implements OnInit {
     this.auth.logout();
   }
 
+  /**
+   * Navigates to the currently logged in user's profile page.
+   */
   navigateToProfile() {
     let user = this.usersService.getBaseUserInfoFromStorage();
     this.router.navigate([`profile/${user.username}/`]);
