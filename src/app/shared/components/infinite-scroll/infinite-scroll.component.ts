@@ -23,7 +23,6 @@ export class InfiniteScrollComponent<T> implements OnInit {
   serviceMethod: (args: httpRequestParams) => Observable<ListResponse<any>>;
   serviceMethodArgs: httpRequestParams;
   savedPage: ListResponse<T>;
-  scrollDistance: number;
 
   constructor(private pagination: PaginationService) {}
 
@@ -45,10 +44,7 @@ export class InfiniteScrollComponent<T> implements OnInit {
     this.serviceMethodArgs = args;
 
     // retrieve the first page
-    this._loadPageGeneric(pageNum).subscribe((results) => {
-      this.scrollDistance = results.count;
-      this.results.emit(results.results);
-    });
+    this._loadPageGeneric(pageNum).subscribe();
   }
 
   /**
@@ -64,7 +60,6 @@ export class InfiniteScrollComponent<T> implements OnInit {
         map((newPage) => {
           // Cache the new list and return it back to the user.
           this.savedPage = newPage;
-          this.scrollDistance += newPage.count;
           this.results.emit(newPage.results);
           return newPage;
         })
