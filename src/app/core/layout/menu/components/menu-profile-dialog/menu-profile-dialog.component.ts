@@ -1,3 +1,5 @@
+import { UsersService } from './../../../../http/user/users.service';
+import { Router } from '@angular/router';
 import { AuthService } from './../../../../auth/auth.service';
 import {
   UserProfileResponse,
@@ -14,7 +16,11 @@ import { MatMenuTrigger } from '@angular/material/menu';
 export class MenuProfileDialogComponent implements OnInit {
   @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
   @Input() user: UserProfileResponse | BaseUserProfile;
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -39,5 +45,10 @@ export class MenuProfileDialogComponent implements OnInit {
    */
   performLogout() {
     this.auth.logout();
+  }
+
+  navigateToProfile() {
+    let user = this.usersService.getBaseUserInfoFromStorage();
+    this.router.navigate([`profile/${user.username}/`]);
   }
 }

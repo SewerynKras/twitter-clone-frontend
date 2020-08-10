@@ -14,6 +14,7 @@
         fxLayoutAlign="start stretch"
         fxLayout="row nowrap"
         class="user-info-wrapper"
+        (click)="navigateToProfile()"
       >
         <app-tweet-object-author-picture
           [user]="user"
