@@ -1,5 +1,5 @@
-<mat-card fxLayout="column nowrap">
-  {{ username }}
+<mat-card fxLayout="column nowrap" *ngIf="profile$ | async as user">
+  {{ user.username }}
   <app-profile-page-header></app-profile-page-header>
   <app-profile-page-name></app-profile-page-name>
   <app-profile-page-bio></app-profile-page-bio>
