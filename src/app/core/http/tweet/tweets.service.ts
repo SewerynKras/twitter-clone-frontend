@@ -47,12 +47,17 @@ export class TweetsService extends BaseHttpService {
    * Sends a POST request creating a new tweet
    * @param data TweetPOSTBody
    */
-  createTweet(data: TweetPOSTBody): Observable<TweetResponse> {
+  createTweet(
+    data: TweetPOSTBody,
+    params?: httpRequestParams
+  ): Observable<TweetResponse> {
+    let parsedParams = this.handleParams(params);
+
     // Since data could contain an image file the request needs to of type 'multipart/form-data'
     let body = new FormData();
     for (const key in data) body.append(key, data[key]);
 
-    let url = `${this.baseUrl}/`;
+    let url = `${this.baseUrl}/${parsedParams}`;
     return this.http
       .post<TweetResponseRaw>(url, body)
       .pipe(map(this.parseTweet));
@@ -62,8 +67,12 @@ export class TweetsService extends BaseHttpService {
    * Retrieves a single tweet.
    * @param id string
    */
-  getSingleTweet(id: string): Observable<TweetResponse> {
-    let url = `${this.baseUrl}/${id}/`;
+  getSingleTweet(
+    id: string,
+    params?: httpRequestParams
+  ): Observable<TweetResponse> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/${id}/${parsedParams}`;
     return this.http.get<TweetResponseRaw>(url).pipe(map(this.parseTweet));
   }
 
@@ -74,9 +83,11 @@ export class TweetsService extends BaseHttpService {
    * @param id string
    */
   getListOfUserThatLikedATweet(
-    id: string
+    id: string,
+    params?: httpRequestParams
   ): Observable<ListResponse<UserProfileResponse>> {
-    let url = `${this.baseUrl}/${id}/likes/`;
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/${id}/likes/${parsedParams}`;
     return this.http.get<ListResponse<UserProfileResponse>>(url);
   }
 
@@ -86,8 +97,12 @@ export class TweetsService extends BaseHttpService {
    * To access later pages, use the pagination service.
    * @param id string
    */
-  getListOfRetweets(id: string): Observable<ListResponse<TweetResponse>> {
-    let url = `${this.baseUrl}/${id}/retweets/`;
+  getListOfRetweets(
+    id: string,
+    params?: httpRequestParams
+  ): Observable<ListResponse<TweetResponse>> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/${id}/retweets/${parsedParams}`;
     return this.http.get<ListResponse<TweetResponseRaw>>(url).pipe(
       map((response) => {
         response.results.map((tweet) => this.parseTweet(tweet));
@@ -102,8 +117,12 @@ export class TweetsService extends BaseHttpService {
    * To access later pages, use the pagination service.
    * @param id string
    */
-  getListOfComments(id: string): Observable<ListResponse<TweetResponse>> {
-    let url = `${this.baseUrl}/${id}/comments/`;
+  getListOfComments(
+    id: string,
+    params?: httpRequestParams
+  ): Observable<ListResponse<TweetResponse>> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/${id}/comments/${parsedParams}`;
     return this.http.get<ListResponse<TweetResponseRaw>>(url).pipe(
       map((response) => {
         response.results.map((tweet) => this.parseTweet(tweet));
@@ -116,8 +135,12 @@ export class TweetsService extends BaseHttpService {
    * Retrieves the retweeted tweet.
    * @param id string
    */
-  getRetweet(id: string): Observable<TweetResponse> {
-    let url = `${this.baseUrl}/${id}/retweet/`;
+  getRetweet(
+    id: string,
+    params?: httpRequestParams
+  ): Observable<TweetResponse> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/${id}/retweet/${parsedParams}`;
     return this.http.get<TweetResponseRaw>(url).pipe(map(this.parseTweet));
   }
 
@@ -125,8 +148,12 @@ export class TweetsService extends BaseHttpService {
    * Retrieves the parent tweet to the selected comment.
    * @param id string
    */
-  getComment(id: string): Observable<TweetResponse> {
-    let url = `${this.baseUrl}/${id}/comment/`;
+  getComment(
+    id: string,
+    params?: httpRequestParams
+  ): Observable<TweetResponse> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/${id}/comment/${parsedParams}`;
     return this.http.get<TweetResponseRaw>(url).pipe(map(this.parseTweet));
   }
   /**
@@ -135,9 +162,12 @@ export class TweetsService extends BaseHttpService {
    * To access later pages, use the pagination service.
    */
   getTweetsListByUser(
-    username: string
+    username: string,
+    params?: httpRequestParams
   ): Observable<ListResponse<TweetResponse>> {
-    let url = `${this.usersUrl}/${username}/tweets/`;
+    let parsedParams = this.handleParams(params);
+
+    let url = `${this.usersUrl}/${username}/tweets/${parsedParams}`;
     return this.http.get<ListResponse<TweetResponseRaw>>(url).pipe(
       map((response) => {
         response.results.map((tweet) => this.parseTweet(tweet));
@@ -150,8 +180,9 @@ export class TweetsService extends BaseHttpService {
    * Sends a DELETE request.
    * @param id string
    */
-  deleteTweet(id: string): Observable<void> {
-    let url = `${this.baseUrl}/${id}/`;
+  deleteTweet(id: string, params?: httpRequestParams): Observable<void> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/${id}/${parsedParams}`;
     return this.http.delete<void>(url);
   }
 
