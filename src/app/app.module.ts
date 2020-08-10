@@ -73,6 +73,11 @@ import { MenuProfileDialogComponent } from './core/layout/menu/components/menu-p
 import { MatMenuModule } from '@angular/material/menu';
 import { InfiniteScrollComponent } from './shared/components/infinite-scroll/infinite-scroll.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ProfilePageComponent } from './modules/profile-page/components/profile-page/profile-page.component';
+import { ProfilePageHeaderComponent } from './modules/profile-page/components/profile-page-header/profile-page-header.component';
+import { ProfilePageBioComponent } from './modules/profile-page/components/profile-page-bio/profile-page-bio.component';
+import { ProfilePageFollowersComponent } from './modules/profile-page/components/profile-page-followers/profile-page-followers.component';
+import { ProfilePageNameComponent } from './modules/profile-page/components/profile-page-name/profile-page-name.component';
 
 @NgModule({
   declarations: [
@@ -130,6 +135,11 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MenuButtonComponent,
     MenuProfileDialogComponent,
     InfiniteScrollComponent,
+    ProfilePageComponent,
+    ProfilePageHeaderComponent,
+    ProfilePageBioComponent,
+    ProfilePageFollowersComponent,
+    ProfilePageNameComponent,
   ],
   imports: [
     BrowserModule,
