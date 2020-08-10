@@ -1,3 +1,5 @@
+import { httpRequestParams } from './../../../shared/models/http.model';
+import { BaseHttpService } from './../../../shared/services/base-http.service';
 import {
   FollowResponse,
   FollowPOSTBody,
@@ -10,28 +12,35 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class FollowsService {
+export class FollowsService extends BaseHttpService {
   baseUrl = `${environment.backendURL}/follow`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   /**
    * Creates a follow object for the given user
    * @param username string
    */
-  createFollow(username: string): Observable<FollowResponse> {
+  createFollow(
+    username: string,
+    params?: httpRequestParams
+  ): Observable<FollowResponse> {
+    let parsedParams = this.handleParams(params);
     let body: FollowPOSTBody = {
       being_followed: username,
     };
-    let url = `${this.baseUrl}/`;
+    let url = `${this.baseUrl}/${parsedParams}`;
     return this.http.post<FollowResponse>(url, body);
   }
   /**
    * Deletes a follow object for the given user
    * @param username string
    */
-  deleteFollow(username: string): Observable<void> {
-    let url = `${this.baseUrl}/${username}/`;
+  deleteFollow(username: string, params?: httpRequestParams): Observable<void> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/${username}/${parsedParams}`;
     return this.http.delete<void>(url);
   }
 }

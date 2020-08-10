@@ -1,3 +1,5 @@
+import { httpRequestParams } from './../../../shared/models/http.model';
+import { BaseHttpService } from './../../../shared/services/base-http.service';
 import { BaseUserProfile } from './../../../shared/models/user.model';
 import { map } from 'rxjs/operators';
 import { ListResponse } from './../../../shared/models/response.model';
@@ -14,19 +16,22 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class UsersService {
+export class UsersService extends BaseHttpService {
   public baseUrl = `${environment.backendURL}/users`;
   public profileUrl = `${this.baseUrl}/profile`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   /**
    * Retrieves information about the currently logged in users profile.
    * This should only be called after successful login.\
    * Base profile information is saved in local storage.
    */
-  getMyProfile(): Observable<UserProfileResponse> {
-    let url = `${this.baseUrl}/getMyProfile/`;
+  getMyProfile(params?: httpRequestParams): Observable<UserProfileResponse> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/getMyProfile/${parsedParams}`;
     return this.http.get<UserProfileResponse>(url).pipe(
       // saves the username, display_name and image url in local storage and returns
       // the profile info back to the pipe
@@ -67,8 +72,11 @@ export class UsersService {
    * NOTE: This is a ListResponse, so only the first page will be returned.
    * To access later pages, use the pagination service.
    */
-  getProfilesList(): Observable<ListResponse<UserProfileResponse>> {
-    let url = `${this.profileUrl}/`;
+  getProfilesList(
+    params?: httpRequestParams
+  ): Observable<ListResponse<UserProfileResponse>> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.profileUrl}/${parsedParams}`;
     return this.http.get<ListResponse<UserProfileResponse>>(url);
   }
 
@@ -77,9 +85,13 @@ export class UsersService {
    * Updates the locally saved user info.
    * @param body UserProfilePATCHBody
    */
-  updateMyProfile(body: UserProfilePATCHBody): Observable<UserProfileResponse> {
+  updateMyProfile(
+    body: UserProfilePATCHBody,
+    params?: httpRequestParams
+  ): Observable<UserProfileResponse> {
+    let parsedParams = this.handleParams(params);
     let myProfile = this.getBaseUserInfoFromStorage();
-    let url = `${this.profileUrl}/${myProfile.username}/`;
+    let url = `${this.profileUrl}/${myProfile.username}/${parsedParams}`;
     return this.http.patch<UserProfileResponse>(url, body).pipe(
       // saves the username, display_name and image url in local storage and returns
       // the profile info back to the pipe
@@ -95,8 +107,12 @@ export class UsersService {
    * Updates the locally saved user info.
    * @param body UserProfilePOSTBody
    */
-  createProfile(body: UserProfilePOSTBody): Observable<UserProfileResponse> {
-    let url = `${this.profileUrl}/`;
+  createProfile(
+    body: UserProfilePOSTBody,
+    params?: httpRequestParams
+  ): Observable<UserProfileResponse> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.profileUrl}/${parsedParams}`;
     return this.http.post<UserProfileResponse>(url, body).pipe(
       // saves the username, display_name and image url in local storage and returns
       // the profile info back to the pipe
@@ -111,8 +127,12 @@ export class UsersService {
    * Retrieves a single profile with the given username.
    * @param username string
    */
-  getSingleProfile(username: string): Observable<UserProfileResponse> {
-    let url = `${this.profileUrl}/${username}/`;
+  getSingleProfile(
+    username: string,
+    params?: httpRequestParams
+  ): Observable<UserProfileResponse> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.profileUrl}/${username}/${parsedParams}`;
     return this.http.get<UserProfileResponse>(url);
   }
 
@@ -123,9 +143,10 @@ export class UsersService {
    * @param username string
    */
   getFollowersList(
-    username: string
+    username: string,
+    params?: httpRequestParams
   ): Observable<ListResponse<UserProfileResponse>> {
-    return this._getFollowsList(username, 'followers');
+    return this._getFollowsList(username, 'followers', params);
   }
 
   /**
@@ -135,9 +156,10 @@ export class UsersService {
    * @param username string
    */
   getFollowingList(
-    username: string
+    username: string,
+    params?: httpRequestParams
   ): Observable<ListResponse<UserProfileResponse>> {
-    return this._getFollowsList(username, 'following');
+    return this._getFollowsList(username, 'following', params);
   }
 
   /**
@@ -150,9 +172,11 @@ export class UsersService {
    */
   private _getFollowsList(
     username: string,
-    mode: 'following' | 'followers'
+    mode: 'following' | 'followers',
+    params?: httpRequestParams
   ): Observable<ListResponse<UserProfileResponse>> {
-    let url = `${this.profileUrl}/${username}/${mode}/`;
+    let parsedParams = this.handleParams(params);
+    let url = `${this.profileUrl}/${username}/${mode}/${parsedParams}`;
     return this.http.get<ListResponse<UserProfileResponse>>(url);
   }
 }
