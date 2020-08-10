@@ -23,10 +23,10 @@ export class TweetListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    // Setup the initial list
-    this.tweetsService.getTweetsList().subscribe((tweets) => {
-      this.scroll.setupInitListValues(tweets, this.tweetsService.baseUrl);
-    });
+    this.scroll.setupInitPageValues(
+      this.tweetsService.getTweetsList.bind(this.tweetsService),
+      {}
+    );
   }
 
   appendResults(results: TweetResponse[]): void {

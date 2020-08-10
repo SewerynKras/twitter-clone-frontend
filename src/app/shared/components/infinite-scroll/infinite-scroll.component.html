@@ -1,8 +1,8 @@
 <div
   infinite-scroll
-  [infiniteScrollDistance]="5"
+  [infiniteScrollDistance]="scrollDistance"
   (scrolled)="onScroll($event)"
-  *ngIf="savedList"
+  *ngIf="savedPage"
 >
   <ng-content></ng-content>
 </div>
