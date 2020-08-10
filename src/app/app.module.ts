@@ -78,6 +78,10 @@ import { ProfilePageHeaderComponent } from './modules/profile-page/components/pr
 import { ProfilePageBioComponent } from './modules/profile-page/components/profile-page-bio/profile-page-bio.component';
 import { ProfilePageFollowersComponent } from './modules/profile-page/components/profile-page-followers/profile-page-followers.component';
 import { ProfilePageNameComponent } from './modules/profile-page/components/profile-page-name/profile-page-name.component';
+import { ProfilePageHeaderButtonsComponent } from './modules/profile-page/components/profile-page-header-buttons/profile-page-header-buttons.component';
+import { ProfilePageHeaderButtonsFollowComponent } from './modules/profile-page/components/profile-page-header-buttons-follow/profile-page-header-buttons-follow.component';
+import { ProfilePageHeaderProfilePicComponent } from './modules/profile-page/components/profile-page-header-profile-pic/profile-page-header-profile-pic.component';
+import { ProfilePageHeaderBannerComponent } from './modules/profile-page/components/profile-page-header-banner/profile-page-header-banner.component';
 
 @NgModule({
   declarations: [
@@ -140,6 +144,10 @@ import { ProfilePageNameComponent } from './modules/profile-page/components/prof
     ProfilePageBioComponent,
     ProfilePageFollowersComponent,
     ProfilePageNameComponent,
+    ProfilePageHeaderButtonsComponent,
+    ProfilePageHeaderButtonsFollowComponent,
+    ProfilePageHeaderProfilePicComponent,
+    ProfilePageHeaderBannerComponent,
   ],
   imports: [
     BrowserModule,

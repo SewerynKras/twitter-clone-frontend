@@ -1,7 +1,9 @@
-<mat-card fxLayout="column nowrap" *ngIf="profile$ | async as user">
-  {{ user.username }}
-  <app-profile-page-header></app-profile-page-header>
-  <app-profile-page-name></app-profile-page-name>
-  <app-profile-page-bio></app-profile-page-bio>
-  <app-profile-page-followers></app-profile-page-followers>
-</mat-card>
+<div *ngIf="profile$ | async as user" fxLayout="column nowrap">
+  <app-profile-page-header-banner></app-profile-page-header-banner>
+  <mat-card fxLayout="column nowrap">
+    <app-profile-page-header></app-profile-page-header>
+    <app-profile-page-name></app-profile-page-name>
+    <app-profile-page-bio></app-profile-page-bio>
+    <app-profile-page-followers></app-profile-page-followers>
+  </mat-card>
+</div>
