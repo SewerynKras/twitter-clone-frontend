@@ -33,7 +33,7 @@ describe('FollowsService', () => {
 
   it('should create a like object', () => {
     service
-      .createFollow(FollowPOSTBodyMock.being_followed)
+      .createFollow({ username: FollowPOSTBodyMock.being_followed })
       .subscribe((response) => {
         expect(response).toEqual(FollowResponseMock);
       });
@@ -44,9 +44,11 @@ describe('FollowsService', () => {
   });
 
   it('should delete a like object', () => {
-    service.deleteFollow(FollowPOSTBodyMock.being_followed).subscribe(() => {
-      expect().nothing();
-    });
+    service
+      .deleteFollow({ username: FollowPOSTBodyMock.being_followed })
+      .subscribe(() => {
+        expect().nothing();
+      });
 
     const req = httpMock.expectOne(
       `${service.baseUrl}/${FollowPOSTBodyMock.being_followed}/`

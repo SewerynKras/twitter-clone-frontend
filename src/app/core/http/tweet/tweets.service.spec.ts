@@ -35,7 +35,7 @@ describe('TweetsService', () => {
   });
 
   it('should get tweets list', () => {
-    service.getTweetsList().subscribe((tweets) => {
+    service.getTweetsList({}).subscribe((tweets) => {
       expect(tweets).toEqual(TweetResponseListMockPage1);
     });
 
@@ -45,9 +45,11 @@ describe('TweetsService', () => {
   });
 
   it('should create a new tweet', () => {
-    service.createTweet(TweetPOSTBodyMockComment).subscribe((tweet) => {
-      expect(tweet).toEqual(TweetResponseMockWithComment);
-    });
+    service
+      .createTweet({ data: TweetPOSTBodyMockComment })
+      .subscribe((tweet) => {
+        expect(tweet).toEqual(TweetResponseMockWithComment);
+      });
 
     const req = httpMock.expectOne(`${service.baseUrl}/`);
     expect(req.request.method).toBe('POST');
@@ -55,7 +57,7 @@ describe('TweetsService', () => {
   });
 
   it('should get a single tweet', () => {
-    service.getSingleTweet(TweetResponseMock.id).subscribe((tweet) => {
+    service.getSingleTweet({ id: TweetResponseMock.id }).subscribe((tweet) => {
       expect(tweet).toEqual(TweetResponseMock);
     });
 
@@ -68,7 +70,7 @@ describe('TweetsService', () => {
 
   it('should get a list of profiles that have liked a selected tweet', () => {
     service
-      .getListOfUserThatLikedATweet(TweetResponseMock.id)
+      .getListOfUserThatLikedATweet({ id: TweetResponseMock.id })
       .subscribe((users) => {
         expect(users).toEqual(ProfileListMockResponsePage1);
       });
@@ -81,9 +83,11 @@ describe('TweetsService', () => {
   });
 
   it('should get a list of tweets that have retweeted a selected tweet', () => {
-    service.getListOfRetweets(TweetResponseMock.id).subscribe((tweets) => {
-      expect(tweets).toEqual(TweetResponseListMockPage1);
-    });
+    service
+      .getListOfRetweets({ id: TweetResponseMock.id })
+      .subscribe((tweets) => {
+        expect(tweets).toEqual(TweetResponseListMockPage1);
+      });
 
     const req = httpMock.expectOne(
       `${service.baseUrl}/${TweetResponseMock.id}/retweets/`
@@ -93,9 +97,11 @@ describe('TweetsService', () => {
   });
 
   it('should get a list of tweets that have commented on a selected tweet', () => {
-    service.getListOfComments(TweetResponseMock.id).subscribe((tweets) => {
-      expect(tweets).toEqual(TweetResponseListMockPage1);
-    });
+    service
+      .getListOfComments({ id: TweetResponseMock.id })
+      .subscribe((tweets) => {
+        expect(tweets).toEqual(TweetResponseListMockPage1);
+      });
 
     const req = httpMock.expectOne(
       `${service.baseUrl}/${TweetResponseMock.id}/comments/`
@@ -105,7 +111,7 @@ describe('TweetsService', () => {
   });
 
   it('should get a selected tweets retweet', () => {
-    service.getRetweet(TweetResponseMock.id).subscribe((tweet) => {
+    service.getRetweet({ id: TweetResponseMock.id }).subscribe((tweet) => {
       expect(tweet).toEqual(TweetResponseMock);
     });
 
@@ -117,7 +123,7 @@ describe('TweetsService', () => {
   });
 
   it('should get a selected tweets comment', () => {
-    service.getComment(TweetResponseMock.id).subscribe((tweet) => {
+    service.getComment({ id: TweetResponseMock.id }).subscribe((tweet) => {
       expect(tweet).toEqual(TweetResponseMock);
     });
 
@@ -130,7 +136,7 @@ describe('TweetsService', () => {
 
   it('should get a list of tweets created by a selected user', () => {
     let author = TweetResponseListMockPage1.results[0].author;
-    service.getTweetsListByUser(author).subscribe((tweets) => {
+    service.getTweetsListByUser({ username: author }).subscribe((tweets) => {
       expect(tweets).toEqual(TweetResponseListMockPage1);
     });
 
@@ -140,7 +146,7 @@ describe('TweetsService', () => {
   });
 
   it('should delete a selected tweet', () => {
-    service.deleteTweet(TweetResponseMock.id).subscribe(() => {});
+    service.deleteTweet({ id: TweetResponseMock.id }).subscribe(() => {});
 
     const req = httpMock.expectOne(
       `${service.baseUrl}/${TweetResponseMock.id}/`

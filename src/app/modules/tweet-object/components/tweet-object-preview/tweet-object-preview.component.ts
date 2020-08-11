@@ -39,7 +39,7 @@ export class TweetObjectPreviewComponent implements OnInit {
    * This should only be called after `tweet` becomes available.
    */
   getUserInfo(): Observable<UserProfileResponse> {
-    return this.usersService.getSingleProfile(this.tweet.author);
+    return this.usersService.getSingleProfile({ username: this.tweet.author });
   }
 
   /**
@@ -47,7 +47,7 @@ export class TweetObjectPreviewComponent implements OnInit {
    * @param id string
    */
   getNestedTweet(id: string): Observable<TweetResponse> {
-    return this.tweetsService.getSingleTweet(id);
+    return this.tweetsService.getSingleTweet({ id: id });
   }
 
   /**

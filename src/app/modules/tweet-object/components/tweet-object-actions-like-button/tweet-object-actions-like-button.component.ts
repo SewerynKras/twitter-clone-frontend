@@ -30,16 +30,20 @@ export class TweetObjectActionsLikeButtonComponent implements OnInit {
     // DELETE like (tweet.is_liked status is already changed here!)
     if (!this.tweet.is_liked) {
       this.tweetLiked.emit(false);
-      this.likeService.deleteLike(this.tweet.id).subscribe((_) => {
-        this.controlDisabled = false;
-      });
+      this.likeService
+        .deleteLike({ tweet_id: this.tweet.id })
+        .subscribe((_) => {
+          this.controlDisabled = false;
+        });
     }
     // CREATE like (tweet.is_liked status is already changed here!)
     else {
       this.tweetLiked.emit(true);
-      this.likeService.createLike(this.tweet.id).subscribe((_) => {
-        this.controlDisabled = false;
-      });
+      this.likeService
+        .createLike({ tweet_id: this.tweet.id })
+        .subscribe((_) => {
+          this.controlDisabled = false;
+        });
     }
   }
 }

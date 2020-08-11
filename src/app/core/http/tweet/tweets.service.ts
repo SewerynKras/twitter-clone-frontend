@@ -1,5 +1,8 @@
 import { BaseHttpService } from './../../../shared/services/base-http.service';
-import { httpRequestParams } from './../../../shared/models/http.model';
+import {
+  httpRequestParams,
+  httpRequestArgs,
+} from './../../../shared/models/http.model';
 import { map } from 'rxjs/operators';
 import { environment } from './../../../../environments/environment';
 import {
@@ -19,7 +22,7 @@ import { UserProfileResponse } from 'src/app/shared/models/user.model';
 })
 export class TweetsService extends BaseHttpService {
   public baseUrl = `${environment.backendURL}/tweets`;
-  public usersUrl = `${environment.backendURL}/users`;
+  public usersUrl = `${environment.backendURL}/users/profile`;
 
   constructor(private http: HttpClient) {
     super();
@@ -31,6 +34,7 @@ export class TweetsService extends BaseHttpService {
    * To access later pages, use the pagination service.
    */
   getTweetsList(
+    {}: httpRequestArgs,
     params?: httpRequestParams
   ): Observable<ListResponse<TweetResponse>> {
     let parsedParams = this.handleParams(params);
@@ -48,7 +52,7 @@ export class TweetsService extends BaseHttpService {
    * @param data TweetPOSTBody
    */
   createTweet(
-    data: TweetPOSTBody,
+    { data }: { data: TweetPOSTBody },
     params?: httpRequestParams
   ): Observable<TweetResponse> {
     let parsedParams = this.handleParams(params);
@@ -68,7 +72,7 @@ export class TweetsService extends BaseHttpService {
    * @param id string
    */
   getSingleTweet(
-    id: string,
+    { id }: { id: string },
     params?: httpRequestParams
   ): Observable<TweetResponse> {
     let parsedParams = this.handleParams(params);
@@ -83,7 +87,7 @@ export class TweetsService extends BaseHttpService {
    * @param id string
    */
   getListOfUserThatLikedATweet(
-    id: string,
+    { id }: { id: string },
     params?: httpRequestParams
   ): Observable<ListResponse<UserProfileResponse>> {
     let parsedParams = this.handleParams(params);
@@ -98,7 +102,7 @@ export class TweetsService extends BaseHttpService {
    * @param id string
    */
   getListOfRetweets(
-    id: string,
+    { id }: { id: string },
     params?: httpRequestParams
   ): Observable<ListResponse<TweetResponse>> {
     let parsedParams = this.handleParams(params);
@@ -118,7 +122,7 @@ export class TweetsService extends BaseHttpService {
    * @param id string
    */
   getListOfComments(
-    id: string,
+    { id }: { id: string },
     params?: httpRequestParams
   ): Observable<ListResponse<TweetResponse>> {
     let parsedParams = this.handleParams(params);
@@ -136,7 +140,7 @@ export class TweetsService extends BaseHttpService {
    * @param id string
    */
   getRetweet(
-    id: string,
+    { id }: { id: string },
     params?: httpRequestParams
   ): Observable<TweetResponse> {
     let parsedParams = this.handleParams(params);
@@ -149,7 +153,7 @@ export class TweetsService extends BaseHttpService {
    * @param id string
    */
   getComment(
-    id: string,
+    { id }: { id: string },
     params?: httpRequestParams
   ): Observable<TweetResponse> {
     let parsedParams = this.handleParams(params);
@@ -162,7 +166,7 @@ export class TweetsService extends BaseHttpService {
    * To access later pages, use the pagination service.
    */
   getTweetsListByUser(
-    username: string,
+    { username }: { username: string },
     params?: httpRequestParams
   ): Observable<ListResponse<TweetResponse>> {
     let parsedParams = this.handleParams(params);
@@ -180,7 +184,10 @@ export class TweetsService extends BaseHttpService {
    * Sends a DELETE request.
    * @param id string
    */
-  deleteTweet(id: string, params?: httpRequestParams): Observable<void> {
+  deleteTweet(
+    { id }: { id: string },
+    params?: httpRequestParams
+  ): Observable<void> {
     let parsedParams = this.handleParams(params);
     let url = `${this.baseUrl}/${id}/${parsedParams}`;
     return this.http.delete<void>(url);

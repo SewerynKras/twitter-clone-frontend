@@ -1,4 +1,7 @@
-import { httpRequestParams } from './../../shared/models/http.model';
+import {
+  httpRequestParams,
+  httpRequestArgs,
+} from './../../shared/models/http.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ListResponse } from './../../shared/models/response.model';
@@ -11,11 +14,15 @@ export class PaginationService {
   constructor() {}
 
   getPage(
-    getter: (args: httpRequestParams) => Observable<ListResponse<any>>,
-    args: httpRequestParams,
+    getter: (
+      args: httpRequestArgs,
+      params: httpRequestParams
+    ) => Observable<ListResponse<any>>,
+    args: httpRequestArgs,
+    params: httpRequestParams,
     pageNum: number
   ): Observable<ListResponse<any>> {
-    args['page'] = pageNum;
-    return getter(args);
+    params['page'] = pageNum;
+    return getter(args, params);
   }
 }

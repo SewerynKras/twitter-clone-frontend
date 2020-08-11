@@ -37,7 +37,7 @@ export class TweetPageComponent implements OnInit {
    * (for example to display a profile pic and display_name).
    */
   getUserInfo(tweet: TweetResponse): Observable<UserProfileResponse> {
-    return this.usersService.getSingleProfile(tweet.author);
+    return this.usersService.getSingleProfile({ username: tweet.author });
   }
 
   /**
@@ -46,17 +46,19 @@ export class TweetPageComponent implements OnInit {
    * @param tweet_id string
    */
   getTweetInfoFromId(tweet_id: string): Observable<TweetResponse> {
-    return this.tweetsService.getSingleTweet(tweet_id).pipe(
+    return this.tweetsService.getSingleTweet({ id: tweet_id }).pipe(
       map((tweet) => {
         // Get retweet
-        this.nestedTweet$ = this.tweetsService.getSingleTweet(tweet.retweet);
+        this.nestedTweet$ = this.tweetsService.getSingleTweet({
+          id: tweet.retweet,
+        });
         // Get tweet author
-        this.tweetAuthorInfo$ = this.usersService.getSingleProfile(
-          tweet.author
-        );
+        this.tweetAuthorInfo$ = this.usersService.getSingleProfile({
+          username: tweet.author,
+        });
         // Get comment author
         this.commentAuthorUsername$ = this.tweetsService
-          .getSingleTweet(tweet.comment)
+          .getSingleTweet({ id: tweet.comment })
           .pipe(map((tweet) => tweet.author));
         return tweet;
       })
@@ -68,7 +70,7 @@ export class TweetPageComponent implements OnInit {
    */
   openDialog(imageUrl: string) {
     this.dialog.open(ImageDialogComponent, {
-      data: imageUrl
+      data: imageUrl,
     });
   }
 }

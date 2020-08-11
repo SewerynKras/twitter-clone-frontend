@@ -37,7 +37,7 @@ describe('UsersService', () => {
   });
 
   it('should retrieve my profile', () => {
-    service.getMyProfile().subscribe((profile) => {
+    service.getMyProfile({}).subscribe((profile) => {
       expect(profile).toEqual(UserProfileMockResponse);
     });
 
@@ -47,7 +47,7 @@ describe('UsersService', () => {
   });
 
   it('should store base profile info in local storage', () => {
-    service.getMyProfile().subscribe((_) => {
+    service.getMyProfile({}).subscribe((_) => {
       let userInfo = service.getBaseUserInfoFromStorage();
       expect(userInfo.username).toEqual(UserProfileMockResponse.username);
       expect(userInfo.display_name).toEqual(
@@ -62,7 +62,7 @@ describe('UsersService', () => {
   });
 
   it('should retrieve a list of profiles', () => {
-    service.getProfilesList().subscribe((profiles) => {
+    service.getProfilesList({}).subscribe((profiles) => {
       expect(profiles).toEqual(ProfileListMockResponsePage1);
     });
 
@@ -73,9 +73,11 @@ describe('UsersService', () => {
 
   it('should update my profile', () => {
     localStorage.setItem('profile.username', 'user');
-    service.updateMyProfile(UserProfilePATCHBodyMock).subscribe((profile) => {
-      expect(profile).toEqual(UserProfilePATCHResponseMock);
-    });
+    service
+      .updateMyProfile({ body: UserProfilePATCHBodyMock })
+      .subscribe((profile) => {
+        expect(profile).toEqual(UserProfilePATCHResponseMock);
+      });
 
     const req = httpMock.expectOne(`${service.profileUrl}/user/`);
     expect(req.request.method).toBe('PATCH');
@@ -84,14 +86,16 @@ describe('UsersService', () => {
 
   it('should update the locally saved info after updating my profile', () => {
     localStorage.setItem('profile.username', 'user');
-    service.updateMyProfile(UserProfilePATCHBodyMock).subscribe((_) => {
-      let user = service.getBaseUserInfoFromStorage();
-      expect(user.username).toEqual(UserProfilePATCHResponseMock.username);
-      expect(user.display_name).toEqual(
-        UserProfilePATCHResponseMock.display_name
-      );
-      expect(user.image_url).toEqual(UserProfilePATCHResponseMock.image_url);
-    });
+    service
+      .updateMyProfile({ body: UserProfilePATCHBodyMock })
+      .subscribe((_) => {
+        let user = service.getBaseUserInfoFromStorage();
+        expect(user.username).toEqual(UserProfilePATCHResponseMock.username);
+        expect(user.display_name).toEqual(
+          UserProfilePATCHResponseMock.display_name
+        );
+        expect(user.image_url).toEqual(UserProfilePATCHResponseMock.image_url);
+      });
 
     const req = httpMock.expectOne(`${service.profileUrl}/user/`);
     expect(req.request.method).toBe('PATCH');
@@ -99,9 +103,11 @@ describe('UsersService', () => {
   });
 
   it('should create a new profile', () => {
-    service.createProfile(UserProfilePOSTBodyMock).subscribe((profile) => {
-      expect(profile).toEqual(UserProfilePOSTResponseMock);
-    });
+    service
+      .createProfile({ body: UserProfilePOSTBodyMock })
+      .subscribe((profile) => {
+        expect(profile).toEqual(UserProfilePOSTResponseMock);
+      });
 
     const req = httpMock.expectOne(`${service.profileUrl}/`);
     expect(req.request.method).toBe('POST');
@@ -109,7 +115,7 @@ describe('UsersService', () => {
   });
 
   it('should update the locally saved info after creating a profile', () => {
-    service.createProfile(UserProfilePOSTBodyMock).subscribe((_) => {
+    service.createProfile({ body: UserProfilePOSTBodyMock }).subscribe((_) => {
       let user = service.getBaseUserInfoFromStorage();
       expect(user.username).toEqual(UserProfilePOSTResponseMock.username);
       expect(user.display_name).toEqual(
@@ -125,7 +131,7 @@ describe('UsersService', () => {
 
   it('should retrieve someones profile', () => {
     service
-      .getSingleProfile(UserProfileMockResponse.username)
+      .getSingleProfile({ username: UserProfileMockResponse.username })
       .subscribe((profile) => {
         expect(profile).toEqual(UserProfileMockResponse);
       });
@@ -139,7 +145,7 @@ describe('UsersService', () => {
 
   it('should retrieve someones followers list', () => {
     service
-      .getFollowersList(UserProfileMockResponse.username)
+      .getFollowersList({ username: UserProfileMockResponse.username })
       .subscribe((profiles) => {
         expect(profiles).toEqual(ProfileListMockResponsePage1);
       });
@@ -153,7 +159,7 @@ describe('UsersService', () => {
 
   it('should retrieve someones following list', () => {
     service
-      .getFollowingList(UserProfileMockResponse.username)
+      .getFollowingList({ username: UserProfileMockResponse.username })
       .subscribe((profiles) => {
         expect(profiles).toEqual(ProfileListMockResponsePage1);
       });

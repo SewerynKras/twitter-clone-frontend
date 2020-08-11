@@ -24,7 +24,7 @@ export class LikesService extends BaseHttpService {
    * @param tweet_id string
    */
   createLike(
-    tweet_id: string,
+    { tweet_id }: { tweet_id: string },
     params?: httpRequestParams
   ): Observable<LikeResponse> {
     let parsedParams = this.handleParams(params);
@@ -38,7 +38,10 @@ export class LikesService extends BaseHttpService {
    * Deletes a like object for the given tweet
    * @param tweet_id string
    */
-  deleteLike(tweet_id: string, params?: httpRequestParams): Observable<void> {
+  deleteLike(
+    { tweet_id }: { tweet_id: string },
+    params?: httpRequestParams
+  ): Observable<void> {
     let parsedParams = this.handleParams(params);
     let url = `${this.baseUrl}/${tweet_id}/${parsedParams}`;
     return this.http.delete<void>(url);

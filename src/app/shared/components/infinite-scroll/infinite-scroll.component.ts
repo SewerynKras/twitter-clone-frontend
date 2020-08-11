@@ -1,4 +1,4 @@
-import { httpRequestParams } from './../../models/http.model';
+import { httpRequestParams, httpRequestArgs } from './../../models/http.model';
 import { map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { PaginationService } from './../../../core/services/pagination.service';
@@ -20,8 +20,12 @@ export class NoPageLeftError extends Error {
 export class InfiniteScrollComponent<T> implements OnInit {
   @Output() results = new EventEmitter<T[]>();
 
-  serviceMethod: (args: httpRequestParams) => Observable<ListResponse<any>>;
-  serviceMethodArgs: httpRequestParams;
+  serviceMethod: (
+    args: httpRequestArgs,
+    params: httpRequestParams
+  ) => Observable<ListResponse<any>>;
+  serviceMethodArgs: httpRequestArgs;
+  serviceMethodParams: httpRequestParams;
   savedPage: ListResponse<T>;
 
   constructor(private pagination: PaginationService) {}
@@ -36,12 +40,17 @@ export class InfiniteScrollComponent<T> implements OnInit {
    * @param pageNum defaults to 1
    */
   setupInitPageValues(
-    serviceMethod: (args: httpRequestParams) => Observable<ListResponse<T>>,
-    args: httpRequestParams,
+    serviceMethod: (
+      args: httpRequestArgs,
+      params: httpRequestParams
+    ) => Observable<ListResponse<T>>,
+    args: httpRequestArgs,
+    params: httpRequestParams,
     pageNum = 1
   ): void {
     this.serviceMethod = serviceMethod;
     this.serviceMethodArgs = args;
+    this.serviceMethodParams = params;
 
     // retrieve the first page
     this._loadPageGeneric(pageNum).subscribe();
@@ -55,7 +64,12 @@ export class InfiniteScrollComponent<T> implements OnInit {
   private _loadPageGeneric(page: number | null): Observable<ListResponse<T>> {
     if (page == null) return throwError(new NoPageLeftError('No page found!'));
     return this.pagination
-      .getPage(this.serviceMethod, this.serviceMethodArgs, page)
+      .getPage(
+        this.serviceMethod,
+        this.serviceMethodArgs,
+        this.serviceMethodParams,
+        page
+      )
       .pipe(
         map((newPage) => {
           // Cache the new list and return it back to the user.

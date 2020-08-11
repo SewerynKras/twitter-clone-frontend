@@ -17,6 +17,7 @@ describe('InfiniteScrollComponent', () => {
       .and.resolveTo({ ...ProfileListMockResponsePage1 }),
   };
   let dummyArgs = { a: '1' };
+  let dummyParams = { foo: 'bar' };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +34,11 @@ describe('InfiniteScrollComponent', () => {
     );
     fixture.detectChanges();
 
-    component.setupInitPageValues(dummyService.dummyMethod, dummyArgs);
+    component.setupInitPageValues(
+      dummyService.dummyMethod,
+      dummyArgs,
+      dummyParams
+    );
     fixture.detectChanges();
   });
 

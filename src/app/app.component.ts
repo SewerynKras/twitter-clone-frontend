@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     // was logged in before, so their profile data needs to be loaded
     // TODO: move this to route guard
     if (this.authService.isAuthenticated()) {
-      this.usersService.getMyProfile().subscribe((_) => {
+      this.usersService.getMyProfile({}).subscribe((_) => {
         this.authService.sendLoginSignal();
       });
       this.router.navigate(['tweets/'], { replaceUrl: true });

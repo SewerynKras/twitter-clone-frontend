@@ -60,6 +60,6 @@ export class TweetObjectActionsRetweetButtonComponent implements OnInit {
     let tweetBody: TweetPOSTBody = {
       retweet_id: this.tweet.id,
     };
-    this.tweetsService.createTweet(tweetBody).subscribe();
+    this.tweetsService.createTweet({ data: tweetBody }).subscribe();
   }
 }

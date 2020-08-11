@@ -16,6 +16,8 @@ export class TweetObjectPureRetweetComponent implements OnInit {
 
   ngOnInit(): void {
     // This component assumes that the given tweet has a retweet attached to it
-    this.retweet$ = this.tweetService.getSingleTweet(this.tweet.retweet);
+    this.retweet$ = this.tweetService.getSingleTweet({
+      id: this.tweet.retweet,
+    });
   }
 }

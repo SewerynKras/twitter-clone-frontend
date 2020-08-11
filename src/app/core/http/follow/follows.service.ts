@@ -24,7 +24,7 @@ export class FollowsService extends BaseHttpService {
    * @param username string
    */
   createFollow(
-    username: string,
+    { username }: { username: string },
     params?: httpRequestParams
   ): Observable<FollowResponse> {
     let parsedParams = this.handleParams(params);
@@ -38,7 +38,10 @@ export class FollowsService extends BaseHttpService {
    * Deletes a follow object for the given user
    * @param username string
    */
-  deleteFollow(username: string, params?: httpRequestParams): Observable<void> {
+  deleteFollow(
+    { username }: { username: string },
+    params?: httpRequestParams
+  ): Observable<void> {
     let parsedParams = this.handleParams(params);
     let url = `${this.baseUrl}/${username}/${parsedParams}`;
     return this.http.delete<void>(url);

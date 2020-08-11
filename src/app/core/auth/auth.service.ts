@@ -42,7 +42,7 @@ export class AuthService {
         localStorage.setItem('access', tokens.access);
         localStorage.setItem('refresh', tokens.refresh);
       }),
-      switchMap((_) => this.usersService.getMyProfile()),
+      switchMap((_) => this.usersService.getMyProfile({})),
       map((profile) => {
         // notify other components that the user has successfully logged in
         this.sendLoginSignal();

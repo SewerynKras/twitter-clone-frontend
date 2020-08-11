@@ -45,8 +45,8 @@ describe('ProfilePageComponent', () => {
   it('should get the profile info', () => {
     const username = 'test123';
     component.getProfileFromUsername(username);
-    expect(component['usersService'].getSingleProfile).toHaveBeenCalledWith(
-      username
-    );
+    expect(component['usersService'].getSingleProfile).toHaveBeenCalledWith({
+      username: username,
+    });
   });
 });

@@ -98,7 +98,7 @@ export class TweetCreationComponent implements OnInit, AfterViewInit {
 
     // Send the payload
     this.tweetsService
-      .createTweet(tweetBody)
+      .createTweet({ data: tweetBody })
       .subscribe((tweet: TweetResponse) => {
         this.tweetCreated.emit(tweet);
         this.clearAllControls();

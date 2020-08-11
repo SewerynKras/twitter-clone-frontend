@@ -66,7 +66,9 @@ describe('TweetObjectActionsRetweetButtonComponent', () => {
     spyOn(component.retweetOptions, 'close');
     component.createRetweetWithNoComment();
     expect(component['tweetsService'].createTweet).toHaveBeenCalledWith({
-      retweet_id: TweetResponseMock.id,
+      data: {
+        retweet_id: TweetResponseMock.id,
+      },
     });
   });
 

@@ -1,3 +1,7 @@
+import {
+  httpRequestParams,
+  httpRequestArgs,
+} from './../../../../shared/models/http.model';
 import { PaginationService } from './../../../../core/services/pagination.service';
 import { ListResponse } from 'src/app/shared/models/response.model';
 import { InfiniteScrollComponent } from './../../../../shared/components/infinite-scroll/infinite-scroll.component';
@@ -5,7 +9,13 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TweetsService } from './../../../../core/http/tweet/tweets.service';
 import { TweetResponse } from './../../../../shared/models/tweet.model';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'app-tweet-list',
@@ -13,6 +23,9 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
   styleUrls: ['./tweet-list.component.scss'],
 })
 export class TweetListComponent implements OnInit, AfterViewInit {
+  @Input() overrideServiceMethod: Function;
+  @Input() overrideServiceMethodArgs: httpRequestArgs;
+  @Input() overrideServiceMethodParams: httpRequestParams;
   @ViewChild(InfiniteScrollComponent, { static: true })
   scroll: InfiniteScrollComponent<TweetResponse>;
 
@@ -23,10 +36,12 @@ export class TweetListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.scroll.setupInitPageValues(
-      this.tweetsService.getTweetsList.bind(this.tweetsService),
-      {}
-    );
+    let method =
+      this.overrideServiceMethod ||
+      this.tweetsService.getTweetsList.bind(this.tweetsService);
+    let args = this.overrideServiceMethodArgs || {};
+    let params = this.overrideServiceMethodParams || {};
+    this.scroll.setupInitPageValues(method, args, params);
   }
 
   appendResults(results: TweetResponse[]): void {
