@@ -1,1 +1,14 @@
-<p>profile-page-followers works!</p>
+<div
+  fxLayout="row nowrap"
+  fxLayoutAlign="start center"
+  class="default-text-formatting"
+>
+  <div fxLayoutAlign="space-between center">
+    <div class="num-following">{{ user.following }}</div>
+    <div class="text-following" fxFlexOffset="2px">Following</div>
+  </div>
+  <div fxLayoutAlign="space-between center" fxFlexOffset="1em">
+    <div class="num-followers">{{ user.followers }}</div>
+    <div class="text-followers" fxFlexOffset="2px">Followers</div>
+  </div>
+</div>

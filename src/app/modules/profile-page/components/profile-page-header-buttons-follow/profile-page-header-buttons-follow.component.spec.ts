@@ -42,10 +42,12 @@ describe('ProfilePageHeaderButtonsFollowComponent', () => {
   it('should emit when a new follow should get created', () => {
     component['user'] = { ...UserProfileMockResponse };
     component['user'].is_followed = false;
+    var followers_before = component['user'].followers;
 
     component.buttonClicked.subscribe((val) => {
       expect(val).toEqual(true);
       expect(component['user'].is_followed).toEqual(true);
+      expect(component['user'].followers).toEqual(followers_before + 1);
     });
     component.emitButtonClicked();
   });
@@ -53,10 +55,12 @@ describe('ProfilePageHeaderButtonsFollowComponent', () => {
   it('should emit when a follow should get deleted', () => {
     component['user'] = { ...UserProfileMockResponse };
     component['user'].is_followed = true;
+    var followers_before = component['user'].followers;
 
     component.buttonClicked.subscribe((val) => {
       expect(val).toEqual(false);
       expect(component['user'].is_followed).toEqual(false);
+      expect(component['user'].followers).toEqual(followers_before - 1);
     });
     component.emitButtonClicked();
   });

@@ -18,9 +18,12 @@ export class ProfilePageHeaderButtonsFollowComponent implements OnInit {
   /**
    * Emits the `buttonClicked` event emitter with `true` if a new
    * follow should get created or `false` if it should get deleted.
+   * Changes the `is_followed` property of the user object as well as
+   * the `followers` count.
    */
   emitButtonClicked() {
     this.user.is_followed = !this.user.is_followed;
+    this.user.followers += this.user.is_followed ? 1 : -1;
     this.buttonClicked.emit(this.user.is_followed);
   }
 
