@@ -1,1 +1,15 @@
-<p>profile-page-header-buttons-follow works!</p>
+<div *ngIf="user.is_followed; else notFollowed">
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="controlDisabled"
+    (click)="deleteFollow()"
+  >
+    Following
+  </button>
+</div>
+<ng-template #notFollowed>
+  <button mat-flat-button [disabled]="controlDisabled" (click)="createFollow()">
+    Follow
+  </button>
+</ng-template>

@@ -14,6 +14,7 @@ export const UserProfileMockResponse: UserProfileResponse = {
   birth_date: new Date(2000, 1, 1),
   followers: 5,
   following: 10,
+  is_followed: false,
   image_url: 'image.url/image',
 };
 
@@ -31,6 +32,7 @@ export const ProfileListMockResponsePage1: ListResponse<UserProfileResponse> = {
       birth_date: new Date(2000, 1, 1),
       followers: 5,
       following: 10,
+      is_followed: false,
       image_url: 'image.url/image',
     },
     {
@@ -42,6 +44,7 @@ export const ProfileListMockResponsePage1: ListResponse<UserProfileResponse> = {
       birth_date: new Date(1995, 1, 1),
       followers: 0,
       following: 89,
+      is_followed: false,
       image_url: null,
     },
   ],
@@ -61,6 +64,7 @@ export const ProfileListMockResponsePage2: ListResponse<UserProfileResponse> = {
       birth_date: new Date(2004, 1, 1),
       followers: 22,
       following: 1,
+      is_followed: false,
       image_url: null,
     },
     {
@@ -72,6 +76,7 @@ export const ProfileListMockResponsePage2: ListResponse<UserProfileResponse> = {
       birth_date: new Date(1960, 1, 1),
       followers: 2,
       following: 2,
+      is_followed: false,
       image_url: 'image.url/image1',
     },
   ],
@@ -97,6 +102,7 @@ export const UserProfilePOSTResponseMock: UserProfileResponse = {
   birth_date: new Date(2000, 1, 1),
   followers: 0,
   following: 0,
+  is_followed: false,
   image_url: 'url/123',
 };
 
@@ -121,4 +127,5 @@ export const UserProfilePATCHResponseMock: UserProfileResponse = {
   image_url: '',
   followers: 5,
   following: 10,
+  is_followed: false,
 };

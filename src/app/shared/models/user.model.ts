@@ -7,6 +7,7 @@ export interface UserProfileResponse {
   birth_date: Date;
   followers: number;
   following: number;
+  is_followed: boolean;
   image_url: string | null;
 }
 
