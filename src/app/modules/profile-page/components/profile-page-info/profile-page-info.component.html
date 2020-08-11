@@ -1,0 +1,24 @@
+<mat-card-content
+  fxLayout="row wrap"
+  fxLayoutAlign="space-around center"
+  class="default-text-formatting"
+>
+  <div *ngIf="user.location">
+    <div fxLayoutAlign="center center">
+      <mat-icon [inline]="true">location_on</mat-icon>
+      {{ user.location }}
+    </div>
+  </div>
+  <div *ngIf="user.website">
+    <div fxLayoutAlign="center center">
+      <mat-icon [inline]="true">attach_file</mat-icon>
+      <a [href]="user.website">{{ user.website }}</a>
+    </div>
+  </div>
+  <div *ngIf="user.birth_date">
+    <div fxLayoutAlign="center center">
+      <mat-icon [inline]="true">date_range </mat-icon>
+      {{ user.birth_date }}
+    </div>
+  </div>
+</mat-card-content>
