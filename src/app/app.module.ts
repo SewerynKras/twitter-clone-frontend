@@ -82,6 +82,7 @@ import { ProfilePageHeaderButtonsComponent } from './modules/profile-page/compon
 import { ProfilePageHeaderButtonsFollowComponent } from './modules/profile-page/components/profile-page-header-buttons-follow/profile-page-header-buttons-follow.component';
 import { ProfilePageHeaderProfilePicComponent } from './modules/profile-page/components/profile-page-header-profile-pic/profile-page-header-profile-pic.component';
 import { ProfilePageHeaderBannerComponent } from './modules/profile-page/components/profile-page-header-banner/profile-page-header-banner.component';
+import { ProfilePageInfoComponent } from './modules/profile-page/components/profile-page-info/profile-page-info.component';
 
 @NgModule({
   declarations: [
@@ -148,6 +149,7 @@ import { ProfilePageHeaderBannerComponent } from './modules/profile-page/compone
     ProfilePageHeaderButtonsFollowComponent,
     ProfilePageHeaderProfilePicComponent,
     ProfilePageHeaderBannerComponent,
+    ProfilePageInfoComponent,
   ],
   imports: [
     BrowserModule,
