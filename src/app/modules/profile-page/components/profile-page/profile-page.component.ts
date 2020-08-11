@@ -1,3 +1,6 @@
+import { httpRequestParams } from './../../../../shared/models/http.model';
+import { map } from 'rxjs/operators';
+import { TweetsService } from './../../../../core/http/tweet/tweets.service';
 import { UsersService } from './../../../../core/http/user/users.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -12,14 +15,24 @@ import { UserProfileResponse } from 'src/app/shared/models/user.model';
 export class ProfilePageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private tweetsService: TweetsService
   ) {}
 
   profile$: Observable<UserProfileResponse>;
-
+  method: Function;
+  methodArgs: httpRequestParams;
   ngOnInit(): void {
     let username = this.route.snapshot.paramMap.get('username');
-    this.profile$ = this.getProfileFromUsername(username);
+    this.profile$ = this.getProfileFromUsername(username).pipe(
+      map((user) => {
+        this.method = this.tweetsService.getTweetsListByUser.bind(
+          this.tweetsService
+        );
+        this.methodArgs = { username: user.username };
+        return user;
+      })
+    );
   }
 
   /**
@@ -27,6 +40,6 @@ export class ProfilePageComponent implements OnInit {
    * @param username string
    */
   getProfileFromUsername(username: string): Observable<UserProfileResponse> {
-    return this.usersService.getSingleProfile(username);
+    return this.usersService.getSingleProfile({ username: username });
   }
 }

@@ -37,12 +37,14 @@ export class ProfilePageHeaderButtonsFollowComponent implements OnInit {
     this.emitButtonClicked();
     // disable the control until the process finishes
     this.toggleControl();
-    this.followsService.createFollow(this.user.username).subscribe(
-      // enable the control again
-      (_) => {
-        this.toggleControl();
-      }
-    );
+    this.followsService
+      .createFollow({ username: this.user.username })
+      .subscribe(
+        // enable the control again
+        (_) => {
+          this.toggleControl();
+        }
+      );
   }
 
   /**
@@ -55,12 +57,14 @@ export class ProfilePageHeaderButtonsFollowComponent implements OnInit {
     this.emitButtonClicked();
     // disable the control until the process finishes
     this.toggleControl();
-    this.followsService.deleteFollow(this.user.username).subscribe(
-      // enable the control again
-      (_) => {
-        this.toggleControl();
-      }
-    );
+    this.followsService
+      .deleteFollow({ username: this.user.username })
+      .subscribe(
+        // enable the control again
+        (_) => {
+          this.toggleControl();
+        }
+      );
   }
 
   /**

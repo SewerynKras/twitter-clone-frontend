@@ -29,9 +29,11 @@ describe('LikesService', () => {
   });
 
   it('should create a like object', () => {
-    service.createLike(LikePOSTBodyMock.tweet_id).subscribe((response) => {
-      expect(response).toEqual(LikeResponseMock);
-    });
+    service
+      .createLike({ tweet_id: LikePOSTBodyMock.tweet_id })
+      .subscribe((response) => {
+        expect(response).toEqual(LikeResponseMock);
+      });
 
     const req = httpMock.expectOne(`${service.baseUrl}/`);
     expect(req.request.method).toBe('POST');
@@ -39,9 +41,11 @@ describe('LikesService', () => {
   });
 
   it('should delete a like object', () => {
-    service.deleteLike(LikePOSTBodyMock.tweet_id).subscribe(() => {
-      expect().nothing();
-    });
+    service
+      .deleteLike({ tweet_id: LikePOSTBodyMock.tweet_id })
+      .subscribe(() => {
+        expect().nothing();
+      });
 
     const req = httpMock.expectOne(
       `${service.baseUrl}/${LikePOSTBodyMock.tweet_id}/`

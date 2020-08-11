@@ -1,4 +1,7 @@
-import { httpRequestParams } from './../../../shared/models/http.model';
+import {
+  httpRequestParams,
+  httpRequestArgs,
+} from './../../../shared/models/http.model';
 import { BaseHttpService } from './../../../shared/services/base-http.service';
 import { BaseUserProfile } from './../../../shared/models/user.model';
 import { map } from 'rxjs/operators';
@@ -29,7 +32,10 @@ export class UsersService extends BaseHttpService {
    * This should only be called after successful login.\
    * Base profile information is saved in local storage.
    */
-  getMyProfile(params?: httpRequestParams): Observable<UserProfileResponse> {
+  getMyProfile(
+    {}: httpRequestArgs,
+    params?: httpRequestParams
+  ): Observable<UserProfileResponse> {
     let parsedParams = this.handleParams(params);
     let url = `${this.baseUrl}/getMyProfile/${parsedParams}`;
     return this.http.get<UserProfileResponse>(url).pipe(
@@ -73,6 +79,7 @@ export class UsersService extends BaseHttpService {
    * To access later pages, use the pagination service.
    */
   getProfilesList(
+    {}: httpRequestArgs,
     params?: httpRequestParams
   ): Observable<ListResponse<UserProfileResponse>> {
     let parsedParams = this.handleParams(params);
@@ -86,7 +93,7 @@ export class UsersService extends BaseHttpService {
    * @param body UserProfilePATCHBody
    */
   updateMyProfile(
-    body: UserProfilePATCHBody,
+    { body }: { body: UserProfilePATCHBody },
     params?: httpRequestParams
   ): Observable<UserProfileResponse> {
     let parsedParams = this.handleParams(params);
@@ -108,7 +115,7 @@ export class UsersService extends BaseHttpService {
    * @param body UserProfilePOSTBody
    */
   createProfile(
-    body: UserProfilePOSTBody,
+    { body }: { body: UserProfilePOSTBody },
     params?: httpRequestParams
   ): Observable<UserProfileResponse> {
     let parsedParams = this.handleParams(params);
@@ -128,7 +135,7 @@ export class UsersService extends BaseHttpService {
    * @param username string
    */
   getSingleProfile(
-    username: string,
+    { username }: { username: string },
     params?: httpRequestParams
   ): Observable<UserProfileResponse> {
     let parsedParams = this.handleParams(params);
@@ -143,10 +150,13 @@ export class UsersService extends BaseHttpService {
    * @param username string
    */
   getFollowersList(
-    username: string,
+    { username }: { username: string },
     params?: httpRequestParams
   ): Observable<ListResponse<UserProfileResponse>> {
-    return this._getFollowsList(username, 'followers', params);
+    return this._getFollowsList(
+      { username: username, mode: 'followers' },
+      params
+    );
   }
 
   /**
@@ -156,10 +166,13 @@ export class UsersService extends BaseHttpService {
    * @param username string
    */
   getFollowingList(
-    username: string,
+    { username }: { username: string },
     params?: httpRequestParams
   ): Observable<ListResponse<UserProfileResponse>> {
-    return this._getFollowsList(username, 'following', params);
+    return this._getFollowsList(
+      { username: username, mode: 'following' },
+      params
+    );
   }
 
   /**
@@ -171,8 +184,7 @@ export class UsersService extends BaseHttpService {
    * @param mode 'following' or 'followers'
    */
   private _getFollowsList(
-    username: string,
-    mode: 'following' | 'followers',
+    { username, mode }: { username: string; mode: 'following' | 'followers' },
     params?: httpRequestParams
   ): Observable<ListResponse<UserProfileResponse>> {
     let parsedParams = this.handleParams(params);
