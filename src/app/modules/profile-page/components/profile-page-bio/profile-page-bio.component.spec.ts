@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilePageBioComponent } from './profile-page-bio.component';
+import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
 
 describe('ProfilePageBioComponent', () => {
   let component: ProfilePageBioComponent;
@@ -8,14 +9,14 @@ describe('ProfilePageBioComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfilePageBioComponent ]
-    })
-    .compileComponents();
+      declarations: [ProfilePageBioComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfilePageBioComponent);
     component = fixture.componentInstance;
+    component.user = { ...UserProfileMockResponse };
     fixture.detectChanges();
   });
 

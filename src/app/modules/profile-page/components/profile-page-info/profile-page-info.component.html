@@ -12,7 +12,7 @@
   <div *ngIf="user.website">
     <div fxLayoutAlign="center center">
       <mat-icon [inline]="true">attach_file</mat-icon>
-      <a [href]="user.website">{{ user.website }}</a>
+      <a [routerLink]="" (click)="navigateToWebsite()">{{ user.website }}</a>
     </div>
   </div>
   <div *ngIf="user.birth_date">
