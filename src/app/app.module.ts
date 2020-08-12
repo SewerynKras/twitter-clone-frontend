@@ -84,6 +84,9 @@ import { ProfilePageHeaderProfilePicComponent } from './modules/profile-page/com
 import { ProfilePageHeaderBannerComponent } from './modules/profile-page/components/profile-page-header-banner/profile-page-header-banner.component';
 import { ProfilePageInfoComponent } from './modules/profile-page/components/profile-page-info/profile-page-info.component';
 import { TweetListPageComponent } from './modules/tweet-list-page/components/tweet-list-page/tweet-list-page.component';
+import { HeaderLeftSideComponent } from './core/layout/header/components/header-left-side/header-left-side.component';
+import { HeaderRightSideComponent } from './core/layout/header/components/header-right-side/header-right-side.component';
+import { HeaderMiddleSectionComponent } from './core/layout/header/components/header-middle-section/header-middle-section.component';
 
 @NgModule({
   declarations: [
@@ -152,6 +155,9 @@ import { TweetListPageComponent } from './modules/tweet-list-page/components/twe
     ProfilePageHeaderBannerComponent,
     ProfilePageInfoComponent,
     TweetListPageComponent,
+    HeaderLeftSideComponent,
+    HeaderRightSideComponent,
+    HeaderMiddleSectionComponent,
   ],
   imports: [
     BrowserModule,
