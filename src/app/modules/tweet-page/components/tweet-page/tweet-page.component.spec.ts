@@ -48,6 +48,7 @@ describe('TweetPageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TweetPageComponent);
     component = fixture.componentInstance;
+    spyOn(component['title'], 'changeTitle');
     fixture.detectChanges();
     // Flush the tweet
     var req = httpMock.expectOne(() => true);
@@ -85,5 +86,9 @@ describe('TweetPageComponent', () => {
     });
     component.handleCommentCreated({ ...TweetResponseMock });
     expect(component.tweetList.tweets).toEqual([TweetResponseMock]);
+  });
+
+  it('should update the title', () => {
+    expect(component['title'].changeTitle).toHaveBeenCalledWith('Tweet');
   });
 });

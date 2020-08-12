@@ -1,3 +1,4 @@
+import { HeaderTitleService } from './../../../../shared/services/header-title.service';
 import { TweetListComponent } from './../../../tweet-list/components/tweet-list/tweet-list.component';
 import { httpRequestArgs } from './../../../../shared/models/http.model';
 import { ImageDialogComponent } from './../../../../shared/components/image-dialog/image-dialog.component';
@@ -31,7 +32,8 @@ export class TweetPageComponent implements OnInit {
     private route: ActivatedRoute,
     private tweetsService: TweetsService,
     private usersService: UsersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private title: HeaderTitleService
   ) {
     // Subscribe to route params here to
     // force the entire component to reload in case of same-page navigation
@@ -52,6 +54,7 @@ export class TweetPageComponent implements OnInit {
         return tweet;
       })
     );
+    this.title.changeTitle('Tweet');
   }
 
   /**

@@ -8,9 +8,8 @@ describe('HeaderMiddleSectionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderMiddleSectionComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderMiddleSectionComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +20,9 @@ describe('HeaderMiddleSectionComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should update the text when the title service emits', () => {
+    component['titleService'].changeTitle('newText');
+    expect(component.title).toEqual('newText');
   });
 });
