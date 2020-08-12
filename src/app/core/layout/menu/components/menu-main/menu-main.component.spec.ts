@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { MatMenuModule } from '@angular/material/menu';
 import { MenuMoreComponent } from './../menu-more/menu-more.component';
 import { MenuProfileComponent } from './../menu-profile/menu-profile.component';
@@ -17,7 +18,7 @@ describe('MenuMainComponent', () => {
         MenuProfileComponent,
         MenuMoreComponent,
       ],
-      imports: [HttpClientTestingModule, MatMenuModule],
+      imports: [HttpClientTestingModule, MatMenuModule, RouterTestingModule],
     }).compileComponents();
   }));
 
@@ -86,5 +87,41 @@ describe('MenuMainComponent', () => {
     spyOn(component.moreComponent, 'openMenu');
     component.openMoreMenu();
     expect(component.moreComponent.openMenu).toHaveBeenCalled();
+  });
+
+  it('should navigate to the users profile when the profile button is clicked', () => {
+    component.buttonSpecs = [
+      {
+        icon_name: 'test',
+        text: 'prof',
+        selected: false,
+        onClick: component.navigateToProfile.bind(component),
+      },
+    ];
+    spyOn(component['router'], 'navigate');
+    spyOn(
+      component['usersService'],
+      'getBaseUserInfoFromStorage'
+    ).and.returnValue({ username: 'test123', display_name: '', image_url: '' });
+    spyOn(component, 'selectButton');
+    component.handleButtonClick(component.buttonSpecs[0]);
+    expect(component['router'].navigate).toHaveBeenCalledWith([
+      'profile/test123/',
+    ]);
+  });
+
+  it('should navigate to the home page when the home button is clicked', () => {
+    component.buttonSpecs = [
+      {
+        icon_name: 'test',
+        text: 'home',
+        selected: true,
+        onClick: component.navigateToHomePage.bind(component),
+      },
+    ];
+    spyOn(component['router'], 'navigate');
+    spyOn(component, 'selectButton');
+    component.handleButtonClick(component.buttonSpecs[0]);
+    expect(component['router'].navigate).toHaveBeenCalledWith(['tweets/']);
   });
 });
