@@ -25,7 +25,14 @@ export class TweetPageComponent implements OnInit {
     private tweetsService: TweetsService,
     private usersService: UsersService,
     private dialog: MatDialog
-  ) {}
+  ) {
+    // Subscribe to route params here to
+    // force the entire component to reload in case of same-page navigation
+    // for example: tweet/123/ => tweet/234/
+    route.params.subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 
   ngOnInit(): void {
     let tweet_id = this.route.snapshot.paramMap.get('tweet_id');

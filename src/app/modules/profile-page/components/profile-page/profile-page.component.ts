@@ -13,15 +13,23 @@ import { UserProfileResponse } from 'src/app/shared/models/user.model';
   styleUrls: ['./profile-page.component.scss'],
 })
 export class ProfilePageComponent implements OnInit {
+  profile$: Observable<UserProfileResponse>;
+  method: Function;
+  methodArgs: httpRequestParams;
+
   constructor(
     private route: ActivatedRoute,
     private usersService: UsersService,
     private tweetsService: TweetsService
-  ) {}
+  ) {
+    // Subscribe to route params here to
+    // force the entire component to reload in case of same-page navigation
+    // for example: profile/user1/ => profile/user2/
+    route.params.subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 
-  profile$: Observable<UserProfileResponse>;
-  method: Function;
-  methodArgs: httpRequestParams;
   ngOnInit(): void {
     let username = this.route.snapshot.paramMap.get('username');
     this.profile$ = this.getProfileFromUsername(username).pipe(
