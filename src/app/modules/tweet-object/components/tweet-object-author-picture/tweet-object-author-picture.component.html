@@ -1,4 +1,4 @@
-<div class="tweet-profile-pic">
+<div class="tweet-profile-pic" (click)="navigateToProfile()" stop-propagation>
   <img
     mat-card-avatar
     [src]="getImageResized(user.image_url)"

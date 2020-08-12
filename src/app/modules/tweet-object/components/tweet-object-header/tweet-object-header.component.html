@@ -1,4 +1,8 @@
-<mat-card-header class="tweet-header default-text-formatting">
+<mat-card-header
+  class="tweet-header default-text-formatting"
+  (click)="navigateToProfile()"
+  stop-propagation
+>
   <mat-card-title class="truncate-username">{{
     user.display_name
   }}</mat-card-title>
