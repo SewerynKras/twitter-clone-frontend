@@ -7,6 +7,8 @@ import {
   Input,
   ViewChild,
   AfterViewInit,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 
 @Component({
@@ -20,6 +22,8 @@ export class TweetPageFooterComponent implements OnInit, AfterViewInit {
   actionsController: TweetPageActionsComponent;
   @ViewChild(TweetPageStatusComponent)
   statusIndicator: TweetPageStatusComponent;
+  @Output() commentCreated = new EventEmitter<TweetResponse>();
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -33,8 +37,10 @@ export class TweetPageFooterComponent implements OnInit, AfterViewInit {
     );
 
     // Wire the comment button and comments and retweets count indicator together
-    this.actionsController.commentButton.commentCreated.subscribe(() => {
+    this.actionsController.commentButton.commentCreated.subscribe((tweet) => {
       this.statusIndicator.increaseCommentsAndRetweetsCounter();
+      // bubble the event
+      this.commentCreated.emit(tweet);
     });
 
     // Wire the retweet button and comments and retweets count indicator together

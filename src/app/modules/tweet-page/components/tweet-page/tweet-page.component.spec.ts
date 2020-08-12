@@ -78,4 +78,12 @@ describe('TweetPageComponent', () => {
     component.openDialog('');
     expect(component['dialog'].open).toHaveBeenCalled();
   });
+
+  it('should handle new comments being added', () => {
+    component.tweetList = jasmine.createSpyObj('tweetList', null, {
+      tweets: [],
+    });
+    component.handleCommentCreated({ ...TweetResponseMock });
+    expect(component.tweetList.tweets).toEqual([TweetResponseMock]);
+  });
 });

@@ -1,9 +1,12 @@
+import {
+  TweetResponseListMockPage1,
+  TweetResponseListMockPage2,
+} from './../../../../core/mocks/tweet.mock';
 import { InfiniteScrollComponent } from './../../../../shared/components/infinite-scroll/infinite-scroll.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetListComponent } from './tweet-list.component';
-import { TweetResponse } from 'src/app/shared/models/tweet.model';
 
 describe('TweetListComponent', () => {
   let component: TweetListComponent;
@@ -25,5 +28,28 @@ describe('TweetListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should append results', () => {
+    component.tweets = { ...TweetResponseListMockPage2 }['results'].slice();
+    var newTweets = { ...TweetResponseListMockPage1 }['results'].slice();
+    component.appendResults(newTweets);
+    expect(component.tweets).toEqual(
+      Array.prototype.concat(
+        { ...TweetResponseListMockPage2 }['results'].slice(),
+        { ...TweetResponseListMockPage1 }['results'].slice()
+      )
+    );
+  });
+  it('should prepend results', () => {
+    component.tweets = { ...TweetResponseListMockPage2 }['results'].slice();
+    var newTweets = { ...TweetResponseListMockPage1 }['results'].slice();
+    component.prependResults(newTweets);
+    expect(component.tweets).toEqual(
+      Array.prototype.concat(
+        { ...TweetResponseListMockPage1 }['results'].slice(),
+        { ...TweetResponseListMockPage2 }['results'].slice()
+      )
+    );
   });
 });

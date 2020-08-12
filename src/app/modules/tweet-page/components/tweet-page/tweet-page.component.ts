@@ -1,3 +1,4 @@
+import { TweetListComponent } from './../../../tweet-list/components/tweet-list/tweet-list.component';
 import { httpRequestArgs } from './../../../../shared/models/http.model';
 import { ImageDialogComponent } from './../../../../shared/components/image-dialog/image-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,7 +8,7 @@ import { UserProfileResponse } from './../../../../shared/models/user.model';
 import { Observable } from 'rxjs';
 import { TweetsService } from './../../../../core/http/tweet/tweets.service';
 import { TweetResponse } from './../../../../shared/models/tweet.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -23,6 +24,8 @@ export class TweetPageComponent implements OnInit {
 
   commentsMethod: Function;
   commentsMethodArgs: httpRequestArgs;
+
+  @ViewChild(TweetListComponent) tweetList: TweetListComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -91,5 +94,13 @@ export class TweetPageComponent implements OnInit {
     this.dialog.open(ImageDialogComponent, {
       data: imageUrl,
     });
+  }
+
+  /**
+   * Prepends the comments list with the given tweet.
+   * @param comment tweet
+   */
+  handleCommentCreated(comment: TweetResponse): void {
+    this.tweetList.tweets.unshift(comment);
   }
 }

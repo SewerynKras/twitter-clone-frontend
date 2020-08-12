@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class TweetObjectActionsCommentButtonComponent implements OnInit {
   @Input() tweet: TweetResponse;
-  @Output() commentCreated = new EventEmitter<void>();
+  @Output() commentCreated = new EventEmitter<TweetResponse>();
   controlDisabled = false;
 
   constructor(public dialog: MatDialog) {}
@@ -20,8 +20,8 @@ export class TweetObjectActionsCommentButtonComponent implements OnInit {
       data: this.tweet,
     });
 
-    dialogRef.afterClosed().subscribe((created: boolean) => {
-      if (created) this.commentCreated.emit();
+    dialogRef.afterClosed().subscribe((tweet: TweetResponse) => {
+      if (tweet) this.commentCreated.emit(tweet);
     });
   }
 

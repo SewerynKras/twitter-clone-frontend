@@ -47,4 +47,8 @@ export class TweetListComponent implements OnInit, AfterViewInit {
   appendResults(results: TweetResponse[]): void {
     this.tweets.push(...results);
   }
+
+  prependResults(results: TweetResponse[]): void {
+    this.tweets.unshift(...results);
+  }
 }
