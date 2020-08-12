@@ -1,4 +1,8 @@
-<mat-card (click)="navigateToTweetPage()" fxLayout="column nowrap">
+<mat-card
+  (click)="navigateToTweetPage()"
+  fxLayout="column nowrap"
+  class="hover-bg-color"
+>
   <ng-container #standardTemplate *ngIf="isStandardTweet; else retweetTemplate">
     <app-tweet-object-standard [tweet]="tweet"></app-tweet-object-standard>
   </ng-container>

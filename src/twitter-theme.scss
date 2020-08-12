@@ -52,3 +52,8 @@ $twitter-theme: mat-light-theme(
 .primary-bg-color {
   background-color: mat-color($twitter-palette-primary) !important;
 }
+
+.hover-bg-color:hover {
+  background-color: #00000005;
+  cursor: pointer;
+}
