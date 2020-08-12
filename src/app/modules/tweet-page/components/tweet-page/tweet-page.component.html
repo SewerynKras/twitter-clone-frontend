@@ -52,7 +52,10 @@
         ></app-tweet-page-created-info>
         <!-- Action buttons -->
         <mat-card-actions style="margin-bottom: 0;">
-          <app-tweet-page-footer [tweet]="tweet"></app-tweet-page-footer>
+          <app-tweet-page-footer
+            [tweet]="tweet"
+            (commentCreated)="handleCommentCreated($event)"
+          ></app-tweet-page-footer>
         </mat-card-actions>
       </div>
     </div>
