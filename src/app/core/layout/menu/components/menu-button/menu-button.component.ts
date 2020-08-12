@@ -4,6 +4,7 @@ export interface ButtonSpecInterface {
   icon_name: string;
   text: string;
   selected: boolean;
+  onClick?: Function;
 }
 
 @Component({

@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { UsersService } from './../../../../http/user/users.service';
 import { MenuMoreComponent } from './../menu-more/menu-more.component';
 import { ButtonSpecInterface } from './../menu-button/menu-button.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -13,6 +15,7 @@ export class MenuMainComponent implements OnInit {
       icon_name: 'home',
       text: 'Home',
       selected: true,
+      onClick: this.navigateToHomePage.bind(this),
     },
     {
       icon_name: 'share',
@@ -43,6 +46,7 @@ export class MenuMainComponent implements OnInit {
       icon_name: 'person_outline',
       text: 'Profile',
       selected: false,
+      onClick: this.navigateToProfile.bind(this),
     },
     {
       icon_name: 'more_horiz',
@@ -52,7 +56,7 @@ export class MenuMainComponent implements OnInit {
   ];
 
   @ViewChild(MenuMoreComponent) moreComponent: MenuMoreComponent;
-  constructor() {}
+  constructor(private usersService: UsersService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -95,6 +99,24 @@ export class MenuMainComponent implements OnInit {
     // the 'more' menu does not select itself when clicked. Instead it opens
     // a dropdown menu.
     if (buttonSpec.text === 'More') this.openMoreMenu();
-    else this.selectButton(buttonSpec);
+    else {
+      this.selectButton(buttonSpec);
+      if (buttonSpec.onClick) buttonSpec.onClick();
+    }
+  }
+
+  /**
+   * Navigates to the users profile
+   */
+  navigateToProfile() {
+    let profile = this.usersService.getBaseUserInfoFromStorage();
+    this.router.navigate([`profile/${profile.username}/`]);
+  }
+
+  /**
+   * Navigates to the home page
+   */
+  navigateToHomePage() {
+    this.router.navigate(['tweets/']);
   }
 }
