@@ -1,3 +1,4 @@
+import { HeaderTitleService } from './../../../../shared/services/header-title.service';
 import {
   httpRequestParams,
   httpRequestArgs,
@@ -23,7 +24,8 @@ export class ProfilePageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private usersService: UsersService,
-    private tweetsService: TweetsService
+    private tweetsService: TweetsService,
+    private title: HeaderTitleService
   ) {
     // Subscribe to route params here to
     // force the entire component to reload in case of same-page navigation
@@ -41,6 +43,7 @@ export class ProfilePageComponent implements OnInit {
           this.tweetsService
         );
         this.methodArgs = { username: user.username };
+        this.title.changeTitle(user.display_name);
         return user;
       })
     );

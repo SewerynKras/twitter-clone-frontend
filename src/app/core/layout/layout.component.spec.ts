@@ -23,4 +23,12 @@ describe('LayoutComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should update the document title', () => {
+    spyOn(component['title'], 'setTitle');
+    component['titleService'].changeTitle('test123');
+    expect(component['title'].setTitle).toHaveBeenCalledWith(
+      'test123 / Twitter'
+    );
+  });
 });

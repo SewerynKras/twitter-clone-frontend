@@ -36,6 +36,7 @@ describe('ProfilePageComponent', () => {
     spyOn(component['usersService'], 'getSingleProfile').and.returnValue(
       of({ ...UserProfileMockResponse })
     );
+    spyOn(component['title'], 'changeTitle');
     fixture.detectChanges();
   });
 
@@ -49,5 +50,13 @@ describe('ProfilePageComponent', () => {
     expect(component['usersService'].getSingleProfile).toHaveBeenCalledWith({
       username: username,
     });
+  });
+
+  it('should update the title', () => {
+    expect(component['title'].changeTitle).toHaveBeenCalledWith(
+      {
+        ...UserProfileMockResponse,
+      }.display_name
+    );
   });
 });
