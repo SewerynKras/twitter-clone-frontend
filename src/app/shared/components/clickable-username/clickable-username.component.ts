@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,11 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ClickableUsernameComponent implements OnInit {
   @Input() username: string;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
+  /**
+   * Navigate to the selected profile
+   */
   navigateToProfile(): void {
-    throw 'not implemented';
+    this.router.navigate([`profile/${this.username}/`]);
   }
 }

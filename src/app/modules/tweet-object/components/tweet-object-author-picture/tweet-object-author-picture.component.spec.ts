@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetObjectAuthorPictureComponent } from './tweet-object-author-picture.component';
@@ -9,6 +10,7 @@ describe('TweetObjectAuthorPictureComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [TweetObjectAuthorPictureComponent],
     }).compileComponents();
   }));
@@ -31,5 +33,13 @@ describe('TweetObjectAuthorPictureComponent', () => {
       'https://res.cloudinary.com/deuw42oar/image/upload/w_50,h_50/v1593698711/kc1z0xcxph5ne4muvopq.jpg';
     const result = component.getImageResized(img_url);
     expect(result).toEqual(expected);
+  });
+
+  it('should navigate to the users profile', () => {
+    spyOn(component['router'], 'navigate');
+    component.navigateToProfile();
+    expect(component['router'].navigate).toHaveBeenCalledWith([
+      `profile/${UserProfileMockResponse.username}/`,
+    ]);
   });
 });

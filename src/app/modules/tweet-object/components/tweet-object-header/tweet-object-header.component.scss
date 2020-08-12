@@ -11,3 +11,8 @@
   // mat-card-header adds a 16px margin
   margin-left: -16px;
 }
+
+.tweet-header:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

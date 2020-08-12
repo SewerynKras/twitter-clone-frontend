@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ResizeService } from './../../../../core/services/resize.service';
 import {
   UserProfileResponse,
@@ -12,7 +13,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TweetObjectAuthorPictureComponent implements OnInit {
   @Input() user: UserProfileResponse | BaseUserProfile;
-  constructor(private resize: ResizeService) {}
+  constructor(private resize: ResizeService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -23,5 +24,12 @@ export class TweetObjectAuthorPictureComponent implements OnInit {
    */
   getImageResized(url: string): string {
     return this.resize.applyTransform(url, 50, 50);
+  }
+
+  /**
+   * Navigates to the user's profile page.
+   */
+  navigateToProfile(): void {
+    this.router.navigate([`profile/${this.user.username}/`]);
   }
 }

@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetObjectHeaderComponent } from './tweet-object-header.component';
@@ -10,6 +11,7 @@ describe('TweetObjectHeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TweetObjectHeaderComponent],
+      imports: [RouterTestingModule],
     }).compileComponents();
   }));
 
@@ -22,5 +24,13 @@ describe('TweetObjectHeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should navigate to the users profile', () => {
+    spyOn(component['router'], 'navigate');
+    component.navigateToProfile();
+    expect(component['router'].navigate).toHaveBeenCalledWith([
+      `profile/${UserProfileMockResponse.username}/`,
+    ]);
   });
 });
