@@ -1,4 +1,7 @@
-import { httpRequestParams } from './../../../../shared/models/http.model';
+import {
+  httpRequestParams,
+  httpRequestArgs,
+} from './../../../../shared/models/http.model';
 import { map } from 'rxjs/operators';
 import { TweetsService } from './../../../../core/http/tweet/tweets.service';
 import { UsersService } from './../../../../core/http/user/users.service';
@@ -15,7 +18,7 @@ import { UserProfileResponse } from 'src/app/shared/models/user.model';
 export class ProfilePageComponent implements OnInit {
   profile$: Observable<UserProfileResponse>;
   method: Function;
-  methodArgs: httpRequestParams;
+  methodArgs: httpRequestArgs;
 
   constructor(
     private route: ActivatedRoute,

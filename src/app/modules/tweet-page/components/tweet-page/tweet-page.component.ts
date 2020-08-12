@@ -1,3 +1,4 @@
+import { httpRequestArgs } from './../../../../shared/models/http.model';
 import { ImageDialogComponent } from './../../../../shared/components/image-dialog/image-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { switchMap, map } from 'rxjs/operators';
@@ -20,6 +21,9 @@ export class TweetPageComponent implements OnInit {
   commentAuthorUsername$: Observable<string>;
   nestedTweet$: Observable<TweetResponse>;
 
+  commentsMethod: Function;
+  commentsMethodArgs: httpRequestArgs;
+
   constructor(
     private route: ActivatedRoute,
     private tweetsService: TweetsService,
@@ -36,7 +40,15 @@ export class TweetPageComponent implements OnInit {
 
   ngOnInit(): void {
     let tweet_id = this.route.snapshot.paramMap.get('tweet_id');
-    this.tweet$ = this.getTweetInfoFromId(tweet_id);
+    this.tweet$ = this.getTweetInfoFromId(tweet_id).pipe(
+      map((tweet) => {
+        this.commentsMethod = this.tweetsService.getListOfComments.bind(
+          this.tweetsService
+        );
+        this.commentsMethodArgs = { id: tweet.id };
+        return tweet;
+      })
+    );
   }
 
   /**
