@@ -1,0 +1,16 @@
+@use '../variables' as variables;
+
+.left-side-container {
+  width: variables.$left-side-width;
+  height: 100%;
+}
+
+.right-side-container {
+  width: variables.$right-side-width;
+  height: 100%;
+}
+
+.middle-container {
+  width: variables.$center-width;
+  height: 100%;
+}
