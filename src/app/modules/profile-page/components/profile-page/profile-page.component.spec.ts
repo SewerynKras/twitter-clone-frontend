@@ -18,6 +18,7 @@ describe('ProfilePageComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
+            params: of(),
             snapshot: {
               paramMap: {
                 get: () => 'test124',

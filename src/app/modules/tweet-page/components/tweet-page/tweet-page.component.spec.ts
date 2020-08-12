@@ -1,3 +1,4 @@
+import { of } from 'rxjs';
 import { UserProfileMockResponse } from './../../../../core/mocks/user.mock';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -28,6 +29,7 @@ describe('TweetPageComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
+            params: of(),
             snapshot: {
               paramMap: {
                 get(name: string) {
