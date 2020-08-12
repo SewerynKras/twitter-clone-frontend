@@ -34,10 +34,12 @@
           {{ tweet.text }}
         </mat-card-content>
 
-        <app-tweet-object-image
-          [imageAsUrl]="tweet.image_url"
-          (click)="openDialog(tweet.image_url)"
-        ></app-tweet-object-image>
+        <mat-card-content>
+          <app-tweet-object-image
+            [imageAsUrl]="tweet.image_url"
+            (click)="openDialog(tweet.image_url)"
+          ></app-tweet-object-image>
+        </mat-card-content>
         <!-- Nested tweet (retweet) -->
         <mat-card-content *ngIf="tweet.retweet" style="margin-left: 50px;">
           <ng-container *ngIf="nestedTweet$ | async as nestedTweet">
@@ -47,9 +49,11 @@
             ></app-tweet-object-preview>
           </ng-container>
         </mat-card-content>
-        <app-tweet-page-created-info
-          [tweet]="tweet"
-        ></app-tweet-page-created-info>
+        <mat-card-content>
+          <app-tweet-page-created-info
+            [tweet]="tweet"
+          ></app-tweet-page-created-info>
+        </mat-card-content>
         <!-- Action buttons -->
         <mat-card-actions style="margin-bottom: 0;">
           <app-tweet-page-footer
