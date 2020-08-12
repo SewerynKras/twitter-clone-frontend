@@ -1,58 +1,64 @@
-<mat-card *ngIf="tweet$ | async as tweet">
-  <div fxLayout="column nowrap" fxLayoutAlign="start stretch">
-    <div fxLayout="row" fxLayoutAlign="start stretch">
-      <div
-        *ngIf="tweetAuthorInfo$ | async as user"
-        style="max-width: 80%;"
-        fxLayout="row nowrap"
-      >
-        <!-- Image, Display name, Username -->
-        <div style="margin-right: 10px;">
-          <app-tweet-object-author-picture
-            [user]="user"
-          ></app-tweet-object-author-picture>
+<div *ngIf="tweet$ | async as tweet">
+  <mat-card>
+    <div fxLayout="column nowrap" fxLayoutAlign="start stretch">
+      <div fxLayout="row" fxLayoutAlign="start stretch">
+        <div
+          *ngIf="tweetAuthorInfo$ | async as user"
+          style="max-width: 80%;"
+          fxLayout="row nowrap"
+        >
+          <!-- Image, Display name, Username -->
+          <div style="margin-right: 10px;">
+            <app-tweet-object-author-picture
+              [user]="user"
+            ></app-tweet-object-author-picture>
+          </div>
+          <app-tweet-object-header [user]="user"></app-tweet-object-header>
         </div>
-        <app-tweet-object-header [user]="user"></app-tweet-object-header>
+      </div>
+      <!-- "Replying to" -->
+      <div>
+        <mat-card-subtitle *ngIf="tweet.comment">
+          <ng-container
+            *ngIf="commentAuthorUsername$ | async as commentAuthorUsername"
+          >
+            Replying to
+            <app-clickable-username
+              [username]="commentAuthorUsername"
+            ></app-clickable-username>
+          </ng-container>
+        </mat-card-subtitle>
+
+        <!-- Text -->
+        <mat-card-content class="tweet-text default-tweet-formatting">
+          {{ tweet.text }}
+        </mat-card-content>
+
+        <app-tweet-object-image
+          [imageAsUrl]="tweet.image_url"
+          (click)="openDialog(tweet.image_url)"
+        ></app-tweet-object-image>
+        <!-- Nested tweet (retweet) -->
+        <mat-card-content *ngIf="tweet.retweet" style="margin-left: 50px;">
+          <ng-container *ngIf="nestedTweet$ | async as nestedTweet">
+            <app-tweet-object-preview
+              [tweet]="nestedTweet"
+              [nested]="true"
+            ></app-tweet-object-preview>
+          </ng-container>
+        </mat-card-content>
+        <app-tweet-page-created-info
+          [tweet]="tweet"
+        ></app-tweet-page-created-info>
+        <!-- Action buttons -->
+        <mat-card-actions style="margin-bottom: 0;">
+          <app-tweet-page-footer [tweet]="tweet"></app-tweet-page-footer>
+        </mat-card-actions>
       </div>
     </div>
-    <!-- "Replying to" -->
-    <div>
-      <mat-card-subtitle *ngIf="tweet.comment">
-        <ng-container
-          *ngIf="commentAuthorUsername$ | async as commentAuthorUsername"
-        >
-          Replying to
-          <app-clickable-username
-            [username]="commentAuthorUsername"
-          ></app-clickable-username>
-        </ng-container>
-      </mat-card-subtitle>
-
-      <!-- Text -->
-      <mat-card-content class="tweet-text default-tweet-formatting">
-        {{ tweet.text }}
-      </mat-card-content>
-
-      <app-tweet-object-image
-        [imageAsUrl]="tweet.image_url"
-        (click)="openDialog(tweet.image_url)"
-      ></app-tweet-object-image>
-      <!-- Nested tweet (retweet) -->
-      <mat-card-content *ngIf="tweet.retweet" style="margin-left: 50px;">
-        <ng-container *ngIf="nestedTweet$ | async as nestedTweet">
-          <app-tweet-object-preview
-            [tweet]="nestedTweet"
-            [nested]="true"
-          ></app-tweet-object-preview>
-        </ng-container>
-      </mat-card-content>
-      <app-tweet-page-created-info
-        [tweet]="tweet"
-      ></app-tweet-page-created-info>
-      <!-- Action buttons -->
-      <mat-card-actions style="margin-bottom: 0;">
-        <app-tweet-page-footer [tweet]="tweet"></app-tweet-page-footer>
-      </mat-card-actions>
-    </div>
-  </div>
-</mat-card>
+  </mat-card>
+  <app-tweet-list
+    [overrideServiceMethod]="commentsMethod"
+    [overrideServiceMethodArgs]="commentsMethodArgs"
+  ></app-tweet-list>
+</div>
