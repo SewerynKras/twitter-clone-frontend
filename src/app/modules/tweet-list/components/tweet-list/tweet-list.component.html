@@ -1,18 +1,13 @@
-<div fxLayoutAlign="start stretch" fxLayout="column nowrap">
-  <mat-card>
-    <app-tweet-creation></app-tweet-creation>
-  </mat-card>
-  <app-infinite-scroll (results)="appendResults($event)">
-    <div
-      *ngFor="let tweet of tweets"
-      fxLayout="column"
-      fxLayoutAlign="start stretch"
-    >
-      <app-tweet-object
-        [tweet]="tweet"
-        fxFlexOffset="1px"
-        style="max-width: 100%;"
-      ></app-tweet-object>
-    </div>
-  </app-infinite-scroll>
-</div>
+<app-infinite-scroll (results)="appendResults($event)">
+  <div
+    *ngFor="let tweet of tweets"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+  >
+    <app-tweet-object
+      [tweet]="tweet"
+      fxFlexOffset="1px"
+      style="max-width: 100%;"
+    ></app-tweet-object>
+  </div>
+</app-infinite-scroll>
