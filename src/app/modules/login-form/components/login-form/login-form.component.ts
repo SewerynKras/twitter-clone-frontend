@@ -18,7 +18,7 @@ interface formData {
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   @Input() layout: 'row' | 'column' = 'row';
-  hasError: boolean;
+  hasError = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TokenResponseMock } from './../../../../core/mocks/token.mock';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -62,7 +62,7 @@ describe('LoginFormComponent', () => {
 
   it('should display an error message if authentication fails', () => {
     expect(component.hasError).toEqual(false);
-    spyOn(component['authService'], 'login').and.throwError('');
+    spyOn(component['authService'], 'login').and.returnValue(throwError(''));
     component.authenticate();
     expect(component.hasError).toEqual(true);
   });
