@@ -9,6 +9,7 @@ import {
   HttpTestingController,
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
+import { ProfileListMockResponsePage1 } from '../../mocks/user.mock';
 
 describe('FollowsService', () => {
   let service: FollowsService;
@@ -55,5 +56,15 @@ describe('FollowsService', () => {
     );
     expect(req.request.method).toBe('DELETE');
     req.flush({});
+  });
+
+  it('should get profile recommendations', () => {
+    service.getFollowRecommendations({}).subscribe((profiles) => {
+      expect(profiles).toEqual({ ...ProfileListMockResponsePage1 });
+    });
+
+    const req = httpMock.expectOne(`${service.baseUrl}/getRecommendations/`);
+    expect(req.request.method).toBe('GET');
+    req.flush({ ...ProfileListMockResponsePage1 });
   });
 });

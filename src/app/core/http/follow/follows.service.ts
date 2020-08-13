@@ -1,4 +1,7 @@
-import { httpRequestParams } from './../../../shared/models/http.model';
+import {
+  httpRequestParams,
+  httpRequestArgs,
+} from './../../../shared/models/http.model';
 import { BaseHttpService } from './../../../shared/services/base-http.service';
 import {
   FollowResponse,
@@ -8,6 +11,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
+import { ListResponse } from 'src/app/shared/models/response.model';
+import { UserProfileResponse } from 'src/app/shared/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -45,5 +50,20 @@ export class FollowsService extends BaseHttpService {
     let parsedParams = this.handleParams(params);
     let url = `${this.baseUrl}/${username}/${parsedParams}`;
     return this.http.delete<void>(url);
+  }
+
+  /**
+   * Retrieves a list of profiles that the user does not follow yet.
+   * The list is ordered by number of followers.
+   * NOTE: This is a ListResponse, so only the first page will be returned.
+   * To access later pages, use the pagination service.
+   */
+  getFollowRecommendations(
+    {}: httpRequestArgs,
+    params?: httpRequestParams
+  ): Observable<ListResponse<UserProfileResponse>> {
+    let parsedParams = this.handleParams(params);
+    let url = `${this.baseUrl}/getRecommendations/${parsedParams}`;
+    return this.http.get<ListResponse<UserProfileResponse>>(url);
   }
 }
