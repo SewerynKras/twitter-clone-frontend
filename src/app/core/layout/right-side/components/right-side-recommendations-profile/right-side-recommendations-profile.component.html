@@ -1,3 +1,17 @@
-<div>
-  {{ user.username }}
+<div
+  fxLayoutAlign="space-between center"
+  fxLayout="row nowrap"
+  class="highlight-on-hover"
+>
+  <div fxLayoutAlign="start center" fxLayout="row nowrap" fxFlex="65%">
+    <app-tweet-object-author-picture
+      [user]="user"
+    ></app-tweet-object-author-picture>
+    <div fxFlexOffset="1em" class="username-container">
+      <app-tweet-object-header [user]="user"></app-tweet-object-header>
+    </div>
+  </div>
+  <div fxFlex="35%" class="icon-container">
+    <button mat-flat-button color="primary">Action</button>
+  </div>
 </div>

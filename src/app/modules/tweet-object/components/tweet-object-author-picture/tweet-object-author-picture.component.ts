@@ -32,4 +32,13 @@ export class TweetObjectAuthorPictureComponent implements OnInit {
   navigateToProfile(): void {
     this.router.navigate([`profile/${this.user.username}/`]);
   }
+
+  /**
+   * If the given url is empty this method return the path to the default profile pic.
+   * Otherwise it calls the `getImageResized` method.
+   * @param url string
+   */
+  getImageSrc(url: string): string {
+    return url ? this.getImageResized(url) : 'assets/profilepic.png';
+  }
 }

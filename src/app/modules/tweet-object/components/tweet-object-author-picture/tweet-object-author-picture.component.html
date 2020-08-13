@@ -1,7 +1,7 @@
 <div class="tweet-profile-pic" (click)="navigateToProfile()" stop-propagation>
   <img
     mat-card-avatar
-    [src]="getImageResized(user.image_url)"
+    [src]="getImageSrc(user.image_url)"
     class="profile-pic"
   />
 </div>
