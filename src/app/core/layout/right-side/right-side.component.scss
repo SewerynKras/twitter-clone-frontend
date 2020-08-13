@@ -1,3 +1,6 @@
+@use '../variables' as variables;
 .right-side-wrapper {
-  margin-left: 10%;
+  margin-left: calc(#{variables.$right-side-width} * 0.1);
+  position: fixed;
+  width: variables.$right-side-width;
 }
