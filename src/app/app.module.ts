@@ -90,6 +90,7 @@ import { HeaderMiddleSectionComponent } from './core/layout/header/components/he
 import { RightSideComponent } from './core/layout/right-side/right-side.component';
 import { RightSideRecommendationsComponent } from './core/layout/right-side/components/right-side-recommendations/right-side-recommendations.component';
 import { RightSideRecommendationsProfileComponent } from './core/layout/right-side/components/right-side-recommendations-profile/right-side-recommendations-profile.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -184,6 +185,7 @@ import { RightSideRecommendationsProfileComponent } from './core/layout/right-si
     MatSelectModule,
     MatMenuModule,
     InfiniteScrollModule,
+    ClipboardModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
