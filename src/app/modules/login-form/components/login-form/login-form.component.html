@@ -1,19 +1,24 @@
-<form
-  [formGroup]="loginForm"
-  (ngSubmit)="onSubmit()"
-  [fxLayout]="layout"
-  fxLayoutAlign="start center"
->
-  <app-login-form-username
-    [form]="loginForm"
-    [controlName]="'username'"
-  ></app-login-form-username>
-  <app-login-form-password
-    [form]="loginForm"
-    [controlName]="'password'"
-    fxFlexOffset="2"
-  ></app-login-form-password>
-  <button mat-stroked-button color="primary" type="submit" fxFlexOffset="2">
-    Login
-  </button>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column nowrap">
+  <div [fxLayout]="layout" fxLayoutAlign="start center">
+    <app-login-form-username
+      [form]="loginForm"
+      [controlName]="'username'"
+    ></app-login-form-username>
+    <app-login-form-password
+      [form]="loginForm"
+      [controlName]="'password'"
+      fxFlexOffset="2"
+    ></app-login-form-password>
+    <button mat-stroked-button color="primary" type="submit" fxFlexOffset="2">
+      Login
+    </button>
+  </div>
+  <mat-error *ngIf="hasError">
+    <p>
+      The email and password you entered did not match our records.
+    </p>
+    <p>
+      Please double-check and try again.
+    </p>
+  </mat-error>
 </form>
