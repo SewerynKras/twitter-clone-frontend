@@ -22,4 +22,15 @@ export class ProfilePageHeaderProfilePicComponent implements OnInit {
   getImageResized(): string {
     return this.resize.applyTransform(this.user.image_url, 140, 140);
   }
+
+  /**
+   * If the user's url is empty this method return the path to the default profile pic.
+   * Otherwise it calls the `getImageResized` method.
+   * @param url string
+   */
+  getImageSrc(): string {
+    return this.user.image_url
+      ? this.getImageResized()
+      : 'assets/profilepic.png';
+  }
 }

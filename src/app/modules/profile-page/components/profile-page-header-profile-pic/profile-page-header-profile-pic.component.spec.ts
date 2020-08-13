@@ -33,4 +33,19 @@ describe('ProfilePageHeaderProfilePicComponent', () => {
       140
     );
   });
+
+  it('should get the default profile pic if the url attribute is empty', () => {
+    component.user = { ...UserProfileMockResponse };
+    component.user.image_url = '';
+    const result = component.getImageSrc();
+    expect(result).toEqual('assets/profilepic.png');
+  });
+
+  it('should get the resized image if the url attribute is present', () => {
+    component.user = { ...UserProfileMockResponse };
+    component.user.image_url = 'test.test';
+    spyOn(component['resize'], 'applyTransform');
+    const result = component.getImageSrc();
+    expect(component['resize'].applyTransform).toHaveBeenCalled();
+  });
 });

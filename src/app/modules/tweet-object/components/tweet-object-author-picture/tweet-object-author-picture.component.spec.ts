@@ -42,4 +42,15 @@ describe('TweetObjectAuthorPictureComponent', () => {
       `profile/${UserProfileMockResponse.username}/`,
     ]);
   });
+
+  it('should get the default profile pic if the url attribute is empty', () => {
+    const result = component.getImageSrc('');
+    expect(result).toEqual('assets/profilepic.png');
+  });
+
+  it('should get the resized image if the url attribute is present', () => {
+    spyOn(component['resize'], 'applyTransform');
+    const result = component.getImageSrc('test.test');
+    expect(component['resize'].applyTransform).toHaveBeenCalled();
+  });
 });
