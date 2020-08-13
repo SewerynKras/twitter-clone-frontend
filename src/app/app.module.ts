@@ -1,3 +1,4 @@
+import { ErrorPopupInterceptor } from './core/interceptors/error-popup.interceptor';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -91,6 +92,7 @@ import { RightSideComponent } from './core/layout/right-side/right-side.componen
 import { RightSideRecommendationsComponent } from './core/layout/right-side/components/right-side-recommendations/right-side-recommendations.component';
 import { RightSideRecommendationsProfileComponent } from './core/layout/right-side/components/right-side-recommendations-profile/right-side-recommendations-profile.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -186,9 +188,15 @@ import { ClipboardModule } from 'ngx-clipboard';
     MatMenuModule,
     InfiniteScrollModule,
     ClipboardModule,
+    MatSnackBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorPopupInterceptor,
+      multi: true,
+    },
     Title,
   ],
   bootstrap: [AppComponent],
