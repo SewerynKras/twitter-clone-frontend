@@ -1,5 +1,7 @@
+import { environment } from './../../../../../environments/environment';
 import { TweetResponse } from './../../../../shared/models/tweet.model';
 import { Component, OnInit, Input } from '@angular/core';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-tweet-object-actions-share',
@@ -9,9 +11,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TweetObjectActionsShareComponent implements OnInit {
   @Input() tweet: TweetResponse;
   controlDisabled = false;
-  constructor() {}
+
+  frontendURL = environment.frontendURL;
+
+  constructor(private clipboard: ClipboardService) {}
 
   ngOnInit(): void {}
 
-  // TODO: CREATE SHARE METHOD ONCE SINGLE TWEET VIEW IS DONE
+  /**
+   * Copies the link to the selected tweet to the clipboard.
+   */
+  copyLinkToTweet(): void {
+    this.clipboard.copy(`${this.frontendURL}/tweet/${this.tweet.id}/`);
+  }
 }
