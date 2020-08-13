@@ -87,6 +87,9 @@ import { TweetListPageComponent } from './modules/tweet-list-page/components/twe
 import { HeaderLeftSideComponent } from './core/layout/header/components/header-left-side/header-left-side.component';
 import { HeaderRightSideComponent } from './core/layout/header/components/header-right-side/header-right-side.component';
 import { HeaderMiddleSectionComponent } from './core/layout/header/components/header-middle-section/header-middle-section.component';
+import { RightSideComponent } from './core/layout/right-side/right-side.component';
+import { RightSideRecommendationsComponent } from './core/layout/right-side/components/right-side-recommendations/right-side-recommendations.component';
+import { RightSideRecommendationsProfileComponent } from './core/layout/right-side/components/right-side-recommendations-profile/right-side-recommendations-profile.component';
 
 @NgModule({
   declarations: [
@@ -158,6 +161,9 @@ import { HeaderMiddleSectionComponent } from './core/layout/header/components/he
     HeaderLeftSideComponent,
     HeaderRightSideComponent,
     HeaderMiddleSectionComponent,
+    RightSideComponent,
+    RightSideRecommendationsComponent,
+    RightSideRecommendationsProfileComponent,
   ],
   imports: [
     BrowserModule,
