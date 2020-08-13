@@ -18,6 +18,7 @@ interface formData {
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   @Input() layout: 'row' | 'column' = 'row';
+  hasError: boolean;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -52,7 +53,8 @@ export class LoginFormComponent implements OnInit {
         this.router.navigate(['tweets/']);
       },
       (err) => {
-        console.warn(err);
+        this.hasError = true;
+        console.error(err);
       }
     );
   }

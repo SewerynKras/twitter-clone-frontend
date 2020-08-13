@@ -59,4 +59,11 @@ describe('LoginFormComponent', () => {
       'somePassword123'
     );
   });
+
+  it('should display an error message if authentication fails', () => {
+    expect(component.hasError).toEqual(false);
+    spyOn(component['authService'], 'login').and.throwError('');
+    component.authenticate();
+    expect(component.hasError).toEqual(true);
+  });
 });
