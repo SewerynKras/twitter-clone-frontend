@@ -93,6 +93,8 @@ import { RightSideRecommendationsComponent } from './core/layout/right-side/comp
 import { RightSideRecommendationsProfileComponent } from './core/layout/right-side/components/right-side-recommendations-profile/right-side-recommendations-profile.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProfilePageEditDialogComponent } from './modules/profile-page/components/profile-page-edit-dialog/profile-page-edit-dialog.component';
+import { ProfilePageHeaderButtonsEditComponent } from './modules/profile-page/components/profile-page-header-buttons-edit/profile-page-header-buttons-edit.component';
 
 @NgModule({
   declarations: [
@@ -167,6 +169,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RightSideComponent,
     RightSideRecommendationsComponent,
     RightSideRecommendationsProfileComponent,
+    ProfilePageEditDialogComponent,
+    ProfilePageHeaderButtonsEditComponent,
   ],
   imports: [
     BrowserModule,
