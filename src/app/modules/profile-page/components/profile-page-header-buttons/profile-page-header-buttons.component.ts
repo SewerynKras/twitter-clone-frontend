@@ -1,3 +1,4 @@
+import { UsersService } from './../../../../core/http/user/users.service';
 import { UserProfileResponse } from './../../../../shared/models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -9,7 +10,19 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProfilePageHeaderButtonsComponent implements OnInit {
   @Input() user: UserProfileResponse;
 
-  constructor() {}
+  thisIsTheUser: boolean;
 
-  ngOnInit(): void {}
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit(): void {
+    this.thisIsTheUser = this.compareUsers();
+  }
+
+  /**
+   * Compares the given user with the currently logged in user.
+   */
+  compareUsers(): boolean {
+    var currentUser = this.usersService.getBaseUserInfoFromStorage();
+    return this.usersService.checkIfUsersAreEqual(this.user, currentUser);
+  }
 }
