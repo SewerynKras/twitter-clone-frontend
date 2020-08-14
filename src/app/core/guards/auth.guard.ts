@@ -41,6 +41,9 @@ export class AuthGuard implements CanActivateChild {
           },
           // If the token is corrupted/invalid return false to force the user to re-authenticate
           (_) => {
+            // remove the corrupted data
+            this.auth.sendLogoutSignal();
+            // force the user to re-authenticate
             this.router.navigate(['login']);
             return false;
           }
