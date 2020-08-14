@@ -1,5 +1,10 @@
 <div>
-  <app-profile-page-header-buttons-follow
-    [user]="user"
-  ></app-profile-page-header-buttons-follow>
+  <div *ngIf="thisIsTheUser; else notTheUser">
+    <app-profile-page-header-buttons-edit></app-profile-page-header-buttons-edit>
+  </div>
+  <ng-template #notTheUser>
+    <app-profile-page-header-buttons-follow
+      [user]="user"
+    ></app-profile-page-header-buttons-follow>
+  </ng-template>
 </div>
