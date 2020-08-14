@@ -11,25 +11,6 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'frontend';
 
-  constructor(
-    private authService: AuthService,
-    private usersService: UsersService,
-    private router: Router
-  ) {}
-  ngOnInit(): void {
-    // If there's a saved token in localstorage it means that the user
-    // was logged in before, so their profile data needs to be loaded
-    // TODO: move this to route guard
-    if (this.authService.isAuthenticated()) {
-      this.usersService.getMyProfile({}).subscribe((_) => {
-        this.authService.sendLoginSignal();
-      });
-      this.router.navigate(['tweets/'], { replaceUrl: true });
-    }
-
-    this.authService.loginStatusChange.subscribe((val) => {
-      if (!val) this.router.navigate(['/']);
-      else this.router.navigate(['tweets']);
-    });
-  }
+  constructor() {}
+  ngOnInit(): void {}
 }

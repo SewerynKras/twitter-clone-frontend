@@ -1,3 +1,4 @@
+import { AuthGuard } from './core/guards/auth.guard';
 import { TweetListPageRoutes } from './modules/tweet-list-page/tweet-list-page.routes';
 import { ProfilePageRoutes } from './modules/profile-page/profile-page.routes';
 import { LoginFormPageRoutes } from './modules/login-form-page/login-form-page.routes';
@@ -9,9 +10,21 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', children: LoginPageRoutes },
   { path: 'login', children: LoginFormPageRoutes },
-  { path: 'tweets', children: TweetListPageRoutes },
-  { path: 'tweets/:tweet_id', children: TweetPageRoutes },
-  { path: 'profile/:username', children: ProfilePageRoutes },
+  {
+    path: 'tweets',
+    children: TweetListPageRoutes,
+    canActivateChild: [AuthGuard],
+  },
+  {
+    path: 'tweets/:tweet_id',
+    children: TweetPageRoutes,
+    canActivateChild: [AuthGuard],
+  },
+  {
+    path: 'profile/:username',
+    children: ProfilePageRoutes,
+    canActivateChild: [AuthGuard],
+  },
 ];
 
 @NgModule({
