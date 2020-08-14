@@ -191,4 +191,20 @@ export class UsersService extends BaseHttpService {
     let url = `${this.profileUrl}/${username}/${mode}/${parsedParams}`;
     return this.http.get<ListResponse<UserProfileResponse>>(url);
   }
+
+  /**
+   * Compares two given profiles and determines whether or not they represent the same user.
+   * @param profile1 BaseUserProfile
+   * @param profile2 BaseUserProfile
+   */
+  checkIfUsersAreEqual(
+    profile1: BaseUserProfile,
+    profile2: BaseUserProfile
+  ): boolean {
+    return (
+      profile1.display_name === profile2.display_name &&
+      profile1.image_url === profile2.image_url &&
+      profile1.username === profile2.username
+    );
+  }
 }

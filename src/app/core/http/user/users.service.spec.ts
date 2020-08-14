@@ -1,3 +1,4 @@
+import { BaseUserProfile } from './../../../shared/models/user.model';
 import { environment } from './../../../../environments/environment';
 import {
   UserProfileMockResponse,
@@ -169,5 +170,34 @@ describe('UsersService', () => {
     );
     expect(req.request.method).toBe('GET');
     req.flush(ProfileListMockResponsePage1);
+  });
+
+  it('should determine that two users are the same', () => {
+    var profile1: BaseUserProfile = {
+      display_name: 'test 123',
+      username: 'test123',
+      image_url: 'www.www.www',
+    };
+    var profile2: BaseUserProfile = {
+      display_name: 'test 123',
+      username: 'test123',
+      image_url: 'www.www.www',
+    };
+    const response = service.checkIfUsersAreEqual(profile1, profile2);
+    expect(response).toEqual(true);
+  });
+  it('should determine that two users are not the same', () => {
+    var profile1: BaseUserProfile = {
+      display_name: 'test 123',
+      username: 'test123',
+      image_url: 'www.www.www',
+    };
+    var profile2: BaseUserProfile = {
+      display_name: 'test 123',
+      username: 'test1234',
+      image_url: 'www.www.www',
+    };
+    const response = service.checkIfUsersAreEqual(profile1, profile2);
+    expect(response).toEqual(false);
   });
 });
