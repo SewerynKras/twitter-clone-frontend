@@ -1,5 +1,8 @@
-import { FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { UsersService } from './../../../../core/http/user/users.service';
+import { UserProfilePATCHBody } from './../../../../shared/models/user.model';
+import { ProfilePageEditFormImageComponent } from './../profile-page-edit-form-image/profile-page-edit-form-image.component';
+import { ProfilePageEditFormComponent } from './../profile-page-edit-form/profile-page-edit-form.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-profile-page-edit-dialog',
@@ -7,18 +10,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-page-edit-dialog.component.scss'],
 })
 export class ProfilePageEditDialogComponent implements OnInit {
-  editForm: FormGroup;
+  @ViewChild(ProfilePageEditFormComponent) form: ProfilePageEditFormComponent;
+  @ViewChild(ProfilePageEditFormImageComponent)
+  image: ProfilePageEditFormImageComponent;
+  constructor(private usersService: UsersService) {}
 
-  constructor() {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.editForm = new FormGroup({
-      username: new FormControl(),
-      display_name: new FormControl(),
-      bio: new FormControl(),
-      location: new FormControl(),
-      website: new FormControl(),
-      birth_date: new FormControl(),
-    });
+  getFormData(): UserProfilePATCHBody {
+    throw 'not implemented';
+  }
+
+  getImage(): File | null {
+    throw 'not implemented';
+  }
+
+  saveDialogData(): void {
+    throw 'not implemented';
   }
 }
