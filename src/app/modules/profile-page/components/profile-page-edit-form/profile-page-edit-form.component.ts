@@ -2,11 +2,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-profile-page-edit-dialog',
-  templateUrl: './profile-page-edit-dialog.component.html',
-  styleUrls: ['./profile-page-edit-dialog.component.scss'],
+  selector: 'app-profile-page-edit-form',
+  templateUrl: './profile-page-edit-form.component.html',
+  styleUrls: ['./profile-page-edit-form.component.scss'],
 })
-export class ProfilePageEditDialogComponent implements OnInit {
+export class ProfilePageEditFormComponent implements OnInit {
   editForm: FormGroup;
 
   constructor() {}

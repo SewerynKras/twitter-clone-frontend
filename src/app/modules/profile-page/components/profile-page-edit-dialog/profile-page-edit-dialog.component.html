@@ -1,1 +1,19 @@
-<p>profile-page-edit-dialog works!</p>
+<div>
+  <mat-card-title fxLayoutAlign="space-between center">
+    <div>
+      Edit profile
+    </div>
+    <button
+      mat-stroked-button
+      type="submit"
+      [disabled]="!editForm.valid"
+      color="primary"
+    >
+      Save
+    </button>
+  </mat-card-title>
+  <mat-card-content>
+    <app-profile-page-edit-form-image></app-profile-page-edit-form-image>
+  </mat-card-content>
+  <app-profile-page-edit-form></app-profile-page-edit-form>
+</div>

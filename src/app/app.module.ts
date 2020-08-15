@@ -95,6 +95,8 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ProfilePageEditDialogComponent } from './modules/profile-page/components/profile-page-edit-dialog/profile-page-edit-dialog.component';
 import { ProfilePageHeaderButtonsEditComponent } from './modules/profile-page/components/profile-page-header-buttons-edit/profile-page-header-buttons-edit.component';
+import { ProfilePageEditFormComponent } from './modules/profile-page/components/profile-page-edit-form/profile-page-edit-form.component';
+import { ProfilePageEditFormImageComponent } from './modules/profile-page/components/profile-page-edit-form-image/profile-page-edit-form-image.component';
 
 @NgModule({
   declarations: [
@@ -171,6 +173,8 @@ import { ProfilePageHeaderButtonsEditComponent } from './modules/profile-page/co
     RightSideRecommendationsProfileComponent,
     ProfilePageEditDialogComponent,
     ProfilePageHeaderButtonsEditComponent,
+    ProfilePageEditFormComponent,
+    ProfilePageEditFormImageComponent,
   ],
   imports: [
     BrowserModule,
