@@ -1,3 +1,4 @@
+import { UserProfilePATCHBody } from './../../../../shared/models/user.model';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -20,5 +21,9 @@ export class ProfilePageEditFormComponent implements OnInit {
       website: new FormControl(),
       birth_date: new FormControl(),
     });
+  }
+
+  getValue(): UserProfilePATCHBody {
+    throw 'not implemented';
   }
 }

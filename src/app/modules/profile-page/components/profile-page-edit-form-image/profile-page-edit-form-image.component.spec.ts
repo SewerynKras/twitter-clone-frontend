@@ -26,7 +26,7 @@ describe('ProfilePageEditFormImageComponent', () => {
     component['image'] = <File>new Blob(['test']);
     component.imgSrc = '123';
     component.resetImg();
-    expect(component['image']).toEqual(undefined);
+    expect(component['image']).toEqual(null);
     expect(component.imgSrc).toEqual('assets/profilepic.png');
   });
 
