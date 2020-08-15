@@ -1,3 +1,5 @@
+import { ProfilePageEditDialogComponent } from './../profile-page-edit-dialog/profile-page-edit-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePageHeaderButtonsEditComponent implements OnInit {
   controlDisabled = false;
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ProfilePageEditDialogComponent, {
+      width: '600px',
+      height: '650px',
+    });
+    dialogRef.afterClosed().subscribe((_) => {
+      console.log('The dialog was closed!');
+    });
+  }
 }

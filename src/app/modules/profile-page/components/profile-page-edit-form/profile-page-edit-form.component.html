@@ -1,0 +1,77 @@
+<form [formGroup]="editForm" fxLayout="column nowrap">
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input
+      matInput
+      maxlength="50"
+      placeholder="Username"
+      [formControlName]="'username'"
+    />
+    <mat-hint align="end"
+      >{{ editForm.controls["username"].value?.length || 0 }}/50</mat-hint
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Display name</mat-label>
+    <input
+      matInput
+      maxlength="50"
+      placeholder="Display name"
+      [formControlName]="'display_name'"
+    />
+    <mat-hint align="end"
+      >{{ editForm.controls["display_name"].value?.length || 0 }}/50</mat-hint
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Bio</mat-label>
+    <textarea
+      matInput
+      maxlength="160"
+      placeholder="Add your bio"
+      [formControlName]="'bio'"
+    ></textarea>
+    <mat-hint align="end"
+      >{{ editForm.controls["bio"].value?.length || 0 }}/160</mat-hint
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Birth date</mat-label>
+    <input
+      matInput
+      maxlength="10"
+      placeholder="Set your birth date"
+      [formControlName]="'birth_date'"
+      type="date"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Location</mat-label>
+    <input
+      matInput
+      maxlength="30"
+      placeholder="Add your location"
+      [formControlName]="'location'"
+    />
+    <mat-hint align="end"
+      >{{ editForm.controls["location"].value?.length || 0 }}/30</mat-hint
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Website</mat-label>
+    <input
+      matInput
+      maxlength="100"
+      placeholder="Add your website"
+      [formControlName]="'website'"
+    />
+    <mat-hint align="end"
+      >{{ editForm.controls["website"].value?.length || 0 }}/100</mat-hint
+    >
+  </mat-form-field>
+</form>
