@@ -23,7 +23,19 @@ export class ProfilePageEditFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Retrieves the PATCH body from the form.
+   */
   getValue(): UserProfilePATCHBody {
-    throw 'not implemented';
+    var raw = this.editForm.getRawValue();
+    var body: UserProfilePATCHBody = {};
+    for (const key in raw) {
+      const element = raw[key];
+      if (element) body[key] = element;
+    }
+    if (raw['birth_date']) {
+      body['birth_date'] = new Date(raw['birth_date']);
+    }
+    return body;
   }
 }
