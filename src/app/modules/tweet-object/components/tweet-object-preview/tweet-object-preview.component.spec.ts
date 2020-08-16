@@ -8,6 +8,7 @@ import {
   HttpTestingController,
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
+import { DatePipe } from '@angular/common';
 
 describe('TweetObjectPreviewComponent', () => {
   let component: TweetObjectPreviewComponent;
@@ -19,6 +20,7 @@ describe('TweetObjectPreviewComponent', () => {
       declarations: [TweetObjectPreviewComponent],
       imports: [HttpClientTestingModule],
       providers: [
+        DatePipe,
         {
           provide: MatDialog,
           useValue: { open: () => {}, close: () => {} },

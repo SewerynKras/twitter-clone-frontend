@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutComponent } from './layout.component';
+import { DatePipe } from '@angular/common';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -11,6 +12,7 @@ describe('LayoutComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [LayoutComponent],
+      providers: [DatePipe],
     }).compileComponents();
   }));
 

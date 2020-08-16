@@ -9,6 +9,7 @@ import {
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 describe('JwtInterceptor', () => {
   let httpMock: HttpTestingController;
@@ -22,6 +23,7 @@ describe('JwtInterceptor', () => {
           useClass: JwtInterceptor,
           multi: true,
         },
+        DatePipe,
       ],
     });
     httpMock = TestBed.inject(HttpTestingController);

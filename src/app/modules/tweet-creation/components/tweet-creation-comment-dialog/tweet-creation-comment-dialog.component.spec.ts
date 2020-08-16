@@ -15,6 +15,7 @@ import { TweetCreationComponent } from './../tweet-creation/tweet-creation.compo
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetCreationCommentDialogComponent } from './tweet-creation-comment-dialog.component';
+import { DatePipe } from '@angular/common';
 
 describe('TweetCreationCommentDialogComponent', () => {
   let component: TweetCreationCommentDialogComponent;
@@ -44,6 +45,7 @@ describe('TweetCreationCommentDialogComponent', () => {
             close: function (arg: any) {},
           },
         },
+        DatePipe,
       ],
     }).compileComponents();
   }));

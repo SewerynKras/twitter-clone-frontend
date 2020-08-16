@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilePageEditFormImageComponent } from './profile-page-edit-form-image.component';
 import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
+import { DatePipe } from '@angular/common';
 
 describe('ProfilePageEditFormImageComponent', () => {
   let component: ProfilePageEditFormImageComponent;
@@ -10,6 +11,7 @@ describe('ProfilePageEditFormImageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ProfilePageEditFormImageComponent],
+      providers: [DatePipe],
     }).compileComponents();
   }));
 
@@ -58,6 +60,9 @@ describe('ProfilePageEditFormImageComponent', () => {
   });
 
   it('should setup the initial value', () => {
+    spyOn(component['resize'], 'applyTransform').and.returnValue(
+      { ...UserProfileMockResponse }['image_url']
+    );
     component.setupInitValues({ ...UserProfileMockResponse }['image_url']);
     expect(component.imgSrc).toEqual(
       { ...UserProfileMockResponse }['image_url']

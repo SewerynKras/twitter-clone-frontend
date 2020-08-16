@@ -6,6 +6,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuMainComponent } from './menu-main.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DatePipe } from '@angular/common';
 
 describe('MenuMainComponent', () => {
   let component: MenuMainComponent;
@@ -19,6 +20,7 @@ describe('MenuMainComponent', () => {
         MenuMoreComponent,
       ],
       imports: [HttpClientTestingModule, MatMenuModule, RouterTestingModule],
+      providers: [DatePipe],
     }).compileComponents();
   }));
 
