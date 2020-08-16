@@ -17,13 +17,10 @@ export class ProfilePageHeaderButtonsEditComponent implements OnInit {
   ngOnInit(): void {}
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(ProfilePageEditDialogComponent, {
+    this.dialog.open(ProfilePageEditDialogComponent, {
       width: '600px',
       height: '650px',
       data: this.user,
-    });
-    dialogRef.afterClosed().subscribe((_) => {
-      console.log('The dialog was closed!');
     });
   }
 }
