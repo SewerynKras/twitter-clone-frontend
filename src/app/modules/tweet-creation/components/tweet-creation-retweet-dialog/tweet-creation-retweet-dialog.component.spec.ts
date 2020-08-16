@@ -16,7 +16,7 @@ import { DatePipe } from '@angular/common';
 describe('TweetCreationRetweetDialogComponent', () => {
   let component: TweetCreationRetweetDialogComponent;
   let fixture: ComponentFixture<TweetCreationRetweetDialogComponent>;
-
+  let propSpy: jasmine.Spy;
   const mockDialogRef = {
     close: jasmine.createSpy('close'),
   };
@@ -55,5 +55,19 @@ describe('TweetCreationRetweetDialogComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should override the `getTweetBody` method', () => {
+    const baseMethod = () => {
+      return { ...TweetResponseMock };
+    };
+    var newMethod = component.getOverrideMethod(baseMethod);
+    var tweet = newMethod();
+    expect(tweet.retweet_id).toEqual({ ...TweetResponseMock }.id);
+  });
+
+  it('should close the dialog if the tweet got created', () => {
+    component['creationComponent'].tweetCreated.emit({ ...TweetResponseMock });
+    expect(component['dialogRef'].close).toHaveBeenCalledWith(true);
   });
 });
