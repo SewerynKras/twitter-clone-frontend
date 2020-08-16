@@ -3,7 +3,12 @@
     <div>
       Edit profile
     </div>
-    <button mat-stroked-button type="submit" color="primary">
+    <button
+      mat-stroked-button
+      type="submit"
+      color="primary"
+      (click)="saveDialogData()"
+    >
       Save
     </button>
   </mat-card-title>
