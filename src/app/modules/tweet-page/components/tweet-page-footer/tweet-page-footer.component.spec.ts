@@ -14,8 +14,6 @@ describe('TweetPageFooterComponent', () => {
   let component: TweetPageFooterComponent;
   let fixture: ComponentFixture<TweetPageFooterComponent>;
 
-  // setup viewchild spies
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -48,5 +46,29 @@ describe('TweetPageFooterComponent', () => {
   });
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should trigger the like counter change when like button emits', () => {
+    spyOn(component['statusIndicator'], 'changeLikesCounter');
+    component['actionsController'].likeButton.tweetLiked.emit();
+    expect(component['statusIndicator'].changeLikesCounter).toHaveBeenCalled();
+  });
+
+  it('should trigger the comment/retweet counter change when comment button emits', () => {
+    spyOn(component['statusIndicator'], 'increaseCommentsAndRetweetsCounter');
+    spyOn(component['commentCreated'], 'emit');
+    component['actionsController'].commentButton.commentCreated.emit();
+    expect(
+      component['statusIndicator'].increaseCommentsAndRetweetsCounter
+    ).toHaveBeenCalled();
+    expect(component['commentCreated'].emit).toHaveBeenCalled();
+  });
+
+  it('should trigger the comment/retweet counter change when retweet button emits', () => {
+    spyOn(component['statusIndicator'], 'increaseCommentsAndRetweetsCounter');
+    component['actionsController'].retweetButton.retweetCreated.emit();
+    expect(
+      component['statusIndicator'].increaseCommentsAndRetweetsCounter
+    ).toHaveBeenCalled();
   });
 });
