@@ -13,6 +13,7 @@ import {
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetCreationComponent } from './tweet-creation.component';
+import { DatePipe } from '@angular/common';
 
 describe('TweetCreationComponent', () => {
   let component: TweetCreationComponent;
@@ -31,6 +32,7 @@ describe('TweetCreationComponent', () => {
         TweetCreationActionsSubmitComponent,
         TweetCreationTextareaComponent,
       ],
+      providers: [DatePipe],
     }).compileComponents();
   }));
 

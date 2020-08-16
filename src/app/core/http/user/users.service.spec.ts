@@ -15,6 +15,7 @@ import {
   HttpTestingController,
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
+import { DatePipe } from '@angular/common';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -23,7 +24,7 @@ describe('UsersService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [UsersService],
+      providers: [UsersService, DatePipe],
     });
     service = TestBed.inject(UsersService);
     httpMock = TestBed.inject(HttpTestingController);

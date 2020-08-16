@@ -1,3 +1,4 @@
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from './../../../../../environments/environment';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -10,6 +11,7 @@ import {
   UserProfilePATCHBodyMock,
   UserProfileMockResponse,
 } from 'src/app/core/mocks/user.mock';
+import { DatePipe } from '@angular/common';
 
 describe('ProfilePageEditDialogComponent', () => {
   let component: ProfilePageEditDialogComponent;
@@ -19,13 +21,19 @@ describe('ProfilePageEditDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [ProfilePageEditDialogComponent],
+      providers: [
+        DatePipe,
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: { ...UserProfileMockResponse },
+        },
+      ],
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfilePageEditDialogComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     component.form = ({
       getValue: jasmine.createSpy('getValueForm').and.returnValue({
         ...UserProfilePATCHBodyMock,

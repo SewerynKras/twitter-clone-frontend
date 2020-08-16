@@ -11,6 +11,7 @@ import {
   TokenResponseMock,
 } from '../mocks/token.mock';
 import { UserProfileMockResponse } from '../mocks/user.mock';
+import { DatePipe } from '@angular/common';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -19,7 +20,7 @@ describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [AuthService],
+      providers: [AuthService, DatePipe],
     });
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);

@@ -11,6 +11,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TweetCreationRetweetDialogComponent } from './tweet-creation-retweet-dialog.component';
 import { TweetResponseMock } from 'src/app/core/mocks/tweet.mock';
+import { DatePipe } from '@angular/common';
 
 describe('TweetCreationRetweetDialogComponent', () => {
   let component: TweetCreationRetweetDialogComponent;
@@ -33,6 +34,7 @@ describe('TweetCreationRetweetDialogComponent', () => {
         TweetCreationTextareaComponent,
       ],
       providers: [
+        DatePipe,
         {
           provide: MatDialogRef,
           useValue: mockDialogRef,

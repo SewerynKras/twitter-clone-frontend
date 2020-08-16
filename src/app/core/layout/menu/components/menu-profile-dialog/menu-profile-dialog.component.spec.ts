@@ -5,6 +5,7 @@ import { MatSelect } from '@angular/material/select';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuProfileDialogComponent } from './menu-profile-dialog.component';
+import { DatePipe } from '@angular/common';
 
 describe('MenuProfileDialogComponent', () => {
   let component: MenuProfileDialogComponent;
@@ -14,7 +15,7 @@ describe('MenuProfileDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, MatMenuModule, RouterTestingModule],
       declarations: [MenuProfileDialogComponent],
-      providers: [],
+      providers: [DatePipe],
     }).compileComponents();
   }));
 

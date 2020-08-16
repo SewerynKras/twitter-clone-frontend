@@ -10,6 +10,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
+import { DatePipe } from '@angular/common';
 
 describe('TweetPageComponent', () => {
   let component: TweetPageComponent;
@@ -20,6 +21,7 @@ describe('TweetPageComponent', () => {
       imports: [HttpClientTestingModule],
       declarations: [TweetPageComponent],
       providers: [
+        DatePipe,
         {
           provide: MatDialog,
           useValue: {

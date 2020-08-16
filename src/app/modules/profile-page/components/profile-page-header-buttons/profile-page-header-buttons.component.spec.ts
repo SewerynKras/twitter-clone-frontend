@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilePageHeaderButtonsComponent } from './profile-page-header-buttons.component';
 import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
+import { DatePipe } from '@angular/common';
 
 describe('ProfilePageHeaderButtonsComponent', () => {
   let component: ProfilePageHeaderButtonsComponent;
@@ -13,6 +14,7 @@ describe('ProfilePageHeaderButtonsComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [ProfilePageHeaderButtonsComponent],
+      providers: [DatePipe],
     }).compileComponents();
   }));
 

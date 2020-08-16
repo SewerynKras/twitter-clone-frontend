@@ -5,6 +5,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 
 import { AuthGuard } from './auth.guard';
+import { DatePipe } from '@angular/common';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
@@ -12,6 +13,7 @@ describe('AuthGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
+      providers: [DatePipe],
     });
     guard = TestBed.inject(AuthGuard);
   });

@@ -7,6 +7,7 @@ import {
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuProfileComponent } from './menu-profile.component';
+import { DatePipe } from '@angular/common';
 
 describe('MenuProfileComponent', () => {
   let component: MenuProfileComponent;
@@ -17,6 +18,7 @@ describe('MenuProfileComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [MenuProfileComponent, MenuProfileDialogComponent],
+      providers: [DatePipe],
     }).compileComponents();
   }));
 

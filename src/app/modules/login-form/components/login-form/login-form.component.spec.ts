@@ -9,6 +9,7 @@ import {
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
 import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
+import { DatePipe } from '@angular/common';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
@@ -18,6 +19,7 @@ describe('LoginFormComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [LoginFormComponent],
+      providers: [DatePipe],
     }).compileComponents();
   }));
 

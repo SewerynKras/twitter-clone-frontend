@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 
 import { NotLoggedInGuard } from './not-logged-in.guard';
+import { DatePipe } from '@angular/common';
 
 describe('NotLoggedInGuard', () => {
   let guard: NotLoggedInGuard;
@@ -11,6 +12,7 @@ describe('NotLoggedInGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
+      providers: [DatePipe],
     });
     guard = TestBed.inject(NotLoggedInGuard);
   });

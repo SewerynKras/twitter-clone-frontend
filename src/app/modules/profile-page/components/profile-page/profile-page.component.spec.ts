@@ -5,6 +5,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilePageComponent } from './profile-page.component';
 import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
+import { DatePipe } from '@angular/common';
 
 describe('ProfilePageComponent', () => {
   let component: ProfilePageComponent;
@@ -26,6 +27,8 @@ describe('ProfilePageComponent', () => {
             },
           },
         },
+
+        DatePipe,
       ],
     }).compileComponents();
   }));
