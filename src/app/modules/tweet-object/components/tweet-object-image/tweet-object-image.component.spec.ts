@@ -28,4 +28,9 @@ describe('TweetObjectImageComponent', () => {
     });
     component.emitImageClicked();
   });
+
+  it('should preview the image', () => {
+    var img = new File(['test'], '123');
+    component.previewImage(img);
+  });
 });
