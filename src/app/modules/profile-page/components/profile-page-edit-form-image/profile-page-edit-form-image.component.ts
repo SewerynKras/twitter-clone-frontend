@@ -1,3 +1,4 @@
+import { ResizeService } from './../../../../core/services/resize.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-page-edit-form-image.component.scss'],
 })
 export class ProfilePageEditFormImageComponent implements OnInit {
-  constructor() {}
+  constructor(private resize: ResizeService) {}
 
   private image: File | null;
   imgSrc: string | ArrayBuffer;
@@ -50,7 +51,15 @@ export class ProfilePageEditFormImageComponent implements OnInit {
     return this.image;
   }
 
+  /**
+   * Sets the `imageSrc` to the given image url
+   * (after resizing it to 140x140 via the resize service).
+   * NOTE: Calling `getValue` does not actually return this
+   * image to avoid unnecessarily uploading it again.
+   * Only a new image will be returned by that method.
+   * @param image_url string
+   */
   setupInitValues(image_url: string): void {
-    throw 'not implemented';
+    this.imgSrc = this.resize.applyTransform(image_url, 140, 140);
   }
 }

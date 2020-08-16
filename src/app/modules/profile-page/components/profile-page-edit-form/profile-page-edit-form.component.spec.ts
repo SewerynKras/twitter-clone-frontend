@@ -29,6 +29,7 @@ describe('ProfilePageEditFormComponent', () => {
     component.editForm.controls['bio'].setValue(prof.bio);
     component.editForm.controls['display_name'].setValue(prof.display_name);
     component.editForm.controls['website'].setValue(prof.website);
+    component.editForm.controls['location'].setValue(prof.location);
     component.editForm.controls['birth_date'].setValue(prof.birth_date);
     var result = component.getValue();
     expect(result.bio).toEqual(prof.bio);
@@ -36,6 +37,7 @@ describe('ProfilePageEditFormComponent', () => {
     expect(result.username).toEqual(prof.username);
     expect(result.display_name).toEqual(prof.display_name);
     expect(result.website).toEqual(prof.website);
+    expect(result.location).toEqual(prof.location);
   });
 
   it('should setup the initial value', () => {
@@ -52,5 +54,8 @@ describe('ProfilePageEditFormComponent', () => {
       prof.display_name
     );
     expect(component.editForm.controls['website'].value).toEqual(prof.website);
+    expect(component.editForm.controls['location'].value).toEqual(
+      prof.location
+    );
   });
 });
