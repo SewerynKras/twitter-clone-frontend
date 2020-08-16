@@ -1,6 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { of, Observable } from 'rxjs';
+import { of, Observable, throwError } from 'rxjs';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 
@@ -46,6 +46,19 @@ describe('AuthGuard', () => {
       expect(guard['auth'].isAuthenticated).toHaveBeenCalled();
       expect(guard['auth'].sendLoginSignal).toHaveBeenCalled();
       expect(guard['users'].getMyProfile).toHaveBeenCalled();
+    });
+  });
+
+  it('should send the logout signal if `getMyProfile` fails', () => {
+    spyOn(guard['users'], 'getMyProfile').and.returnValue(throwError(''));
+    spyOn(guard['auth'], 'sendLogoutSignal');
+    const canActivateChild = guard.canActivateChild(
+      {} as ActivatedRouteSnapshot,
+      {} as RouterStateSnapshot
+    ) as Observable<boolean>;
+    canActivateChild.subscribe((val) => {
+      expect(val).toEqual(false);
+      expect(guard['auth'].sendLogoutSignal).toHaveBeenCalled();
     });
   });
 });
