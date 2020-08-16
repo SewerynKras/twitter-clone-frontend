@@ -29,7 +29,7 @@ export interface UserProfilePATCHBody {
   bio?: string;
   website?: string;
   location?: string;
-  birth_date?: Date;
+  birth_date?: Date | string;
   image?: File;
 }
 

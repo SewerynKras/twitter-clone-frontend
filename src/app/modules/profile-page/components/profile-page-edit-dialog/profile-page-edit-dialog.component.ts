@@ -75,7 +75,12 @@ export class ProfilePageEditDialogComponent implements OnInit, AfterViewInit {
       });
   }
 
+  /**
+   * Sets up the initial values inside the form component and the image preview.
+   * @param profile UserProfileResponse
+   */
   setupInitValues(profile: UserProfileResponse): void {
-    throw 'not implemented';
+    this.form.setupInitValues(profile);
+    if (profile['image_url']) this.image.setupInitValues(profile['image_url']);
   }
 }

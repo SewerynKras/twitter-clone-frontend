@@ -97,6 +97,7 @@ import { ProfilePageEditDialogComponent } from './modules/profile-page/component
 import { ProfilePageHeaderButtonsEditComponent } from './modules/profile-page/components/profile-page-header-buttons-edit/profile-page-header-buttons-edit.component';
 import { ProfilePageEditFormComponent } from './modules/profile-page/components/profile-page-edit-form/profile-page-edit-form.component';
 import { ProfilePageEditFormImageComponent } from './modules/profile-page/components/profile-page-edit-form-image/profile-page-edit-form-image.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -206,6 +207,7 @@ import { ProfilePageEditFormImageComponent } from './modules/profile-page/compon
       multi: true,
     },
     Title,
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })

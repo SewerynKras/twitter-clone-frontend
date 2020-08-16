@@ -15,6 +15,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class UsersService extends BaseHttpService {
   public baseUrl = `${environment.backendURL}/users`;
   public profileUrl = `${this.baseUrl}/profile`;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private datePipe: DatePipe) {
     super();
   }
 
@@ -97,6 +98,11 @@ export class UsersService extends BaseHttpService {
     params?: httpRequestParams
   ): Observable<UserProfileResponse> {
     let parsedParams = this.handleParams(params);
+
+    // The birth_date is a Date object and it needs to be converted to a correct format.
+    // Namely: YYYY-MM-DD
+    if (body.birth_date && body.birth_date instanceof Date)
+      body.birth_date = this.datePipe.transform(body.birth_date, 'yyyy-MM-dd');
 
     // Since data could contain an image file the request needs to of type 'multipart/form-data'
     let formData = new FormData();

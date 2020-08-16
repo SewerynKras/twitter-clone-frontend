@@ -42,7 +42,16 @@ export class ProfilePageEditFormComponent implements OnInit {
     return body;
   }
 
+  /**
+   * Sets up the initial values based on the given profile.
+   * @param profile UserProfileResponse
+   */
   setupInitValues(profile: UserProfileResponse): void {
-    throw 'not implemented';
+    this.editForm.controls['username'].setValue(profile.username);
+    this.editForm.controls['bio'].setValue(profile.bio);
+    this.editForm.controls['display_name'].setValue(profile.display_name);
+    this.editForm.controls['website'].setValue(profile.website);
+    this.editForm.controls['birth_date'].setValue(profile.birth_date);
+    this.editForm.controls['location'].setValue(profile.location);
   }
 }
