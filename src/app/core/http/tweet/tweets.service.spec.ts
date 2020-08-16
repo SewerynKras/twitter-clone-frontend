@@ -1,3 +1,4 @@
+import { TweetResponseRaw } from './../../../shared/models/tweet.model';
 import { ProfileListMockResponsePage1 } from './../../mocks/user.mock';
 import {
   TweetResponseListMockPage1,
@@ -153,5 +154,28 @@ describe('TweetsService', () => {
     );
     expect(req.request.method).toBe('DELETE');
     req.flush({});
+  });
+
+  it('should parse the raw tweet response', () => {
+    var tweet: TweetResponseRaw = {
+      id: '11111111-1111-1111-1111-111111111111',
+      author: 'someUser',
+      text: null,
+      likes: 10,
+      comments: 4,
+      retweets: 2,
+      is_liked: false,
+      is_retweeted: false,
+      created_date: '2020-01-01',
+      retweet: null,
+      comment: null,
+      image_url: null,
+    };
+    const formatted = service.parseTweet(tweet);
+    expect(formatted.text).toEqual('');
+    expect(formatted.comment).toEqual('');
+    expect(formatted.retweet).toEqual('');
+    expect(formatted.image_url).toEqual('');
+    expect(formatted.created_date).toEqual(new Date('2020-01-01'));
   });
 });
