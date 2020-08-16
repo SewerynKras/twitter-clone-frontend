@@ -1,4 +1,7 @@
-import { UserProfilePATCHBody } from './../../../../shared/models/user.model';
+import {
+  UserProfilePATCHBody,
+  UserProfileResponse,
+} from './../../../../shared/models/user.model';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -37,5 +40,9 @@ export class ProfilePageEditFormComponent implements OnInit {
       body['birth_date'] = new Date(raw['birth_date']);
     }
     return body;
+  }
+
+  setupInitValues(profile: UserProfileResponse): void {
+    throw 'not implemented';
   }
 }

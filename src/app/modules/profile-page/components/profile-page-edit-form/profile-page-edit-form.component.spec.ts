@@ -37,4 +37,20 @@ describe('ProfilePageEditFormComponent', () => {
     expect(result.display_name).toEqual(prof.display_name);
     expect(result.website).toEqual(prof.website);
   });
+
+  it('should setup the initial value', () => {
+    var prof = { ...UserProfileMockResponse };
+    component.setupInitValues(prof);
+    expect(component.editForm.controls['bio'].value).toEqual(prof.bio);
+    expect(component.editForm.controls['birth_date'].value).toEqual(
+      prof.birth_date
+    );
+    expect(component.editForm.controls['username'].value).toEqual(
+      prof.username
+    );
+    expect(component.editForm.controls['display_name'].value).toEqual(
+      prof.display_name
+    );
+    expect(component.editForm.controls['website'].value).toEqual(prof.website);
+  });
 });
