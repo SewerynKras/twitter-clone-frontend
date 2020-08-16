@@ -1,3 +1,4 @@
+import { environment } from './../../../../../environments/environment';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ProfilePageEditFormImageComponent } from './../profile-page-edit-form-image/profile-page-edit-form-image.component';
@@ -13,15 +14,11 @@ import {
 describe('ProfilePageEditDialogComponent', () => {
   let component: ProfilePageEditDialogComponent;
   let fixture: ComponentFixture<ProfilePageEditDialogComponent>;
-
+  const dummyImg = new File(['123'], 'name');
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [ProfilePageEditDialogComponent],
-      providers: [
-        ProfilePageEditFormComponent,
-        ProfilePageEditFormImageComponent,
-      ],
     }).compileComponents();
   }));
 
@@ -29,6 +26,14 @@ describe('ProfilePageEditDialogComponent', () => {
     fixture = TestBed.createComponent(ProfilePageEditDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.form = ({
+      getValue: jasmine.createSpy('getValueForm').and.returnValue({
+        ...UserProfilePATCHBodyMock,
+      }),
+    } as any) as ProfilePageEditFormComponent;
+    component.image = ({
+      getValue: jasmine.createSpy('getValueImg').and.returnValue(dummyImg),
+    } as any) as ProfilePageEditFormImageComponent;
   });
 
   it('should create', () => {
@@ -36,36 +41,33 @@ describe('ProfilePageEditDialogComponent', () => {
   });
 
   it('should get the form data', () => {
-    spyOn(component['form'], 'getValue').and.returnValue({
-      ...UserProfilePATCHBodyMock,
-    });
     const result = component.getFormData();
     expect(result).toEqual({ ...UserProfilePATCHBodyMock });
   });
 
   it('should get the image data', () => {
-    const img = new File(['123'], 'name');
-    spyOn(component['image'], 'getImage').and.returnValue(img);
     const result = component.getImage();
-    expect(result).toEqual(img);
+    expect(result).toEqual(dummyImg);
   });
 
   it('should update the users info', () => {
     spyOn(component['usersService'], 'updateMyProfile').and.returnValue(
       of({ ...UserProfileMockResponse })
     );
-    spyOn(component['form'], 'getValue').and.returnValue({
-      ...UserProfilePATCHBodyMock,
-    });
-    const img = new File(['123'], 'name');
-    spyOn(component['image'], 'getImage').and.returnValue(img);
-
+    var _window = {
+      location: {
+        assign: jasmine.createSpy(),
+      },
+    };
     var expectedBody = { ...UserProfilePATCHBodyMock };
-    expectedBody['image'] = img;
+    expectedBody['image'] = dummyImg;
 
-    component.saveDialogData();
+    component.saveDialogData(_window);
     expect(component['usersService'].updateMyProfile).toHaveBeenCalledWith({
       body: expectedBody,
     });
+    expect(_window.location.assign).toHaveBeenCalledWith(
+      `${environment.frontendURL}/profile/${UserProfileMockResponse.username}/`
+    );
   });
 });

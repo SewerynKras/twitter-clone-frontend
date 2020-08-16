@@ -97,9 +97,14 @@ export class UsersService extends BaseHttpService {
     params?: httpRequestParams
   ): Observable<UserProfileResponse> {
     let parsedParams = this.handleParams(params);
+
+    // Since data could contain an image file the request needs to of type 'multipart/form-data'
+    let formData = new FormData();
+    for (const key in body) formData.append(key, body[key]);
+
     let myProfile = this.getBaseUserInfoFromStorage();
     let url = `${this.profileUrl}/${myProfile.username}/${parsedParams}`;
-    return this.http.patch<UserProfileResponse>(url, body).pipe(
+    return this.http.patch<UserProfileResponse>(url, formData).pipe(
       // saves the username, display_name and image url in local storage and returns
       // the profile info back to the pipe
       map((updatedProfile) => {
