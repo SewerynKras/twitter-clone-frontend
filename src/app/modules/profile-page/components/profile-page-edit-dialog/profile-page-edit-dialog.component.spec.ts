@@ -30,9 +30,11 @@ describe('ProfilePageEditDialogComponent', () => {
       getValue: jasmine.createSpy('getValueForm').and.returnValue({
         ...UserProfilePATCHBodyMock,
       }),
+      setupInitValues: jasmine.createSpy('setupInitValues'),
     } as any) as ProfilePageEditFormComponent;
     component.image = ({
       getValue: jasmine.createSpy('getValueImg').and.returnValue(dummyImg),
+      setupInitValues: jasmine.createSpy('setupInitValues'),
     } as any) as ProfilePageEditFormImageComponent;
   });
 
@@ -68,6 +70,15 @@ describe('ProfilePageEditDialogComponent', () => {
     });
     expect(_window.location.assign).toHaveBeenCalledWith(
       `${environment.frontendURL}/profile/${UserProfileMockResponse.username}/`
+    );
+  });
+
+  it('should setup the initial values', () => {
+    var prof = { ...UserProfileMockResponse };
+    component.setupInitValues(prof);
+    expect(component['form'].setupInitValues).toHaveBeenCalledWith(prof);
+    expect(component['image'].setupInitValues).toHaveBeenCalledWith(
+      prof['image_url']
     );
   });
 });

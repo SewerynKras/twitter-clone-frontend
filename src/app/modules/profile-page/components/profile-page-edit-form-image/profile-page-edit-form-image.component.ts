@@ -49,4 +49,8 @@ export class ProfilePageEditFormImageComponent implements OnInit {
   getValue(): File | null {
     return this.image;
   }
+
+  setupInitValues(image_url: string): void {
+    throw 'not implemented';
+  }
 }

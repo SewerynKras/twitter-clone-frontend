@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilePageEditFormImageComponent } from './profile-page-edit-form-image.component';
+import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
 
 describe('ProfilePageEditFormImageComponent', () => {
   let component: ProfilePageEditFormImageComponent;
@@ -54,5 +55,12 @@ describe('ProfilePageEditFormImageComponent', () => {
     component['image'] = null;
     var result = component.getValue();
     expect(result).toEqual(null);
+  });
+
+  it('should setup the initial value', () => {
+    component.setupInitValues({ ...UserProfileMockResponse }['image_url']);
+    expect(component.imgSrc).toEqual(
+      { ...UserProfileMockResponse }['image_url']
+    );
   });
 });
