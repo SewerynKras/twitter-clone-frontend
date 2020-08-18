@@ -1,27 +1,23 @@
-# Frontend
+# Twitter clone frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.2.
+## Project description
 
-## Development server
+This repository contains the code for a Twitter clone I wrote using Angular. I've already created a project like this about a year ago during a full-stack django course, but I've decided to recreate it using a more modern development stack. The back-end part of this project is located in this repository: [twitter-clone-backend](https://github.com/SewerynKras/twitter-clone-backend). Additionally the entire project has been developed using TDD.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Project highlights
 
-## Code scaffolding
+- Test Driven Development
+- Highly specialized and reusable components
+- Custom theme
+- Detailed documentation
+- Scalable structure
+- Over 90% coverage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Functionality
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Create and edit your profile
+- Create tweets (but in classic Twitter fashion - without the ability to edit them)
+- Attach images to tweets and profile pictures to profiles
+- Like tweets
+- Follow other profiles
+- Retweet or comment on tweets
