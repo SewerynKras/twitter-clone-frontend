@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -14,7 +15,6 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     MatGridListModule,
     MatCardModule,
     MatIconModule,
@@ -27,7 +27,6 @@ import { CommonModule } from '@angular/common';
     MatSnackBarModule,
   ],
   exports: [
-    CommonModule,
     MatGridListModule,
     MatCardModule,
     MatIconModule,

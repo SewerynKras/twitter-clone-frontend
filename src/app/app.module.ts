@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/modules/shared/shared.module';
 import { MaterialModule } from './shared/modules/material/material.module';
 import { ErrorPopupInterceptor } from './core/interceptors/error-popup.interceptor';
@@ -88,7 +89,13 @@ import { DatePipe } from '@angular/common';
     ProfilePageEditFormComponent,
     ProfilePageEditFormImageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MaterialModule, SharedModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MaterialModule,
+    SharedModule,
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {

@@ -10,7 +10,6 @@ import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserPictureComponent } from './components/user-picture/user-picture.component';
@@ -27,7 +26,6 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
   ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
     HttpClientModule,
@@ -38,8 +36,6 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     ClipboardModule,
   ],
   exports: [
-    CommonModule,
-    BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
     TextFieldModule,
