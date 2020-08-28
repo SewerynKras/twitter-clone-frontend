@@ -1,3 +1,4 @@
+import { InfiniteScrollComponent } from './../../components/infinite-scroll/infinite-scroll.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +11,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [],
+  declarations: [InfiniteScrollComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -32,6 +33,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     InfiniteScrollModule,
     ClipboardModule,
+    InfiniteScrollComponent,
   ],
 })
 export class SharedModule {}
