@@ -22,5 +22,16 @@ import { CommonModule } from '@angular/common';
     InfiniteScrollModule,
     ClipboardModule,
   ],
+  exports: [
+    CommonModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    TextFieldModule,
+    NgxEmojiPickerModule,
+    ReactiveFormsModule,
+    InfiniteScrollModule,
+    ClipboardModule,
+  ],
 })
 export class SharedModule {}

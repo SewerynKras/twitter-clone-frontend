@@ -26,5 +26,18 @@ import { CommonModule } from '@angular/common';
     MatMenuModule,
     MatSnackBarModule,
   ],
+  exports: [
+    CommonModule,
+    MatGridListModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatSnackBarModule,
+  ],
 })
 export class MaterialModule {}
