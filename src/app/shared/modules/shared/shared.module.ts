@@ -7,12 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { CommonModule as CM } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [],
   imports: [
-    CM,
+    CommonModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
@@ -23,4 +23,4 @@ import { CommonModule as CM } from '@angular/common';
     ClipboardModule,
   ],
 })
-export class CommonModule {}
+export class SharedModule {}

@@ -1,5 +1,5 @@
+import { SharedModule } from './shared/modules/shared/shared.module';
 import { MaterialModule } from './shared/modules/material/material.module';
-import { CommonModule } from './shared/modules/common/common.module';
 import { ErrorPopupInterceptor } from './core/interceptors/error-popup.interceptor';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -160,7 +160,7 @@ import { DatePipe } from '@angular/common';
     ProfilePageEditFormComponent,
     ProfilePageEditFormImageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, CommonModule, MaterialModule],
+  imports: [BrowserModule, AppRoutingModule, MaterialModule, SharedModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
