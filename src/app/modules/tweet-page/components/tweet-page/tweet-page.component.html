@@ -4,16 +4,14 @@
       <div fxLayout="row" fxLayoutAlign="start stretch">
         <div
           *ngIf="tweetAuthorInfo$ | async as user"
-          style="max-width: 80%;"
+          style="max-width: 80%"
           fxLayout="row nowrap"
         >
           <!-- Image, Display name, Username -->
-          <div style="margin-right: 10px;">
-            <app-tweet-object-author-picture
-              [user]="user"
-            ></app-tweet-object-author-picture>
+          <div style="margin-right: 10px">
+            <app-user-picture [user]="user"></app-user-picture>
           </div>
-          <app-tweet-object-header [user]="user"></app-tweet-object-header>
+          <app-user-info [user]="user"></app-user-info>
         </div>
       </div>
       <!-- "Replying to" -->
@@ -41,7 +39,7 @@
           ></app-tweet-object-image>
         </mat-card-content>
         <!-- Nested tweet (retweet) -->
-        <mat-card-content *ngIf="tweet.retweet" style="margin-left: 50px;">
+        <mat-card-content *ngIf="tweet.retweet" style="margin-left: 50px">
           <ng-container *ngIf="nestedTweet$ | async as nestedTweet">
             <app-tweet-object-preview
               [tweet]="nestedTweet"
@@ -55,7 +53,7 @@
           ></app-tweet-page-created-info>
         </mat-card-content>
         <!-- Action buttons -->
-        <mat-card-actions style="margin-bottom: 0;">
+        <mat-card-actions style="margin-bottom: 0">
           <app-tweet-page-footer
             [tweet]="tweet"
             (commentCreated)="handleCommentCreated($event)"

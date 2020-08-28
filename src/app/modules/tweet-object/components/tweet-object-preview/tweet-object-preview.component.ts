@@ -1,4 +1,4 @@
-import { ImageDialogComponent } from './../../../../shared/components/image-dialog/image-dialog.component';
+import { ImageDialogComponent } from './../../../../shared/modules/shared/components/image-dialog/image-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 import { UsersService } from './../../../../core/http/user/users.service';

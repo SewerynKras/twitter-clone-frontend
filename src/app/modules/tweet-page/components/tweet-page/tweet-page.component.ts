@@ -1,7 +1,7 @@
 import { HeaderTitleService } from './../../../../shared/services/header-title.service';
 import { TweetListComponent } from './../../../tweet-list/components/tweet-list/tweet-list.component';
 import { httpRequestArgs } from './../../../../shared/models/http.model';
-import { ImageDialogComponent } from './../../../../shared/components/image-dialog/image-dialog.component';
+import { ImageDialogComponent } from './../../../../shared/modules/shared/components/image-dialog/image-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { switchMap, map } from 'rxjs/operators';
 import { UsersService } from './../../../../core/http/user/users.service';

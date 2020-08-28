@@ -1,22 +1,22 @@
+import { UserProfileMockResponse } from './../../../../../core/mocks/user.mock';
 import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TweetObjectAuthorPictureComponent } from './tweet-object-author-picture.component';
-import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
+import { UserPictureComponent } from './user-picture.component';
 
-describe('TweetObjectAuthorPictureComponent', () => {
-  let component: TweetObjectAuthorPictureComponent;
-  let fixture: ComponentFixture<TweetObjectAuthorPictureComponent>;
+describe('UserPictureComponent', () => {
+  let component: UserPictureComponent;
+  let fixture: ComponentFixture<UserPictureComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [TweetObjectAuthorPictureComponent],
+      declarations: [UserPictureComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TweetObjectAuthorPictureComponent);
+    fixture = TestBed.createComponent(UserPictureComponent);
     component = fixture.componentInstance;
     component.user = { ...UserProfileMockResponse };
     fixture.detectChanges();

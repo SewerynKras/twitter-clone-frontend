@@ -1,19 +1,15 @@
-<div *ngIf="tweetAuthorInfo$ | async as user" style="width: 100%;">
-  <div fxFlex="50px" style="margin-right: 10px;">
-    <app-tweet-object-author-picture
-      [user]="user"
-    ></app-tweet-object-author-picture>
+<div *ngIf="tweetAuthorInfo$ | async as user" style="width: 100%">
+  <div fxFlex="50px" style="margin-right: 10px">
+    <app-user-picture [user]="user"></app-user-picture>
   </div>
   <div fxFill class="tweet-main-body">
     <div fxLayout="row" fxLayoutAlign="start stretch">
-      <div style="max-width: 80%;">
+      <div style="max-width: 80%">
         <!-- Image, Display name, Username -->
-        <app-tweet-object-header [user]="user"></app-tweet-object-header>
+        <app-user-info [user]="user"></app-user-info>
       </div>
       <!-- Created date -->
-      <div class="date-separator">
-        &#183;
-      </div>
+      <div class="date-separator">&#183;</div>
 
       <div>
         <app-tweet-object-created-date

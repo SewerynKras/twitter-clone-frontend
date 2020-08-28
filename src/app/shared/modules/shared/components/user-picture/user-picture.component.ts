@@ -1,17 +1,17 @@
+import { ResizeService } from './../../../../../core/services/resize.service';
 import { Router } from '@angular/router';
-import { ResizeService } from './../../../../core/services/resize.service';
 import {
   UserProfileResponse,
   BaseUserProfile,
-} from './../../../../shared/models/user.model';
+} from './../../../../models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-tweet-object-author-picture',
-  templateUrl: './tweet-object-author-picture.component.html',
-  styleUrls: ['./tweet-object-author-picture.component.scss'],
+  selector: 'app-user-picture',
+  templateUrl: './user-picture.component.html',
+  styleUrls: ['./user-picture.component.scss'],
 })
-export class TweetObjectAuthorPictureComponent implements OnInit {
+export class UserPictureComponent implements OnInit {
   @Input() user: UserProfileResponse | BaseUserProfile;
   constructor(private resize: ResizeService, private router: Router) {}
 

@@ -1,10 +1,8 @@
 <div fxLayout="row nowrap">
-  <div style="width: 50px; margin-right: 10px;">
-    <app-tweet-object-author-picture
-      [user]="user"
-    ></app-tweet-object-author-picture>
+  <div style="width: 50px; margin-right: 10px">
+    <app-user-picture [user]="user"></app-user-picture>
   </div>
-  <div class="main-body" fxLayout="column nowrap" style="width: 100%;">
+  <div class="main-body" fxLayout="column nowrap" style="width: 100%">
     <div class="input-container">
       <app-tweet-creation-textarea></app-tweet-creation-textarea>
     </div>

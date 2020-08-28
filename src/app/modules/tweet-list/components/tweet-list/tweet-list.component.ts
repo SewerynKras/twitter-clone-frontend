@@ -4,7 +4,7 @@ import {
 } from './../../../../shared/models/http.model';
 import { PaginationService } from './../../../../core/services/pagination.service';
 import { ListResponse } from 'src/app/shared/models/response.model';
-import { InfiniteScrollComponent } from './../../../../shared/components/infinite-scroll/infinite-scroll.component';
+import { InfiniteScrollComponent } from './../../../../shared/modules/shared/components/infinite-scroll/infinite-scroll.component';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TweetsService } from './../../../../core/http/tweet/tweets.service';

@@ -1,4 +1,4 @@
-import { BaseInputComponent } from './../../../../shared/components/base-input/base-input.component';
+import { BaseInputComponent } from './../../../../shared/modules/shared/components/base-input/base-input.component';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -6,7 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './login-form-username.component.html',
   styleUrls: ['./login-form-username.component.scss'],
 })
-export class LoginFormUsernameComponent extends BaseInputComponent
+export class LoginFormUsernameComponent
+  extends BaseInputComponent
   implements OnInit {
   constructor() {
     super();

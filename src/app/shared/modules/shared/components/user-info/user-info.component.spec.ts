@@ -1,22 +1,22 @@
+import { UserProfileMockResponse } from './../../../../../core/mocks/user.mock';
 import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TweetObjectHeaderComponent } from './tweet-object-header.component';
-import { UserProfileMockResponse } from 'src/app/core/mocks/user.mock';
+import { UserInfoComponent } from './user-info.component';
 
-describe('TweetObjectHeaderComponent', () => {
-  let component: TweetObjectHeaderComponent;
-  let fixture: ComponentFixture<TweetObjectHeaderComponent>;
+describe('UserInfoComponent', () => {
+  let component: UserInfoComponent;
+  let fixture: ComponentFixture<UserInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TweetObjectHeaderComponent],
+      declarations: [UserInfoComponent],
       imports: [RouterTestingModule],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TweetObjectHeaderComponent);
+    fixture = TestBed.createComponent(UserInfoComponent);
     component = fixture.componentInstance;
     component.user = { ...UserProfileMockResponse };
     fixture.detectChanges();

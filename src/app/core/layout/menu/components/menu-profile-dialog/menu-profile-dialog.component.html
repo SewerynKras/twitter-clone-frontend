@@ -3,7 +3,7 @@
   fxLayout="column nowrap"
   class="more-wrapper"
 >
-  <button [matMenuTriggerFor]="aboveMenu" style="opacity: 0;"></button>
+  <button [matMenuTriggerFor]="aboveMenu" style="opacity: 0"></button>
   <mat-menu
     #aboveMenu="matMenu"
     yPosition="above"
@@ -16,16 +16,12 @@
         class="user-info-wrapper"
         (click)="navigateToProfile()"
       >
-        <app-tweet-object-author-picture
-          [user]="user"
-        ></app-tweet-object-author-picture>
+        <app-user-picture [user]="user"></app-user-picture>
         <div fxFlexOffset="1" class="username-container">
-          <app-tweet-object-header [user]="user"></app-tweet-object-header>
+          <app-user-info [user]="user"></app-user-info>
         </div>
       </div>
     </div>
-    <button mat-menu-item (click)="performLogout()">
-      Log out
-    </button>
+    <button mat-menu-item (click)="performLogout()">Log out</button>
   </mat-menu>
 </div>

@@ -1,4 +1,8 @@
-import { InfiniteScrollComponent } from './../../components/infinite-scroll/infinite-scroll.component';
+import { MaterialModule } from './../material/material.module';
+import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
+import { ClickableUsernameComponent } from './components/clickable-username/clickable-username.component';
+import { BaseInputComponent } from './components/base-input/base-input.component';
+import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-scroll.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -9,12 +13,22 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UserPictureComponent } from './components/user-picture/user-picture.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 @NgModule({
-  declarations: [InfiniteScrollComponent],
+  declarations: [
+    InfiniteScrollComponent,
+    BaseInputComponent,
+    ClickableUsernameComponent,
+    ImageDialogComponent,
+    UserPictureComponent,
+    UserInfoComponent,
+  ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    MaterialModule,
     FlexLayoutModule,
     HttpClientModule,
     TextFieldModule,
@@ -34,6 +48,11 @@ import { CommonModule } from '@angular/common';
     InfiniteScrollModule,
     ClipboardModule,
     InfiniteScrollComponent,
+    BaseInputComponent,
+    ClickableUsernameComponent,
+    ImageDialogComponent,
+    UserInfoComponent,
+    UserPictureComponent,
   ],
 })
 export class SharedModule {}
