@@ -1,0 +1,9 @@
+@import "variables";
+
+@mixin primary-text-color-mixin {
+  color: $color-500 !important;
+}
+
+@mixin primary-bg-color-mixin {
+  background-color: $color-500 !important;
+}

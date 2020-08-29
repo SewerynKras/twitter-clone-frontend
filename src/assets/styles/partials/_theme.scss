@@ -1,0 +1,13 @@
+@import "~@angular/material/theming";
+@import "variables";
+@import "scaffolding";
+@import "palette";
+
+// twitter does not have a secondary color
+$twitter-palette-primary: mat-palette($primary);
+$twitter-palette-accent: mat-palette($primary);
+
+$twitter-theme: mat-light-theme(
+  $twitter-palette-primary,
+  $twitter-palette-accent
+);

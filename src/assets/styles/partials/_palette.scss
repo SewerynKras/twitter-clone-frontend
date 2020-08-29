@@ -1,0 +1,25 @@
+@import "variables";
+
+$primary: (
+  500: $color-500,
+  600: $color-600,
+  700: $color-700,
+  800: $color-800,
+  900: $color-900,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  ),
+);
