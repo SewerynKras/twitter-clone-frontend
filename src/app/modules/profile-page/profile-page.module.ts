@@ -1,3 +1,5 @@
+import { TweetListModule } from './../tweet-list/tweet-list.module';
+import { ProfilePageRoutingModule } from './profile-page.routes';
 import { ProfilePageEditFormImageComponent } from './components/profile-page-edit-form-image/profile-page-edit-form-image.component';
 import { ProfilePageEditFormComponent } from './components/profile-page-edit-form/profile-page-edit-form.component';
 import { ProfilePageHeaderButtonsEditComponent } from './components/profile-page-header-buttons-edit/profile-page-header-buttons-edit.component';
@@ -50,6 +52,12 @@ import { CommonModule } from '@angular/common';
     ProfilePageEditFormComponent,
     ProfilePageEditFormImageComponent,
   ],
-  imports: [CommonModule, SharedModule, MaterialModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    ProfilePageRoutingModule,
+    MaterialModule,
+    TweetListModule,
+  ],
 })
 export class ProfilePageModule {}

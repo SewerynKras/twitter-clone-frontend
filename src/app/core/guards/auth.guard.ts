@@ -9,22 +9,32 @@ import {
   UrlTree,
   CanActivateChild,
   Router,
+  CanLoad,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Route } from '@angular/compiler/src/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivateChild {
+export class AuthGuard implements CanActivateChild, CanLoad, CanActivate {
   constructor(
     private auth: AuthService,
     private users: UsersService,
     private router: Router
   ) {}
 
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.canActivateChild(next, state);
+  }
+
+  canLoad(route: Route) {
+    return this.canActivateChild();
+  }
+
   canActivateChild(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    next?: ActivatedRouteSnapshot,
+    state?: RouterStateSnapshot
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>

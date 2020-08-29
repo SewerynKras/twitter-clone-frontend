@@ -26,6 +26,7 @@ const routes: Routes = [
       import('./modules/tweet-page/tweet-page.module').then(
         (m) => m.TweetPageModule
       ),
+    canLoad: [AuthGuard],
     canActivateChild: [AuthGuard],
   },
   {
@@ -34,10 +35,12 @@ const routes: Routes = [
       import('./modules/profile-page/profile-page.module').then(
         (m) => m.ProfilePageModule
       ),
+    canLoad: [AuthGuard],
     canActivateChild: [AuthGuard],
   },
   {
     path: 'tweets',
+    canLoad: [AuthGuard],
     canActivateChild: [AuthGuard],
     loadChildren: () =>
       import('./modules/tweet-list-page/tweet-list-page.module').then(

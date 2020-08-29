@@ -1,3 +1,4 @@
+import { TweetPageRoutingModule } from './tweet-page.routes';
 import { TweetObjectModule } from './../tweet-object/tweet-object.module';
 import { TweetPageFooterComponent } from './components/tweet-page-footer/tweet-page-footer.component';
 import { TweetPageCreatedInfoComponent } from './components/tweet-page-created-info/tweet-page-created-info.component';
@@ -24,6 +25,12 @@ import { CommonModule } from '@angular/common';
     TweetPageCreatedInfoComponent,
     TweetPageFooterComponent,
   ],
-  imports: [CommonModule, SharedModule, MaterialModule, TweetObjectModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MaterialModule,
+    TweetPageRoutingModule,
+    TweetObjectModule,
+  ],
 })
 export class TweetPageModule {}
