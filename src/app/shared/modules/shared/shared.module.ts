@@ -1,3 +1,4 @@
+import { StopPropagationDirective } from './../../directives/stop-propagation.directive';
 import { MaterialModule } from './../material/material.module';
 import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
 import { ClickableUsernameComponent } from './components/clickable-username/clickable-username.component';
@@ -23,6 +24,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     ImageDialogComponent,
     UserPictureComponent,
     UserInfoComponent,
+    StopPropagationDirective,
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     ImageDialogComponent,
     UserInfoComponent,
     UserPictureComponent,
+    StopPropagationDirective,
   ],
 })
 export class SharedModule {}

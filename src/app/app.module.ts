@@ -12,7 +12,6 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { LayoutComponent } from './core/layout/layout.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { MenuComponent } from './core/layout/menu/menu.component';
-import { StopPropagationDirective } from './shared/directives/stop-propagation.directive';
 import { MenuMainComponent } from './core/layout/menu/components/menu-main/menu-main.component';
 import { MenuProfileComponent } from './core/layout/menu/components/menu-profile/menu-profile.component';
 import { MenuMoreComponent } from './core/layout/menu/components/menu-more/menu-more.component';
@@ -32,7 +31,6 @@ import { DatePipe } from '@angular/common';
     LayoutComponent,
     HeaderComponent,
     MenuComponent,
-    StopPropagationDirective,
     MenuMainComponent,
     MenuProfileComponent,
     MenuMoreComponent,
