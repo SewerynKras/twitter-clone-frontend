@@ -3,6 +3,10 @@
 .left-side-container {
   width: variables.$left-side-width;
   height: 100%;
+
+  @media screen and (max-width: variables.$left-side-hide-breakpoint) {
+    width: variables.$left-side-width-hidden;
+  }
 }
 
 .right-side-container {

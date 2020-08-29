@@ -1,5 +1,4 @@
-@use 'src/twitter-theme' as theme;
-@import "~@angular/material/theming";
+@use 'src/assets/styles/partials/variables' as variables;
 
 .username-container {
   overflow: hidden;
@@ -8,9 +7,9 @@
 
 .highlight-on-hover:hover {
   background-color: rgba(
-    red(mat-color(theme.$twitter-palette-primary)),
-    green(mat-color(theme.$twitter-palette-primary)),
-    blue(mat-color(theme.$twitter-palette-primary)),
+    red(variables.$color-700),
+    green(variables.$color-700),
+    blue(variables.$color-700),
     0.15
   );
   cursor: pointer;

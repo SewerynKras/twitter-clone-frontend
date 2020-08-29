@@ -1,5 +1,5 @@
-@use 'src/twitter-theme.scss';
-
+@use 'src/app/core/layout/variables' as variables;
+@use 'src/assets/styles/partials/scaffolding' as scaffolding;
 .button-container {
   font-size: 19px;
   font-weight: 500;
@@ -11,5 +11,11 @@
 }
 
 .selected {
-  @include twitter-theme.primary-text-color-mixin;
+  @include scaffolding.primary-text-color-mixin;
+}
+
+.hide-on-small {
+  @media screen and (max-width: variables.$left-side-hide-breakpoint) {
+    display: none !important;
+  }
 }

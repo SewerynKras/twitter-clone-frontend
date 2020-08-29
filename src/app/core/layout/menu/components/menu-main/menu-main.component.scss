@@ -9,4 +9,8 @@
   height: calc(100vh - #{variables.$header-height});
   width: variables.$left-side-width;
   overflow: hidden;
+
+  @media screen and (max-width: variables.$left-side-hide-breakpoint) {
+    width: variables.$left-side-width-hidden;
+  }
 }

@@ -6,6 +6,10 @@
 
 .left-side-container {
   width: variables.$left-side-width;
+
+  @media screen and (max-width: variables.$left-side-hide-breakpoint) {
+    width: variables.$left-side-width-hidden;
+  }
 }
 
 .right-side-container {
