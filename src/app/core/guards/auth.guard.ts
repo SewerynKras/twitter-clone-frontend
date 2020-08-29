@@ -11,7 +11,7 @@ import {
   Router,
   CanLoad,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Route } from '@angular/compiler/src/core';
 
 @Injectable({
@@ -35,11 +35,7 @@ export class AuthGuard implements CanActivateChild, CanLoad, CanActivate {
   canActivateChild(
     next?: ActivatedRouteSnapshot,
     state?: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
+  ): Observable<boolean> {
     // Check if the user is authenticated (token is saved in localstorage)
     if (this.auth.isAuthenticated())
       // Load the base user info from the server before proceeding
@@ -59,7 +55,11 @@ export class AuthGuard implements CanActivateChild, CanLoad, CanActivate {
           }
         )
       );
-    this.router.navigate(['login']);
-    return false;
+    else {
+      this.router.navigate(['login']);
+      // Return an observable rather then the value itself to ensure consistency
+      // (this method ALWAYS returns an observable)
+      return of(false);
+    }
   }
 }

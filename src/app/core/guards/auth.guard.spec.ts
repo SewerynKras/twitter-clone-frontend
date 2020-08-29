@@ -29,8 +29,10 @@ describe('AuthGuard', () => {
       {} as ActivatedRouteSnapshot,
       {} as RouterStateSnapshot
     );
-    expect(canActivateChild).toEqual(false);
     expect(guard['router'].navigate).toHaveBeenCalledWith(['login']);
+    canActivateChild.subscribe((val) => {
+      expect(val).toEqual(false);
+    });
   });
 
   it('should permit access if the user is authenticated', () => {
@@ -50,7 +52,10 @@ describe('AuthGuard', () => {
   });
 
   it('should send the logout signal if `getMyProfile` fails', () => {
-    spyOn(guard['users'], 'getMyProfile').and.returnValue(throwError(''));
+    spyOn(guard['auth'], 'isAuthenticated').and.returnValue(true);
+    spyOn(guard['users'], 'getMyProfile').and.returnValue(
+      throwError(new Error(''))
+    );
     spyOn(guard['auth'], 'sendLogoutSignal');
     const canActivateChild = guard.canActivateChild(
       {} as ActivatedRouteSnapshot,

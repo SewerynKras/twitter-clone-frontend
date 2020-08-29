@@ -1,6 +1,6 @@
+import { ProfileListMockResponsePage2 } from './../../../../../core/mocks/user.mock';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
-import { ProfileListMockResponsePage2 } from './../../../core/mocks/user.mock';
 import { ListResponse } from 'src/app/shared/models/response.model';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 

@@ -2,7 +2,7 @@ import {
   TweetResponseListMockPage1,
   TweetResponseListMockPage2,
 } from './../../../../core/mocks/tweet.mock';
-import { InfiniteScrollComponent } from './../../../../shared/components/infinite-scroll/infinite-scroll.component';
+import { InfiniteScrollComponent } from './../../../../shared/modules/shared/components/infinite-scroll/infinite-scroll.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
