@@ -12,6 +12,7 @@ Theming for this project was done using Angular Material and Angular Flex Layout
 - Highly specialized and reusable components
 - Detailed documentation
 - Scalable structure
+- Modular design
 - Custom theme
 - Over 90% coverage
 
