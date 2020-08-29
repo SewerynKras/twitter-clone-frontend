@@ -1,9 +1,7 @@
 import { NotLoggedInGuard } from './core/guards/not-logged-in.guard';
 import { AuthGuard } from './core/guards/auth.guard';
-import { ProfilePageRoutes } from './modules/profile-page/profile-page.routes';
 import { LoginFormPageRoutes } from './modules/login-form-page/login-form-page.routes';
 import { LoginPageRoutes } from './modules/login-page/login-page.routes';
-import { TweetPageRoutes } from './modules/tweet-page/tweet-page.routes';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -24,7 +22,10 @@ const routes: Routes = [
   },
   {
     path: 'profile/:username',
-    children: ProfilePageRoutes,
+    loadChildren: () =>
+      import('./modules/profile-page/profile-page.module').then(
+        (m) => m.ProfilePageModule
+      ),
     canActivateChild: [AuthGuard],
   },
   {
