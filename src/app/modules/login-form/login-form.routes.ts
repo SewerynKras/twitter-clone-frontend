@@ -1,2 +1,10 @@
-import { Routes } from '@angular/router';
-export const LoginFormRouter: Routes = [];
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+
+export const routes: Routes = [];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class LoginFormRoutingModule {}

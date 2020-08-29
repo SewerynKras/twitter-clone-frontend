@@ -13,14 +13,6 @@ import { LayoutComponent } from './core/layout/layout.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { MenuComponent } from './core/layout/menu/menu.component';
 import { StopPropagationDirective } from './shared/directives/stop-propagation.directive';
-import { LoginPageComponent } from './modules/login-page/components/login-page/login-page.component';
-import { LoginFormComponent } from './modules/login-form/components/login-form/login-form.component';
-import { LoginFormUsernameComponent } from './modules/login-form/components/login-form-username/login-form-username.component';
-import { LoginFormPasswordComponent } from './modules/login-form/components/login-form-password/login-form-password.component';
-import { LoginPageFooterComponent } from './modules/login-page/components/login-page-footer/login-page-footer.component';
-import { LoginPageJoinButtonsComponent } from './modules/login-page/components/login-page-join-buttons/login-page-join-buttons.component';
-import { LoginPageBulletpointsComponent } from './modules/login-page/components/login-page-bulletpoints/login-page-bulletpoints.component';
-import { LoginFormPageComponent } from './modules/login-form-page/components/login-form-page/login-form-page.component';
 import { MenuMainComponent } from './core/layout/menu/components/menu-main/menu-main.component';
 import { MenuProfileComponent } from './core/layout/menu/components/menu-profile/menu-profile.component';
 import { MenuMoreComponent } from './core/layout/menu/components/menu-more/menu-more.component';
@@ -41,14 +33,6 @@ import { DatePipe } from '@angular/common';
     HeaderComponent,
     MenuComponent,
     StopPropagationDirective,
-    LoginPageComponent,
-    LoginFormComponent,
-    LoginFormUsernameComponent,
-    LoginFormPasswordComponent,
-    LoginPageFooterComponent,
-    LoginPageJoinButtonsComponent,
-    LoginPageBulletpointsComponent,
-    LoginFormPageComponent,
     MenuMainComponent,
     MenuProfileComponent,
     MenuMoreComponent,

@@ -1,15 +1,23 @@
 import { NotLoggedInGuard } from './core/guards/not-logged-in.guard';
 import { AuthGuard } from './core/guards/auth.guard';
-import { LoginFormPageRoutes } from './modules/login-form-page/login-form-page.routes';
-import { LoginPageRoutes } from './modules/login-page/login-page.routes';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', children: LoginPageRoutes, canActivateChild: [NotLoggedInGuard] },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/login-page/login-page.module').then(
+        (m) => m.LoginPageModule
+      ),
+    canActivateChild: [NotLoggedInGuard],
+  },
   {
     path: 'login',
-    children: LoginFormPageRoutes,
+    loadChildren: () =>
+      import('./modules/login-form-page/login-form-page.module').then(
+        (m) => m.LoginFormPageModule
+      ),
     canActivateChild: [NotLoggedInGuard],
   },
   {
