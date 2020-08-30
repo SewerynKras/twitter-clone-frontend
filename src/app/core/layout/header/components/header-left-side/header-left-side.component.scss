@@ -3,3 +3,8 @@
 .logo-container {
   height: variables.$header-height;
 }
+
+.logo-container img {
+  height: variables.$header-height / 2;
+  margin-top: variables.$header-height / 4;
+}
