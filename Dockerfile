@@ -1,8 +1,25 @@
-FROM node:12.18-alpine
-ENV NODE_ENV production
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+FROM node:10-alpine as builder
+
+COPY package.json package-lock.json ./
+
+RUN npm install && mkdir /frontend && mv ./node_modules ./frontend
+
+WORKDIR /frontend
+
 COPY . .
-EXPOSE 4200
-CMD ["npm", "start"]
+
+RUN npm run ng build -- --prod
+
+
+FROM nginx:alpine
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+## Remove default nginx index page
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY --from=builder /frontend/dist /usr/share/nginx/html
+
+EXPOSE 4200 80
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
