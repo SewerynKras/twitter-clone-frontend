@@ -31,7 +31,7 @@
 
 .hide-on-small {
   @media screen and (max-width: variables.$left-side-hide-breakpoint) {
-    display: none;
+    display: none!important;
   }
 }
 

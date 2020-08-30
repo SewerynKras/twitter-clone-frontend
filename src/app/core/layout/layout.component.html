@@ -1,14 +1,14 @@
 <div fxLayout="column nowrap" *ngIf="userLoggedIn; else notLoggedInTemplate">
   <div class="header-container" fxLayoutAlign="stretch center">
-    <app-header style="width: 100%;"></app-header>
+    <app-header style="width: 100%"></app-header>
   </div>
   <div
     class="body-container"
-    fxLayout="row wrap"
+    fxLayout="row nowrap"
     fxLayoutAlign="center stretch"
   >
     <div fxLayoutAlign="center stretch" class="left-side-container">
-      <app-menu style="width: 100%;"></app-menu>
+      <app-menu style="width: 100%"></app-menu>
     </div>
     <div fxLayoutAlign="center stretch" class="center-width">
       <div fxFlex="100%">
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="right-side-container" fxLayoutAlign="center stretch">
-      <app-right-side style="width: 100%;"></app-right-side>
+      <app-right-side style="width: 100%"></app-right-side>
     </div>
   </div>
 </div>
