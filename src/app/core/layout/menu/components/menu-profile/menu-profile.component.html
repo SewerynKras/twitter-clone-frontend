@@ -6,13 +6,18 @@
       fxLayout="row nowrap"
       class="highlight-on-hover"
     >
-      <div fxLayoutAlign="start stretch" fxLayout="row nowrap" fxFlex="80%">
+      <div
+        fxLayoutAlign="start stretch"
+        fxLayout="row nowrap"
+        fxFlex="80%"
+        class="stretch-on-small"
+      >
         <app-user-picture [user]="user"></app-user-picture>
-        <div fxFlexOffset="1" class="username-container">
+        <div fxFlexOffset="1" class="username-container hide-on-small">
           <app-user-info [user]="user"></app-user-info>
         </div>
       </div>
-      <div fxFlex="20%" class="icon-container">
+      <div fxFlex="20%" class="icon-container hide-on-small">
         <mat-icon [inline]="true">keyboard_arrow_down</mat-icon>
       </div>
     </div>

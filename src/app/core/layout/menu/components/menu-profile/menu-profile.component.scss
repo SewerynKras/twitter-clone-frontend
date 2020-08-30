@@ -1,4 +1,5 @@
-@use 'src/assets/styles/partials/variables' as variables;
+@use 'src/assets/styles/partials/variables' as global-variables;
+@use 'src/app/core/layout/variables.scss' as variables;
 
 .username-container {
   overflow: hidden;
@@ -7,9 +8,9 @@
 
 .highlight-on-hover:hover {
   background-color: rgba(
-    red(variables.$color-700),
-    green(variables.$color-700),
-    blue(variables.$color-700),
+    red(global-variables.$color-700),
+    green(global-variables.$color-700),
+    blue(global-variables.$color-700),
     0.15
   );
   cursor: pointer;
@@ -26,4 +27,17 @@
 
 .icon-container {
   font-size: 25px;
+}
+
+.hide-on-small {
+  @media screen and (max-width: variables.$left-side-hide-breakpoint) {
+    display: none;
+  }
+}
+
+.stretch-on-small {
+  @media screen and (max-width: variables.$left-side-hide-breakpoint) {
+    max-width: 100%;
+    width: 100%;
+  }
 }
