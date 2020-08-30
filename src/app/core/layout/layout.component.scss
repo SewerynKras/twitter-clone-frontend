@@ -14,6 +14,10 @@
 
 .right-side-container {
   width: variables.$right-side-width;
+
+  @media screen and (max-width: variables.$right-side-hide-breakpoint) {
+    display: none;
+  }
 }
 
 .center-width {
