@@ -1,6 +1,9 @@
+@use '../../variables' as variables;
+
 .login-page,
 .left-panel,
-.right-panel {
+.right-panel,
+.host {
   height: 100%;
 }
 
@@ -8,4 +11,21 @@
   position: absolute;
   right: 5%;
   top: 1%;
+  height: variables.$header-height;
+}
+
+@media screen and (max-width: variables.$flip-breakpoint) {
+  .login-page {
+    flex-direction: column !important;
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 100%;
+    max-width: 100% !important;
+  }
+
+  .left-panel {
+    margin-top: variables.$header-height;
+  }
 }
