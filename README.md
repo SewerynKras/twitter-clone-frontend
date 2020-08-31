@@ -13,6 +13,7 @@ Theming for this project was done using Angular Material and Angular Flex Layout
 - Detailed documentation
 - Scalable structure
 - Modular design
+- Docker support
 - Custom theme
 - Over 90% coverage
 
