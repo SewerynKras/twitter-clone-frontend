@@ -214,8 +214,11 @@ export class UsersService extends BaseHttpService {
   ): boolean {
     return (
       profile1.display_name === profile2.display_name &&
-      profile1.image_url === profile2.image_url &&
-      profile1.username === profile2.username
+      profile1.username === profile2.username &&
+      (profile1.image_url === profile2.image_url ||
+        // The image_url may be a null value so in case they dont match
+        // check if both values are null or ""
+        (!profile1.image_url && !profile2.image_url))
     );
   }
 }

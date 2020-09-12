@@ -36,5 +36,5 @@ export interface UserProfilePATCHBody {
 export interface BaseUserProfile {
   username: string;
   display_name: string;
-  image_url: string;
+  image_url: string | null;
 }
