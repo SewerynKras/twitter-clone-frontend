@@ -13,7 +13,9 @@ RUN npm run ng build -- --prod
 
 FROM nginx:alpine
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
+COPY ./nginx/mime.types /etc/nginx/mime.types
 
 ## Remove default nginx index page
 RUN rm -rf /usr/share/nginx/html/*
